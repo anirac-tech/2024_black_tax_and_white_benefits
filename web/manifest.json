@@ -1,0 +1,23 @@
+{
+    "name": "Black Tax And White Benefits",
+    "short_name": "Black Tax And White Benefits",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "Mobile-friendly front end flutter app for blacktaxandwhitebenefits.com by Gordon Ferguson",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
