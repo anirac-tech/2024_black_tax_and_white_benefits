@@ -1,4 +1,4 @@
-package com.blacktaxandwhitebenefits.black_tax_and_white_benefits
+package com.blacktaxandwhitebenefits.gfapp
 
 import io.flutter.embedding.android.FlutterActivity
 
