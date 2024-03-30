@@ -1,19 +1,16 @@
 name: black_tax_and_white_benefits
 description: Mobile-friendly front end flutter app for blacktaxandwhitebenefits.com by Gordon Ferguson
-version: 1.0.0+1
+version: 1.5.0+1500
 publish_to: none
 
 environment:
   sdk: "^3.3.0"
 
 dependencies:
-  bloc: ^8.1.4
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.5
   flutter_gen: any
 dev_dependencies:
-  bloc_test: ^9.1.7
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.3
