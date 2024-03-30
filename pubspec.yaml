@@ -5,7 +5,9 @@ publish_to: none
 
 environment:
   sdk: "^3.3.0"
-
+  flutter: 3.19.5 # should match main.yaml for CI pipeline.
+  # yes, it would be worth considering ./flutterw or nvm
+  # 3.19.5 is stable channel from March 27, 2024
 dependencies:
   flutter:
     sdk: flutter
