@@ -22,11 +22,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 10;
+  int _counter = 0;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
     });
   }
 
@@ -47,16 +53,22 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            IconButton(
+              // Provide a Key to this button. This allows finding this
+              // specific button inside the test suite, and tapping it.
+              key: const Key('increment'),
+              onPressed: _incrementCounter,
+              tooltip: 'Increment',
+              icon: const Icon(Icons.add),
+            ),
+            IconButton(
+              key: const Key('decrement'),
+              onPressed: _decrementCounter,
+              tooltip: 'Decrement',
+              icon: const Icon(Icons.remove),
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        // Provide a Key to this button. This allows finding this
-        // specific button inside the test suite, and tapping it.
-        key: const Key('increment'),
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
