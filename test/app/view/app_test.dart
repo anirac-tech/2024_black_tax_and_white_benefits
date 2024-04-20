@@ -23,5 +23,18 @@ void main() {
     // Verify the counter increments by 1.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+
+    // Finds the floating action button to tap on.
+    final fab2 = find.byKey(const Key('decrement'));
+
+    // Emulate a tap on the floating action button.
+    await tester.tap(fab2);
+
+    // Trigger a frame.
+    await tester.pumpAndSettle();
+
+    // Verify the counter increments by 1.
+    expect(find.text('1'), findsNothing);
+    expect(find.text('0'), findsOneWidget);
   });
 }
