@@ -1,55 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class App extends StatelessWidget {
-  const App({super.key});
+part 'app.g.dart';
 
-  @override
-  Widget build(BuildContext context) => const MaterialApp(
-        title: 'Counter App',
-        home: MyHomePage(title: 'Counter App Home Page'),
-      );
+@riverpod
+String helloWorld(HelloWorldRef ref) {
+  return 'Hello world';
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({required this.title, super.key});
-
-  final String title;
-
+class App extends HookConsumerWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final counter = useState(0);
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+    final String value = ref.watch(helloWorldProvider);
 
-  void _incrementCounter() => setState(() => _counter++);
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Example')),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'Someone have tapped the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ],
-          ),
+          child: Text('$value ${counter.value}'),
         ),
         floatingActionButton: FloatingActionButton(
-          // Provide a Key to this button. This allows finding this
-          // specific button inside the test suite, and tapping it.
-          key: const Key('increment'),
-          onPressed: _incrementCounter,
+          onPressed: () => counter.value++,
           tooltip: 'Increment',
           child: const Icon(Icons.add),
         ),
-      );
+      ),
+    );
+  }
 }

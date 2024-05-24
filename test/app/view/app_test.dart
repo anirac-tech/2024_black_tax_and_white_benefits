@@ -1,12 +1,13 @@
 import 'package:black_tax_and_white_benefits/app/app.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
   testWidgets('tap on the floating action button, verify counter',
       (tester) async {
     // Load app widget.
-    await tester.pumpWidget(const App());
+    await tester.pumpWidget(ProviderScope(child: App()));
 
     // Verify the counter starts at 0.
     expect(find.text('0'), findsOneWidget);
