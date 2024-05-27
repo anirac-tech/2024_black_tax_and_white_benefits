@@ -7,7 +7,7 @@ void main() {
   testWidgets('tap on the floating action button, verify counter',
       (tester) async {
     // Load app widget.
-    await tester.pumpWidget(ProviderScope(child: App()));
+    await tester.pumpWidget(const ProviderScope(child: App()));
 
     // Verify the counter starts at 0.
     expect(find.text('0'), findsOneWidget);

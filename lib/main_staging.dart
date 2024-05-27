@@ -3,5 +3,5 @@ import 'package:black_tax_and_white_benefits/bootstrap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
-  bootstrap(() => ProviderScope(child: App()));
+  bootstrap(() => const ProviderScope(child: App()));
 }

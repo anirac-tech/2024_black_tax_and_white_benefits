@@ -10,17 +10,24 @@ environment:
   # yes, it would be worth considering ./flutterw or nvm
   # 3.19.5 is stable channel from March 27, 2024
 dependencies:
+  dio: ^5.4.3+1
   flutter:
     sdk: flutter
   flutter_gen: 5.5.0+1
   flutter_hooks: ^0.20.5
+  freezed_annotation: ^2.4.1
   hooks_riverpod: ^2.5.1
+  json_annotation: ^4.9.0
+  retrofit: ^4.1.0
   riverpod_annotation: ^2.3.5
 dev_dependencies:
   build_runner: ^2.4.9
   flutter_test:
     sdk: flutter
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
   mocktail: ^1.0.3
+  retrofit_generator: ^8.1.0
   riverpod_generator: ^2.4.0
   very_good_analysis: ^5.1.0
 
