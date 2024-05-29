@@ -16,11 +16,13 @@ abstract class PostClient {
   );
 }
 
+// coverage:ignore-start
 @riverpod
 FutureOr<List<Post>> getPosts(GetPostsRef ref) async {
   final dio = Dio();
   final client = PostClient(dio);
 
-  final posts = await client.getPosts(5);
+  final posts = await client.getPosts(100);
   return posts;
 }
+// coverage:ignore-end

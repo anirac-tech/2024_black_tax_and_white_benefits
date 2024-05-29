@@ -84,7 +84,7 @@ class _PostClient implements PostClient {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getPostsHash() => r'02f8c7f9ab76aaf5ccbd60c28fabadbbc5fb9dc1';
+String _$getPostsHash() => r'9536148e44b3fc9518cf5cfc19701dfe7bc960aa';
 
 /// See also [getPosts].
 @ProviderFor(getPosts)

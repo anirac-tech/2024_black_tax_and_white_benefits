@@ -1,0 +1,165 @@
+import 'package:black_tax_and_white_benefits/app/data/post_client.dart';
+import 'package:black_tax_and_white_benefits/app/domain/post.dart';
+import 'package:black_tax_and_white_benefits/app/view/app.dart';
+import 'package:black_tax_and_white_benefits/app/view/post_cell.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockPostClient extends Mock implements PostClient {}
+
+class Listener<T> extends Mock {
+  void call(T? previous, T next);
+}
+
+void main() {
+  ProviderContainer createContainer(PostClient postClient) {
+    final container = ProviderContainer(
+      overrides: [
+        getPostsProvider.overrideWith((ref) async {
+          await Future<void>.delayed(const Duration(seconds: 1));
+          return postClient.getPosts(100);
+        }),
+      ],
+    );
+    addTearDown(container.dispose);
+    return container;
+  }
+
+  Future<void> pumpApp(WidgetTester tester, PostClient postClient) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          getPostsProvider.overrideWith((ref) async {
+            await Future<void>.delayed(const Duration(seconds: 1));
+            return postClient.getPosts(100);
+          }),
+        ],
+        child: const App(),
+      ),
+    );
+  }
+
+  setUpAll(() {
+    registerFallbackValue(const AsyncData<List<Post>>([]));
+  });
+
+  group('Test PostClient and getPosts Provider', () {
+    test('Test posts success', () async {
+      final postClient = MockPostClient();
+
+      final data = <Post>[
+        const Post(
+          id: 0,
+          title: Renderable(rendered: 'Create todo list app'),
+          excerpt: Renderable(rendered: 'Create todo list app'),
+        ),
+        const Post(
+          id: 1,
+          title: Renderable(rendered: 'Create todo list app'),
+          excerpt: Renderable(rendered: 'Create todo list app'),
+        ),
+      ];
+
+      when(() => postClient.getPosts(100))
+          .thenAnswer((invocation) async => Future.value(data));
+
+      final container = createContainer(postClient);
+      final listener = Listener<AsyncValue<List<Post>>>();
+
+      container.listen<AsyncValue<List<Post>>>(
+        getPostsProvider,
+        listener.call,
+        fireImmediately: true,
+      );
+
+      verifyNever(() => listener(null, const AsyncData<List<Post>>([])));
+
+      // Act
+      final posts = await container.read(getPostsProvider.future);
+
+      // Assert
+      verifyInOrder([
+        () => listener(null, const AsyncLoading<List<Post>>()),
+        () => listener(
+              const AsyncLoading<List<Post>>(),
+              any(that: isA<AsyncData<List<Post>>>()),
+            ),
+      ]);
+
+      expect(posts.length, 2);
+    });
+    test('Test posts failure', () async {
+      final postClient = MockPostClient();
+      final exception = Exception('Posts connection failed');
+      when(() => postClient.getPosts(100)).thenThrow(exception);
+
+      final container = createContainer(postClient);
+      final listener = Listener<AsyncValue<List<Post>>>();
+
+      container.listen<AsyncValue<List<Post>>>(
+        getPostsProvider,
+        listener.call,
+        fireImmediately: true,
+      );
+
+      const data = AsyncData<List<Post>>([]);
+      verifyNever(() => listener(null, data));
+
+      await expectLater(
+        () async => container.read(getPostsProvider.future),
+        throwsA(isA<Exception>()),
+      );
+      // verify
+      verifyInOrder([
+        () => listener(null, const AsyncLoading<List<Post>>()),
+        () => listener(
+              // ignore: strict_raw_type
+              any(that: isA<AsyncLoading>()), any(that: isA<AsyncError>()),
+            ),
+      ]);
+      verifyNoMoreInteractions(listener);
+    });
+  });
+  group('Test Post Stream Widget', () {
+    testWidgets('success', (tester) async {
+      final postClient = MockPostClient();
+
+      final data = <Post>[
+        const Post(
+          id: 0,
+          title: Renderable(rendered: 'Create todo list app'),
+          excerpt: Renderable(rendered: 'Create todo list app'),
+        ),
+        const Post(
+          id: 1,
+          title: Renderable(rendered: 'Create todo list app'),
+          excerpt: Renderable(rendered: 'Create todo list app'),
+        ),
+      ];
+
+      when(() => postClient.getPosts(100))
+          .thenAnswer((invocation) async => Future.value(data));
+
+      await pumpApp(tester, postClient);
+
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+
+      await tester.pumpAndSettle(const Duration(seconds: 1));
+      expect(find.byType(PostCell), findsExactly(2));
+    });
+    testWidgets('failure', (tester) async {
+      final postClient = MockPostClient();
+      final exception = Exception('Posts connection failed');
+      when(() => postClient.getPosts(100)).thenThrow(exception);
+
+      await pumpApp(tester, postClient);
+
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      expect(find.text('Exception: Posts connection failed'), findsOneWidget);
+    });
+  });
+}
