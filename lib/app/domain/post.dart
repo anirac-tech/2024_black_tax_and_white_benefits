@@ -23,6 +23,5 @@ class Renderable with _$Renderable {
     required String rendered,
   }) = _Renderable;
 
-  factory Renderable.fromJson(Map<String, Object?> json) =>
-      _$RenderableFromJson(json);
+  factory Renderable.fromJson(Map<String, Object?> json) => _$RenderableFromJson(json);
 }
