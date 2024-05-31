@@ -1,55 +1,34 @@
+import 'package:black_tax_and_white_benefits/app/data/post_client.dart';
+import 'package:black_tax_and_white_benefits/app/view/post_cell.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({super.key});
 
   @override
-  Widget build(BuildContext context) => const MaterialApp(
-        title: 'Counter App',
-        home: MyHomePage(title: 'Counter App Home Page'),
-      );
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final posts = ref.watch(getPostsProvider);
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({required this.title, super.key});
+    debugPrint(posts.valueOrNull?.map((e) => '${e.id}').toString());
 
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() => setState(() => _counter++);
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Black Tax White Benefits')),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'Someone have tapped the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ],
+          child: posts.when(
+            data: (data) => ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final post = data[index];
+                return PostCell(post);
+              },
+            ),
+            loading: () => const CircularProgressIndicator(),
+            error: (error, stackTrace) => Text(error.toString()),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          // Provide a Key to this button. This allows finding this
-          // specific button inside the test suite, and tapping it.
-          key: const Key('increment'),
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ),
-      );
+      ),
+    );
+  }
 }
