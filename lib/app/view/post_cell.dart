@@ -8,10 +8,8 @@ class PostCell extends StatelessWidget {
   final Post post;
 
   @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Html(data: post.title.rendered),
-      subtitle: Html(data: post.excerpt?.rendered ?? ''),
-    );
-  }
+  Widget build(BuildContext context) => ListTile(
+        title: Html(data: post.title.rendered),
+        subtitle: Html(data: post.excerpt?.rendered ?? ''),
+      );
 }

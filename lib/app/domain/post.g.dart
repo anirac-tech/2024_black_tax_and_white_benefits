@@ -19,19 +19,31 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       link: json['link'] as String?,
     );
 
-Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) => <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'content': instance.content,
-      'excerpt': instance.excerpt,
-      'date': instance.date,
-      'link': instance.link,
-    };
+Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'title': instance.title.toJson(),
+  };
 
-_$RenderableImpl _$$RenderableImplFromJson(Map<String, dynamic> json) => _$RenderableImpl(
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('content', instance.content?.toJson());
+  writeNotNull('excerpt', instance.excerpt?.toJson());
+  writeNotNull('date', instance.date);
+  writeNotNull('link', instance.link);
+  return val;
+}
+
+_$RenderableImpl _$$RenderableImplFromJson(Map<String, dynamic> json) =>
+    _$RenderableImpl(
       rendered: json['rendered'] as String,
     );
 
-Map<String, dynamic> _$$RenderableImplToJson(_$RenderableImpl instance) => <String, dynamic>{
+Map<String, dynamic> _$$RenderableImplToJson(_$RenderableImpl instance) =>
+    <String, dynamic>{
       'rendered': instance.rendered,
     };

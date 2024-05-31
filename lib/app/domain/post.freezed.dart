@@ -34,7 +34,8 @@ mixin _$Post {
 
 /// @nodoc
 abstract class $PostCopyWith<$Res> {
-  factory $PostCopyWith(Post value, $Res Function(Post) then) = _$PostCopyWithImpl<$Res, Post>;
+  factory $PostCopyWith(Post value, $Res Function(Post) then) =
+      _$PostCopyWithImpl<$Res, Post>;
   @useResult
   $Res call(
       {int id,
@@ -50,7 +51,8 @@ abstract class $PostCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res> {
+class _$PostCopyWithImpl<$Res, $Val extends Post>
+    implements $PostCopyWith<$Res> {
   _$PostCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -131,7 +133,8 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
 
 /// @nodoc
 abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
-  factory _$$PostImplCopyWith(_$PostImpl value, $Res Function(_$PostImpl) then) =
+  factory _$$PostImplCopyWith(
+          _$PostImpl value, $Res Function(_$PostImpl) then) =
       __$$PostImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -152,7 +155,8 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$PostImplCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$PostImpl>
+class __$$PostImplCopyWithImpl<$Res>
+    extends _$PostCopyWithImpl<$Res, _$PostImpl>
     implements _$$PostImplCopyWith<$Res> {
   __$$PostImplCopyWithImpl(_$PostImpl _value, $Res Function(_$PostImpl) _then)
       : super(_value, _then);
@@ -200,9 +204,15 @@ class __$$PostImplCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$PostImpl
 @JsonSerializable()
 class _$PostImpl implements _Post {
   const _$PostImpl(
-      {required this.id, required this.title, this.content, this.excerpt, this.date, this.link});
+      {required this.id,
+      required this.title,
+      this.content,
+      this.excerpt,
+      this.date,
+      this.link});
 
-  factory _$PostImpl.fromJson(Map<String, dynamic> json) => _$$PostImplFromJson(json);
+  factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PostImplFromJson(json);
 
   @override
   final int id;
@@ -237,7 +247,8 @@ class _$PostImpl implements _Post {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, content, excerpt, date, link);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, content, excerpt, date, link);
 
   @JsonKey(ignore: true)
   @override
@@ -278,7 +289,8 @@ abstract class _Post implements Post {
   String? get link;
   @override
   @JsonKey(ignore: true)
-  _$$PostImplCopyWith<_$PostImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$PostImplCopyWith<_$PostImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 Renderable _$RenderableFromJson(Map<String, dynamic> json) {
@@ -291,19 +303,22 @@ mixin _$Renderable {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RenderableCopyWith<Renderable> get copyWith => throw _privateConstructorUsedError;
+  $RenderableCopyWith<Renderable> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RenderableCopyWith<$Res> {
-  factory $RenderableCopyWith(Renderable value, $Res Function(Renderable) then) =
+  factory $RenderableCopyWith(
+          Renderable value, $Res Function(Renderable) then) =
       _$RenderableCopyWithImpl<$Res, Renderable>;
   @useResult
   $Res call({String rendered});
 }
 
 /// @nodoc
-class _$RenderableCopyWithImpl<$Res, $Val extends Renderable> implements $RenderableCopyWith<$Res> {
+class _$RenderableCopyWithImpl<$Res, $Val extends Renderable>
+    implements $RenderableCopyWith<$Res> {
   _$RenderableCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -326,8 +341,10 @@ class _$RenderableCopyWithImpl<$Res, $Val extends Renderable> implements $Render
 }
 
 /// @nodoc
-abstract class _$$RenderableImplCopyWith<$Res> implements $RenderableCopyWith<$Res> {
-  factory _$$RenderableImplCopyWith(_$RenderableImpl value, $Res Function(_$RenderableImpl) then) =
+abstract class _$$RenderableImplCopyWith<$Res>
+    implements $RenderableCopyWith<$Res> {
+  factory _$$RenderableImplCopyWith(
+          _$RenderableImpl value, $Res Function(_$RenderableImpl) then) =
       __$$RenderableImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -335,9 +352,11 @@ abstract class _$$RenderableImplCopyWith<$Res> implements $RenderableCopyWith<$R
 }
 
 /// @nodoc
-class __$$RenderableImplCopyWithImpl<$Res> extends _$RenderableCopyWithImpl<$Res, _$RenderableImpl>
+class __$$RenderableImplCopyWithImpl<$Res>
+    extends _$RenderableCopyWithImpl<$Res, _$RenderableImpl>
     implements _$$RenderableImplCopyWith<$Res> {
-  __$$RenderableImplCopyWithImpl(_$RenderableImpl _value, $Res Function(_$RenderableImpl) _then)
+  __$$RenderableImplCopyWithImpl(
+      _$RenderableImpl _value, $Res Function(_$RenderableImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -359,7 +378,8 @@ class __$$RenderableImplCopyWithImpl<$Res> extends _$RenderableCopyWithImpl<$Res
 class _$RenderableImpl implements _Renderable {
   const _$RenderableImpl({required this.rendered});
 
-  factory _$RenderableImpl.fromJson(Map<String, dynamic> json) => _$$RenderableImplFromJson(json);
+  factory _$RenderableImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RenderableImplFromJson(json);
 
   @override
   final String rendered;
@@ -374,7 +394,8 @@ class _$RenderableImpl implements _Renderable {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RenderableImpl &&
-            (identical(other.rendered, rendered) || other.rendered == rendered));
+            (identical(other.rendered, rendered) ||
+                other.rendered == rendered));
   }
 
   @JsonKey(ignore: true)
@@ -396,13 +417,16 @@ class _$RenderableImpl implements _Renderable {
 }
 
 abstract class _Renderable implements Renderable {
-  const factory _Renderable({required final String rendered}) = _$RenderableImpl;
+  const factory _Renderable({required final String rendered}) =
+      _$RenderableImpl;
 
-  factory _Renderable.fromJson(Map<String, dynamic> json) = _$RenderableImpl.fromJson;
+  factory _Renderable.fromJson(Map<String, dynamic> json) =
+      _$RenderableImpl.fromJson;
 
   @override
   String get rendered;
   @override
   @JsonKey(ignore: true)
-  _$$RenderableImplCopyWith<_$RenderableImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$RenderableImplCopyWith<_$RenderableImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

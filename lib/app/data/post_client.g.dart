@@ -26,23 +26,26 @@ class _PostClient implements PostClient {
     final queryParameters = <String, dynamic>{r'per_page': n};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<Post>>(Options(
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<Post>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/posts?_embed=true',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
-    var value = _result.data!.map((dynamic i) => Post.fromJson(i as Map<String, dynamic>)).toList();
+            .compose(
+              _dio.options,
+              '/posts?_embed=true',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) => Post.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
@@ -88,7 +91,8 @@ String _$getPostsHash() => r'9536148e44b3fc9518cf5cfc19701dfe7bc960aa';
 final getPostsProvider = AutoDisposeFutureProvider<List<Post>>.internal(
   getPosts,
   name: r'getPostsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$getPostsHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getPostsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

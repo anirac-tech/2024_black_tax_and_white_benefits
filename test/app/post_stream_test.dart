@@ -7,6 +7,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../data/test_data.dart';
+
 class MockPostClient extends Mock implements PostClient {}
 
 class Listener<T> extends Mock {
@@ -46,21 +48,14 @@ void main() {
   });
 
   group('Test PostClient and getPosts Provider', () {
-    test('Test posts success', () async {
+    test('success', () async {
       final postClient = MockPostClient();
 
-      final data = <Post>[
-        const Post(
-          id: 0,
-          title: Renderable(rendered: 'Create todo list app'),
-          excerpt: Renderable(rendered: 'Create todo list app'),
-        ),
-        const Post(
-          id: 1,
-          title: Renderable(rendered: 'Create todo list app'),
-          excerpt: Renderable(rendered: 'Create todo list app'),
-        ),
-      ];
+      final data = postData
+          .map(
+            (e) => Post.fromJson(e),
+          )
+          .toList();
 
       when(() => postClient.getPosts(100))
           .thenAnswer((invocation) async => Future.value(data));
@@ -90,7 +85,7 @@ void main() {
 
       expect(posts.length, 2);
     });
-    test('Test posts failure', () async {
+    test('failure', () async {
       final postClient = MockPostClient();
       final exception = Exception('Posts connection failed');
       when(() => postClient.getPosts(100)).thenThrow(exception);
