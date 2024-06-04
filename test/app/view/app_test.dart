@@ -1,5 +1,5 @@
 import 'package:black_tax_and_white_benefits/app/app.dart';
-import 'package:black_tax_and_white_benefits/app/data/post_client.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

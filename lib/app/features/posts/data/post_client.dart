@@ -1,4 +1,4 @@
-import 'package:black_tax_and_white_benefits/app/domain/post.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';

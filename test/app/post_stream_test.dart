@@ -1,7 +1,7 @@
-import 'package:black_tax_and_white_benefits/app/data/post_client.dart';
-import 'package:black_tax_and_white_benefits/app/domain/post.dart';
-import 'package:black_tax_and_white_benefits/app/view/app.dart';
-import 'package:black_tax_and_white_benefits/app/view/post_cell.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
+import 'package:black_tax_and_white_benefits/app/app.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -57,8 +57,7 @@ void main() {
           )
           .toList();
 
-      when(() => postClient.getPosts(100))
-          .thenAnswer((invocation) async => Future.value(data));
+      when(() => postClient.getPosts(100)).thenAnswer((invocation) async => Future.value(data));
 
       final container = createContainer(postClient);
       final listener = Listener<AsyncValue<List<Post>>>();
@@ -134,8 +133,7 @@ void main() {
         ),
       ];
 
-      when(() => postClient.getPosts(100))
-          .thenAnswer((invocation) async => Future.value(data));
+      when(() => postClient.getPosts(100)).thenAnswer((invocation) async => Future.value(data));
 
       await pumpApp(tester, postClient);
 
