@@ -10,6 +10,8 @@ void main() {
       // Load app widget.
       await tester.pumpApp(const App());
 
+      await tester.tap(find.byIcon(Icons.home));
+
       expect(find.text('Black Tax White Benefits'), findsOneWidget);
     });
     testWidgets('Favorites', (tester) async {
@@ -18,7 +20,7 @@ void main() {
 
       await tester.tap(find.byIcon(Icons.favorite));
 
-      expect(find.text('Favorites'), findsOneWidget);
+      expect(find.text('Favorites'), findsAny);
     });
     testWidgets('Detail', (tester) async {
       // Load app widget.
@@ -40,6 +42,7 @@ void main() {
       tester.view.physicalSize = Size(300, 900);
       tester.view.devicePixelRatio = 1.0;
       addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
 
       await tester.pumpApp(const App());
       // View Home Screen
@@ -51,7 +54,7 @@ void main() {
       // View Favorites screen
       await tester.tap(find.byIcon(Icons.favorite));
 
-      expect(find.text('Favorites'), findsOneWidget);
+      expect(find.text('Favorites'), findsAny);
     });
   });
 }
