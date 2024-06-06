@@ -124,7 +124,7 @@ void main() {
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
-      await tester.pumpAndSettle(const Duration(seconds: 1));
+      await tester.pumpAndSettle();
       expect(find.byType(PostCell), findsExactly(2));
     });
     testWidgets('failure', (tester) async {
@@ -136,7 +136,7 @@ void main() {
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
-      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
       expect(find.text(exception.toString()), findsOneWidget);
     });
   });
