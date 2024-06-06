@@ -11,6 +11,7 @@ void main() {
       await tester.pumpApp(const App());
 
       await tester.tap(find.byIcon(Icons.home));
+      await tester.pumpAndSettle();
 
       expect(find.text('Black Tax White Benefits'), findsOneWidget);
     });
@@ -19,6 +20,7 @@ void main() {
       await tester.pumpApp(const App());
 
       await tester.tap(find.byIcon(Icons.favorite));
+      await tester.pumpAndSettle();
 
       expect(find.text('Favorites'), findsAny);
     });
@@ -53,6 +55,7 @@ void main() {
 
       // View Favorites screen
       await tester.tap(find.byIcon(Icons.favorite));
+      await tester.pumpAndSettle();
 
       expect(find.text('Favorites'), findsAny);
     });
