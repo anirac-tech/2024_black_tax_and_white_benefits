@@ -38,12 +38,10 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) {
   return val;
 }
 
-_$RenderableImpl _$$RenderableImplFromJson(Map<String, dynamic> json) =>
-    _$RenderableImpl(
+_$RenderableImpl _$$RenderableImplFromJson(Map<String, dynamic> json) => _$RenderableImpl(
       rendered: json['rendered'] as String,
     );
 
-Map<String, dynamic> _$$RenderableImplToJson(_$RenderableImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$RenderableImplToJson(_$RenderableImpl instance) => <String, dynamic>{
       'rendered': instance.rendered,
     };

@@ -20,18 +20,16 @@ final favoriteListProvider = StreamProvider<List<Post>>.internal(
 );
 
 typedef FavoriteListRef = StreamProviderRef<List<Post>>;
-String _$favoritesRepositoryHash() =>
-    r'8240878dbd4cbab0f70a15d4bcbf1df1f2f6277b';
+String _$favoritesRepositoryHash() => r'8240878dbd4cbab0f70a15d4bcbf1df1f2f6277b';
 
 /// See also [FavoritesRepository].
 @ProviderFor(FavoritesRepository)
-final favoritesRepositoryProvider = AutoDisposeNotifierProvider<
-    FavoritesRepository, FavoritesRepository>.internal(
+final favoritesRepositoryProvider =
+    AutoDisposeNotifierProvider<FavoritesRepository, FavoritesRepository>.internal(
   FavoritesRepository.new,
   name: r'favoritesRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$favoritesRepositoryHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$favoritesRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
