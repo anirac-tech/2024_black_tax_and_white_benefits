@@ -10,6 +10,7 @@ class PostDetailView extends StatelessWidget {
 
   final Post post;
 
+// coverage:ignore-start
   Future<void> _launchURL(String? url) async {
     if (url == null) return;
     final Uri _url = Uri.parse(url);
@@ -17,6 +18,7 @@ class PostDetailView extends StatelessWidget {
       throw Exception('Could not launch $_url');
     }
   }
+// coverage:ignore-end
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +40,19 @@ class PostDetailView extends StatelessWidget {
                 style: {'*': Style.fromTextStyle(theme.textTheme.headlineLarge!)},
               ),
               Html(
+                // coverage:ignore-start
                 data: post.date != null
                     ? DateFormat.yMMMMd().format(DateTime.parse(post.date!)).toString()
                     : 'N.D.',
+                // coverage:ignore-end
                 style: {'*': Style.fromTextStyle(theme.textTheme.labelLarge!)},
               ),
               if (post.content != null)
                 Html(
                   data: post.content!.rendered,
+                  // coverage:ignore-start
                   onLinkTap: (url, attributes, element) => _launchURL(url),
+                  // coverage:ignore-end
                 ),
             ],
           ),

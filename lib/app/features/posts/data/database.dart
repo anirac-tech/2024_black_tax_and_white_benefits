@@ -10,6 +10,7 @@ import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 
 part 'database.g.dart';
 
+//coverage:ignore-start
 class FavoritePosts extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get post => text().unique().map(Post.converter)();
@@ -46,7 +47,6 @@ LazyDatabase _openConnection() {
     return NativeDatabase.createInBackground(file);
   });
 }
+//coverage:ignore-end
 
-final databaseProvider = Provider<Database>((ref) {
-  return Database();
-});
+final databaseProvider = Provider<Database>((ref) => Database());

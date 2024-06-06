@@ -1,3 +1,4 @@
+import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/app.dart';
@@ -37,6 +38,7 @@ void main() {
             await Future<void>.delayed(const Duration(seconds: 1));
             return postClient.getPosts(100);
           }),
+          favoriteListProvider.overrideWith((ref) => Stream.empty()),
         ],
         child: const App(),
       ),
@@ -51,13 +53,8 @@ void main() {
     test('success', () async {
       final postClient = MockPostClient();
 
-      final data = postData
-          .map(
-            (e) => Post.fromJson(e),
-          )
-          .toList();
-
-      when(() => postClient.getPosts(100)).thenAnswer((invocation) async => Future.value(data));
+      when(() => postClient.getPosts(100))
+          .thenAnswer((invocation) async => Future.value(mockPosts));
 
       final container = createContainer(postClient);
       final listener = Listener<AsyncValue<List<Post>>>();
@@ -120,20 +117,8 @@ void main() {
     testWidgets('success', (tester) async {
       final postClient = MockPostClient();
 
-      final data = <Post>[
-        const Post(
-          id: 0,
-          title: Renderable(rendered: 'Create todo list app'),
-          excerpt: Renderable(rendered: 'Create todo list app'),
-        ),
-        const Post(
-          id: 1,
-          title: Renderable(rendered: 'Create todo list app'),
-          excerpt: Renderable(rendered: 'Create todo list app'),
-        ),
-      ];
-
-      when(() => postClient.getPosts(100)).thenAnswer((invocation) async => Future.value(data));
+      when(() => postClient.getPosts(100))
+          .thenAnswer((invocation) async => Future.value(mockPosts));
 
       await pumpApp(tester, postClient);
 
@@ -152,7 +137,7 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
       await tester.pumpAndSettle(const Duration(seconds: 2));
-      expect(find.text('Exception: Posts connection failed'), findsOneWidget);
+      expect(find.text(exception.toString()), findsOneWidget);
     });
   });
 }
