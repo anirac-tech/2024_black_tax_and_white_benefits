@@ -23,7 +23,7 @@ final goRouter = GoRouter(
     // Stateful navigation based on:
     // https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart
     StatefulShellRoute.indexedStack(
-      builder: (context, state, navigationShell) {
+      builder: (_, __, navigationShell) {
         return HomeScreen(navigationShell: navigationShell);
       },
       branches: [
@@ -32,7 +32,7 @@ final goRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/posts',
-              pageBuilder: (context, state) => const NoTransitionPage(
+              pageBuilder: (_, __) => const NoTransitionPage(
                 child: PostsView(),
               ),
             ),
@@ -44,7 +44,7 @@ final goRouter = GoRouter(
             // Shopping Cart
             GoRoute(
               path: '/favorites',
-              pageBuilder: (context, state) => const NoTransitionPage(
+              pageBuilder: (_, __) => const NoTransitionPage(
                 child: FavoritesView(),
               ),
             ),
@@ -56,7 +56,7 @@ final goRouter = GoRouter(
       path: '/details',
       name: 'details',
       parentNavigatorKey: _rootNavigatorKey,
-      builder: (context, state) {
+      builder: (_, state) {
         Post post = state.extra as Post;
         return PostDetailView(post);
       },

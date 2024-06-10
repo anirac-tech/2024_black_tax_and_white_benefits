@@ -12,9 +12,10 @@ final _$postDataJsonLiteral = [
     'title': {'rendered': 'Black Tax'},
     'content': {
       'rendered':
-          'In my last blog article, I described God’s obvious love of great variety'
+          "<a href='https://blacktaxandwhitebenefits.com'>In my last blog article, I described God’s obvious love of great variety</a>"
     },
-    'excerpt': {'rendered': 'In my last blog article, I described[...]'}
+    'excerpt': {'rendered': 'In my last blog article, I described[...]'},
+    'date': '2023-11-06T22:21:04'
   },
   {
     'id': 2,

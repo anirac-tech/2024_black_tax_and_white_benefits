@@ -20,10 +20,7 @@ void main() {
   ProviderContainer createContainer(PostClient postClient) {
     final container = ProviderContainer(
       overrides: [
-        getPostsProvider.overrideWith((ref) async {
-          await Future<void>.delayed(const Duration(seconds: 1));
-          return postClient.getPosts(100);
-        }),
+        postClientProvider.overrideWithValue(postClient),
       ],
     );
     addTearDown(container.dispose);
@@ -34,10 +31,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          getPostsProvider.overrideWith((ref) async {
-            await Future<void>.delayed(const Duration(seconds: 1));
-            return postClient.getPosts(100);
-          }),
+          postClientProvider.overrideWithValue(postClient),
           favoriteListProvider.overrideWith((ref) => Stream.empty()),
         ],
         child: const App(),

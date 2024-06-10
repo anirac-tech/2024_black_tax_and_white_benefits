@@ -49,4 +49,5 @@ LazyDatabase _openConnection() {
 }
 //coverage:ignore-end
 
-final databaseProvider = Provider<Database>((ref) => Database());
+@riverpod
+Database database(DatabaseRef _) => Database();

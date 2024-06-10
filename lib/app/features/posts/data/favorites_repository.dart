@@ -6,14 +6,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'favorites_repository.g.dart';
 
-@riverpod
-class FavoritesRepository extends _$FavoritesRepository {
-  @override
-  FavoritesRepository build() => FavoritesRepository();
+class FavoritesRepository {
+  const FavoritesRepository({
+    required this.database,
+  });
+
+  final Database database;
 
   Future<int> addFavorite(Post post) async {
-    final database = ref.read(databaseProvider);
-
     try {
       return database.insertFavoritePost(FavoritePostsCompanion.insert(post: post));
     } on Exception {
@@ -23,8 +23,6 @@ class FavoritesRepository extends _$FavoritesRepository {
   }
 
   Future<int> removeFavorite(Post post) async {
-    final database = ref.read(databaseProvider);
-
     try {
       final row = (await database.getPosts()).firstWhere((element) => element.post == post);
       return database.deleteFavoritePost(row.id);
@@ -35,9 +33,15 @@ class FavoritesRepository extends _$FavoritesRepository {
   }
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
+FavoritesRepository favoritesRepository(FavoritesRepositoryRef ref) {
+  final Database database = ref.watch(databaseProvider);
+  return FavoritesRepository(database: database);
+}
+
+@riverpod
 Stream<List<Post>> favoriteList(FavoriteListRef ref) {
-  final database = ref.watch(databaseProvider);
+  final Database database = ref.watch(databaseProvider);
 
   return database.watchPosts().map((entry) => entry.map((element) => element.post).toList());
 }
