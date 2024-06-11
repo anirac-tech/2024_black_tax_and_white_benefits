@@ -47,7 +47,7 @@ LazyDatabase _openConnection() {
     return NativeDatabase.createInBackground(file);
   });
 }
-//coverage:ignore-end
 
 @riverpod
 Database database(DatabaseRef _) => Database();
+//coverage:ignore-end
