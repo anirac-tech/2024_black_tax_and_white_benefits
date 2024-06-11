@@ -1,3 +1,4 @@
+import 'package:black_tax_and_white_benefits/app/config/navigation_icons.dart';
 import 'package:flutter/material.dart';
 
 class ScaffoldWithNavigationRail extends StatelessWidget {
@@ -23,11 +24,11 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
             destinations: const <NavigationRailDestination>[
               NavigationRailDestination(
                 label: Text('Posts'),
-                icon: Icon(Icons.home),
+                icon: homeIcon,
               ),
               NavigationRailDestination(
                 label: Text('Favorites'),
-                icon: Icon(Icons.favorite),
+                icon: favoritesIcon,
               ),
             ],
           ),

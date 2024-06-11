@@ -48,6 +48,6 @@ LazyDatabase _openConnection() {
   });
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Database database(DatabaseRef _) => Database();
 //coverage:ignore-end

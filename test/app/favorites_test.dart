@@ -36,17 +36,17 @@ void main() {
       final StreamController<List<FavoritePost>> favoritesController =
           StreamController<List<FavoritePost>>();
 
+      addTearDown(favoritesController.close);
+
       when(() => database.watchPosts()).thenAnswer((invocation) => favoritesController.stream);
       // Load app widget.
       await pumpApp(tester, database);
       favorites.clear();
       favoritesController.add(favorites);
-      await tester.tap(find.byIcon(Icons.favorite));
+      await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
 
       expect(find.text('You have nothing in your favorites.'), findsOneWidget);
-
-      favoritesController.close();
     });
     testWidgets('error', (tester) async {
       // Load app widget.
@@ -60,7 +60,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byIcon(Icons.favorite));
+      await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
 
       expect(find.text(exception.toString()), findsOneWidget);
@@ -79,7 +79,7 @@ void main() {
         favoritesController.add(favorites);
         return 0;
       });
-      addTearDown(() => favoritesController.close());
+      addTearDown(favoritesController.close);
 
       // Load app widget.
       await pumpApp(tester, database);
@@ -91,7 +91,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Make sure on home screen
-      await tester.tap(find.byIcon(Icons.home));
+      await tester.tap(find.byKey(Key('homeIcon')));
       await tester.pumpAndSettle();
 
       // Go to Post Details
@@ -110,7 +110,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Navigate back to Favorites screen
-      await tester.tap(find.byIcon(Icons.favorite));
+      await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
 
       expect(find.byType(PostCell), findsOneWidget);
@@ -124,7 +124,7 @@ void main() {
       when(() => database.watchPosts()).thenAnswer((invocation) => favoritesController.stream);
       when(() => database.insertFavoritePost(FavoritePostsCompanion.insert(post: mockPosts.first)))
           .thenThrow(exception);
-      addTearDown(() => favoritesController.close());
+      addTearDown(favoritesController.close);
 
       // Load app widget.
       await pumpApp(tester, database);
@@ -136,7 +136,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Make sure on home screen
-      await tester.tap(find.byIcon(Icons.home));
+      await tester.tap(find.byKey(Key('homeIcon')));
       await tester.pumpAndSettle();
 
       // Go to Post Details
@@ -167,7 +167,7 @@ void main() {
         favoritesController.add(favorites);
         return 0;
       });
-      addTearDown(() => favoritesController.close());
+      addTearDown(favoritesController.close);
 
       // Load app widget.
       await pumpApp(tester, database);
@@ -179,8 +179,11 @@ void main() {
       await tester.pumpAndSettle();
 
       // Move to Favorites screen
-      await tester.tap(find.byIcon(Icons.favorite));
+      await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
+
+      // Expect to find one Post in Favorites
+      expect(find.byType(PostCell), findsOneWidget);
 
       // Go to Post Details
       await tester.tap(find.text('Black Tax'));
@@ -210,7 +213,7 @@ void main() {
       when(() => database.watchPosts()).thenAnswer((invocation) => favoritesController.stream);
       when(() => database.getPosts()).thenAnswer((invocation) async => Future.value(favorites));
       when(() => database.deleteFavoritePost(1)).thenThrow(exception);
-      addTearDown(() => favoritesController.close());
+      addTearDown(favoritesController.close);
 
       // Load app widget.
       await pumpApp(tester, database);
@@ -222,7 +225,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Move to Favorites screen
-      await tester.tap(find.byIcon(Icons.favorite));
+      await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
 
       // Go to Post Details

@@ -1,3 +1,4 @@
+import 'package:black_tax_and_white_benefits/app/config/navigation_icons.dart';
 import 'package:flutter/material.dart';
 
 class ScaffoldWithNavigationBar extends StatelessWidget {
@@ -18,8 +19,8 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
         destinations: const [
-          NavigationDestination(label: 'Posts', icon: Icon(Icons.home)),
-          NavigationDestination(label: 'Favorites', icon: Icon(Icons.favorite)),
+          NavigationDestination(label: 'Posts', icon: homeIcon),
+          NavigationDestination(label: 'Favorites', icon: favoritesIcon),
         ],
         onDestinationSelected: onDestinationSelected,
       ),

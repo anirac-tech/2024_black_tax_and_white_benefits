@@ -115,7 +115,7 @@ void main() {
           .thenAnswer((invocation) async => Future.value(mockPosts));
 
       await pumpApp(tester, postClient);
-      await tester.tap(find.byIcon(Icons.home));
+      await tester.tap(find.byKey(Key('homeIcon')));
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
@@ -128,7 +128,7 @@ void main() {
       when(() => postClient.getPosts(100)).thenThrow(exception);
 
       await pumpApp(tester, postClient);
-      await tester.tap(find.byIcon(Icons.home));
+      await tester.tap(find.byKey(Key('homeIcon')));
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 

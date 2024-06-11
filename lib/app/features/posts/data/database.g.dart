@@ -272,11 +272,11 @@ class _$DatabaseManager {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$databaseHash() => r'd3a69c736686d8cb1db2dbae0bf526f1fa577cfc';
+String _$databaseHash() => r'12699d471af6f75534cbe8d7ba64971b10208eca';
 
 /// See also [database].
 @ProviderFor(database)
-final databaseProvider = AutoDisposeProvider<Database>.internal(
+final databaseProvider = Provider<Database>.internal(
   database,
   name: r'databaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$databaseHash,
@@ -284,5 +284,5 @@ final databaseProvider = AutoDisposeProvider<Database>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef DatabaseRef = AutoDisposeProviderRef<Database>;
+typedef DatabaseRef = ProviderRef<Database>;
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

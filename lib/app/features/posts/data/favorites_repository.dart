@@ -39,7 +39,7 @@ FavoritesRepository favoritesRepository(FavoritesRepositoryRef ref) {
   return FavoritesRepository(database: database);
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Stream<List<Post>> favoriteList(FavoriteListRef ref) {
   final Database database = ref.watch(databaseProvider);
 
