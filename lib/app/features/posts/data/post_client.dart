@@ -1,4 +1,4 @@
-import 'package:black_tax_and_white_benefits/app/domain/post.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
@@ -16,13 +16,16 @@ abstract class PostClient {
   );
 }
 
-// coverage:ignore-start
+//coverage:ignore-start
+@riverpod
+PostClient postClient(PostClientRef _) {
+  final dio = Dio();
+  return PostClient(dio);
+}
+//coverage:ignore-end
+
 @riverpod
 FutureOr<List<Post>> getPosts(GetPostsRef ref) async {
-  final dio = Dio();
-  final client = PostClient(dio);
-
-  final posts = await client.getPosts(100);
-  return posts;
+  final client = ref.watch(postClientProvider);
+  return client.getPosts(100);
 }
-// coverage:ignore-end

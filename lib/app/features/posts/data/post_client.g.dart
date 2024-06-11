@@ -81,7 +81,20 @@ class _PostClient implements PostClient {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getPostsHash() => r'9536148e44b3fc9518cf5cfc19701dfe7bc960aa';
+String _$postClientHash() => r'1cb22ed93a34b0ff4fa5151e3f4e92cadde3e846';
+
+/// See also [postClient].
+@ProviderFor(postClient)
+final postClientProvider = AutoDisposeProvider<PostClient>.internal(
+  postClient,
+  name: r'postClientProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$postClientHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef PostClientRef = AutoDisposeProviderRef<PostClient>;
+String _$getPostsHash() => r'7bf5779563164308b87f3095d82296678086f475';
 
 /// See also [getPosts].
 @ProviderFor(getPosts)

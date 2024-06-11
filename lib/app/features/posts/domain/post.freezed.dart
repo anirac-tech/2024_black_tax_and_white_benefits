@@ -25,7 +25,7 @@ mixin _$Post {
   Renderable? get content => throw _privateConstructorUsedError;
   Renderable? get excerpt => throw _privateConstructorUsedError;
   String? get date => throw _privateConstructorUsedError;
-  String? get link => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +42,7 @@ abstract class $PostCopyWith<$Res> {
       Renderable? content,
       Renderable? excerpt,
       String? date,
-      String? link});
+      String? imageUrl});
 
   $RenderableCopyWith<$Res> get title;
   $RenderableCopyWith<$Res>? get content;
@@ -66,7 +66,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
     Object? content = freezed,
     Object? excerpt = freezed,
     Object? date = freezed,
-    Object? link = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -89,9 +89,9 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      link: freezed == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -141,7 +141,7 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
       Renderable? content,
       Renderable? excerpt,
       String? date,
-      String? link});
+      String? imageUrl});
 
   @override
   $RenderableCopyWith<$Res> get title;
@@ -165,7 +165,7 @@ class __$$PostImplCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$PostImpl
     Object? content = freezed,
     Object? excerpt = freezed,
     Object? date = freezed,
-    Object? link = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_$PostImpl(
       id: null == id
@@ -188,9 +188,9 @@ class __$$PostImplCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$PostImpl
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      link: freezed == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -200,7 +200,12 @@ class __$$PostImplCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$PostImpl
 @JsonSerializable()
 class _$PostImpl implements _Post {
   const _$PostImpl(
-      {required this.id, required this.title, this.content, this.excerpt, this.date, this.link});
+      {required this.id,
+      required this.title,
+      this.content,
+      this.excerpt,
+      this.date,
+      this.imageUrl});
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) => _$$PostImplFromJson(json);
 
@@ -215,11 +220,11 @@ class _$PostImpl implements _Post {
   @override
   final String? date;
   @override
-  final String? link;
+  final String? imageUrl;
 
   @override
   String toString() {
-    return 'Post(id: $id, title: $title, content: $content, excerpt: $excerpt, date: $date, link: $link)';
+    return 'Post(id: $id, title: $title, content: $content, excerpt: $excerpt, date: $date, imageUrl: $imageUrl)';
   }
 
   @override
@@ -232,12 +237,12 @@ class _$PostImpl implements _Post {
             (identical(other.content, content) || other.content == content) &&
             (identical(other.excerpt, excerpt) || other.excerpt == excerpt) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.link, link) || other.link == link));
+            (identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, content, excerpt, date, link);
+  int get hashCode => Object.hash(runtimeType, id, title, content, excerpt, date, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -260,7 +265,7 @@ abstract class _Post implements Post {
       final Renderable? content,
       final Renderable? excerpt,
       final String? date,
-      final String? link}) = _$PostImpl;
+      final String? imageUrl}) = _$PostImpl;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
@@ -275,7 +280,7 @@ abstract class _Post implements Post {
   @override
   String? get date;
   @override
-  String? get link;
+  String? get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith => throw _privateConstructorUsedError;

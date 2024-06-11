@@ -16,7 +16,7 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
           ? null
           : Renderable.fromJson(json['excerpt'] as Map<String, dynamic>),
       date: json['date'] as String?,
-      link: json['link'] as String?,
+      imageUrl: json['imageUrl'] as String?,
     );
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) {
@@ -34,7 +34,7 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) {
   writeNotNull('content', instance.content?.toJson());
   writeNotNull('excerpt', instance.excerpt?.toJson());
   writeNotNull('date', instance.date);
-  writeNotNull('link', instance.link);
+  writeNotNull('imageUrl', instance.imageUrl);
   return val;
 }
 

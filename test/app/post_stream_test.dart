@@ -1,7 +1,8 @@
-import 'package:black_tax_and_white_benefits/app/data/post_client.dart';
-import 'package:black_tax_and_white_benefits/app/domain/post.dart';
-import 'package:black_tax_and_white_benefits/app/view/app.dart';
-import 'package:black_tax_and_white_benefits/app/view/post_cell.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
+import 'package:black_tax_and_white_benefits/app/app.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,10 +20,7 @@ void main() {
   ProviderContainer createContainer(PostClient postClient) {
     final container = ProviderContainer(
       overrides: [
-        getPostsProvider.overrideWith((ref) async {
-          await Future<void>.delayed(const Duration(seconds: 1));
-          return postClient.getPosts(100);
-        }),
+        postClientProvider.overrideWithValue(postClient),
       ],
     );
     addTearDown(container.dispose);
@@ -33,10 +31,8 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          getPostsProvider.overrideWith((ref) async {
-            await Future<void>.delayed(const Duration(seconds: 1));
-            return postClient.getPosts(100);
-          }),
+          postClientProvider.overrideWithValue(postClient),
+          favoriteListProvider.overrideWith((ref) => Stream.empty()),
         ],
         child: const App(),
       ),
@@ -51,14 +47,8 @@ void main() {
     test('success', () async {
       final postClient = MockPostClient();
 
-      final data = postData
-          .map(
-            (e) => Post.fromJson(e),
-          )
-          .toList();
-
       when(() => postClient.getPosts(100))
-          .thenAnswer((invocation) async => Future.value(data));
+          .thenAnswer((invocation) async => Future.value(mockPosts));
 
       final container = createContainer(postClient);
       final listener = Listener<AsyncValue<List<Post>>>();
@@ -121,27 +111,15 @@ void main() {
     testWidgets('success', (tester) async {
       final postClient = MockPostClient();
 
-      final data = <Post>[
-        const Post(
-          id: 0,
-          title: Renderable(rendered: 'Create todo list app'),
-          excerpt: Renderable(rendered: 'Create todo list app'),
-        ),
-        const Post(
-          id: 1,
-          title: Renderable(rendered: 'Create todo list app'),
-          excerpt: Renderable(rendered: 'Create todo list app'),
-        ),
-      ];
-
       when(() => postClient.getPosts(100))
-          .thenAnswer((invocation) async => Future.value(data));
+          .thenAnswer((invocation) async => Future.value(mockPosts));
 
       await pumpApp(tester, postClient);
+      await tester.tap(find.byKey(Key('homeIcon')));
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
-      await tester.pumpAndSettle(const Duration(seconds: 1));
+      await tester.pumpAndSettle();
       expect(find.byType(PostCell), findsExactly(2));
     });
     testWidgets('failure', (tester) async {
@@ -150,11 +128,12 @@ void main() {
       when(() => postClient.getPosts(100)).thenThrow(exception);
 
       await pumpApp(tester, postClient);
+      await tester.tap(find.byKey(Key('homeIcon')));
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
-      await tester.pumpAndSettle(const Duration(seconds: 2));
-      expect(find.text('Exception: Posts connection failed'), findsOneWidget);
+      await tester.pumpAndSettle();
+      expect(find.text(exception.toString()), findsOneWidget);
     });
   });
 }
