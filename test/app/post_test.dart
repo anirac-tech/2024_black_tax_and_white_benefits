@@ -1,4 +1,3 @@
-import 'package:black_tax_and_white_benefits/app/app.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:flutter_test/flutter_test.dart';
 
