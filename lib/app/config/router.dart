@@ -3,6 +3,7 @@ import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart
 import 'package:black_tax_and_white_benefits/app/features/posts/view/favorites_view.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_detail_view.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/posts_view.dart';
+import 'package:black_tax_and_white_benefits/app/features/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -60,6 +61,12 @@ final goRouter = GoRouter(
         Post post = state.extra as Post;
         return PostDetailView(post);
       },
-    )
+    ),
+    GoRoute(
+      path: '/settings',
+      name: 'settings',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (_, __) => SettingsView(),
+    ),
   ],
 );

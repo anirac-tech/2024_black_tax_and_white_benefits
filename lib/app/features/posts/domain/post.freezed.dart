@@ -22,10 +22,12 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 mixin _$Post {
   int get id => throw _privateConstructorUsedError;
   Renderable get title => throw _privateConstructorUsedError;
-  Renderable? get content => throw _privateConstructorUsedError;
-  Renderable? get excerpt => throw _privateConstructorUsedError;
-  String? get date => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
+  Renderable get content => throw _privateConstructorUsedError;
+  Renderable get excerpt => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
+  String get link => throw _privateConstructorUsedError;
+  @JsonKey(name: '_embedded')
+  Embedded? get embedded => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,14 +41,16 @@ abstract class $PostCopyWith<$Res> {
   $Res call(
       {int id,
       Renderable title,
-      Renderable? content,
-      Renderable? excerpt,
-      String? date,
-      String? imageUrl});
+      Renderable content,
+      Renderable excerpt,
+      DateTime date,
+      String link,
+      @JsonKey(name: '_embedded') Embedded? embedded});
 
   $RenderableCopyWith<$Res> get title;
-  $RenderableCopyWith<$Res>? get content;
-  $RenderableCopyWith<$Res>? get excerpt;
+  $RenderableCopyWith<$Res> get content;
+  $RenderableCopyWith<$Res> get excerpt;
+  $EmbeddedCopyWith<$Res>? get embedded;
 }
 
 /// @nodoc
@@ -63,10 +67,11 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? content = freezed,
-    Object? excerpt = freezed,
-    Object? date = freezed,
-    Object? imageUrl = freezed,
+    Object? content = null,
+    Object? excerpt = null,
+    Object? date = null,
+    Object? link = null,
+    Object? embedded = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -77,22 +82,26 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as Renderable,
-      content: freezed == content
+      content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as Renderable?,
-      excerpt: freezed == excerpt
+              as Renderable,
+      excerpt: null == excerpt
           ? _value.excerpt
           : excerpt // ignore: cast_nullable_to_non_nullable
-              as Renderable?,
-      date: freezed == date
+              as Renderable,
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime,
+      link: null == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String,
+      embedded: freezed == embedded
+          ? _value.embedded
+          : embedded // ignore: cast_nullable_to_non_nullable
+              as Embedded?,
     ) as $Val);
   }
 
@@ -106,25 +115,29 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
 
   @override
   @pragma('vm:prefer-inline')
-  $RenderableCopyWith<$Res>? get content {
-    if (_value.content == null) {
-      return null;
-    }
-
-    return $RenderableCopyWith<$Res>(_value.content!, (value) {
+  $RenderableCopyWith<$Res> get content {
+    return $RenderableCopyWith<$Res>(_value.content, (value) {
       return _then(_value.copyWith(content: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RenderableCopyWith<$Res>? get excerpt {
-    if (_value.excerpt == null) {
+  $RenderableCopyWith<$Res> get excerpt {
+    return $RenderableCopyWith<$Res>(_value.excerpt, (value) {
+      return _then(_value.copyWith(excerpt: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EmbeddedCopyWith<$Res>? get embedded {
+    if (_value.embedded == null) {
       return null;
     }
 
-    return $RenderableCopyWith<$Res>(_value.excerpt!, (value) {
-      return _then(_value.copyWith(excerpt: value) as $Val);
+    return $EmbeddedCopyWith<$Res>(_value.embedded!, (value) {
+      return _then(_value.copyWith(embedded: value) as $Val);
     });
   }
 }
@@ -138,17 +151,20 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   $Res call(
       {int id,
       Renderable title,
-      Renderable? content,
-      Renderable? excerpt,
-      String? date,
-      String? imageUrl});
+      Renderable content,
+      Renderable excerpt,
+      DateTime date,
+      String link,
+      @JsonKey(name: '_embedded') Embedded? embedded});
 
   @override
   $RenderableCopyWith<$Res> get title;
   @override
-  $RenderableCopyWith<$Res>? get content;
+  $RenderableCopyWith<$Res> get content;
   @override
-  $RenderableCopyWith<$Res>? get excerpt;
+  $RenderableCopyWith<$Res> get excerpt;
+  @override
+  $EmbeddedCopyWith<$Res>? get embedded;
 }
 
 /// @nodoc
@@ -162,10 +178,11 @@ class __$$PostImplCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$PostImpl
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? content = freezed,
-    Object? excerpt = freezed,
-    Object? date = freezed,
-    Object? imageUrl = freezed,
+    Object? content = null,
+    Object? excerpt = null,
+    Object? date = null,
+    Object? link = null,
+    Object? embedded = freezed,
   }) {
     return _then(_$PostImpl(
       id: null == id
@@ -176,36 +193,42 @@ class __$$PostImplCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$PostImpl
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as Renderable,
-      content: freezed == content
+      content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as Renderable?,
-      excerpt: freezed == excerpt
+              as Renderable,
+      excerpt: null == excerpt
           ? _value.excerpt
           : excerpt // ignore: cast_nullable_to_non_nullable
-              as Renderable?,
-      date: freezed == date
+              as Renderable,
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime,
+      link: null == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String,
+      embedded: freezed == embedded
+          ? _value.embedded
+          : embedded // ignore: cast_nullable_to_non_nullable
+              as Embedded?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$PostImpl implements _Post {
+class _$PostImpl extends _Post {
   const _$PostImpl(
       {required this.id,
       required this.title,
-      this.content,
-      this.excerpt,
-      this.date,
-      this.imageUrl});
+      required this.content,
+      required this.excerpt,
+      required this.date,
+      required this.link,
+      @JsonKey(name: '_embedded') this.embedded})
+      : super._();
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) => _$$PostImplFromJson(json);
 
@@ -214,17 +237,20 @@ class _$PostImpl implements _Post {
   @override
   final Renderable title;
   @override
-  final Renderable? content;
+  final Renderable content;
   @override
-  final Renderable? excerpt;
+  final Renderable excerpt;
   @override
-  final String? date;
+  final DateTime date;
   @override
-  final String? imageUrl;
+  final String link;
+  @override
+  @JsonKey(name: '_embedded')
+  final Embedded? embedded;
 
   @override
   String toString() {
-    return 'Post(id: $id, title: $title, content: $content, excerpt: $excerpt, date: $date, imageUrl: $imageUrl)';
+    return 'Post(id: $id, title: $title, content: $content, excerpt: $excerpt, date: $date, link: $link, embedded: $embedded)';
   }
 
   @override
@@ -237,12 +263,13 @@ class _$PostImpl implements _Post {
             (identical(other.content, content) || other.content == content) &&
             (identical(other.excerpt, excerpt) || other.excerpt == excerpt) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
+            (identical(other.link, link) || other.link == link) &&
+            (identical(other.embedded, embedded) || other.embedded == embedded));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, content, excerpt, date, imageUrl);
+  int get hashCode => Object.hash(runtimeType, id, title, content, excerpt, date, link, embedded);
 
   @JsonKey(ignore: true)
   @override
@@ -258,14 +285,16 @@ class _$PostImpl implements _Post {
   }
 }
 
-abstract class _Post implements Post {
+abstract class _Post extends Post {
   const factory _Post(
       {required final int id,
       required final Renderable title,
-      final Renderable? content,
-      final Renderable? excerpt,
-      final String? date,
-      final String? imageUrl}) = _$PostImpl;
+      required final Renderable content,
+      required final Renderable excerpt,
+      required final DateTime date,
+      required final String link,
+      @JsonKey(name: '_embedded') final Embedded? embedded}) = _$PostImpl;
+  const _Post._() : super._();
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
@@ -274,13 +303,16 @@ abstract class _Post implements Post {
   @override
   Renderable get title;
   @override
-  Renderable? get content;
+  Renderable get content;
   @override
-  Renderable? get excerpt;
+  Renderable get excerpt;
   @override
-  String? get date;
+  DateTime get date;
   @override
-  String? get imageUrl;
+  String get link;
+  @override
+  @JsonKey(name: '_embedded')
+  Embedded? get embedded;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith => throw _privateConstructorUsedError;
@@ -410,4 +442,364 @@ abstract class _Renderable implements Renderable {
   @override
   @JsonKey(ignore: true)
   _$$RenderableImplCopyWith<_$RenderableImpl> get copyWith => throw _privateConstructorUsedError;
+}
+
+Embedded _$EmbeddedFromJson(Map<String, dynamic> json) {
+  return _Embedded.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Embedded {
+  @JsonKey(name: 'wp:featuredmedia')
+  List<WpFeaturedmedia>? get wpFeaturedmedia => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EmbeddedCopyWith<Embedded> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EmbeddedCopyWith<$Res> {
+  factory $EmbeddedCopyWith(Embedded value, $Res Function(Embedded) then) =
+      _$EmbeddedCopyWithImpl<$Res, Embedded>;
+  @useResult
+  $Res call({@JsonKey(name: 'wp:featuredmedia') List<WpFeaturedmedia>? wpFeaturedmedia});
+}
+
+/// @nodoc
+class _$EmbeddedCopyWithImpl<$Res, $Val extends Embedded> implements $EmbeddedCopyWith<$Res> {
+  _$EmbeddedCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? wpFeaturedmedia = freezed,
+  }) {
+    return _then(_value.copyWith(
+      wpFeaturedmedia: freezed == wpFeaturedmedia
+          ? _value.wpFeaturedmedia
+          : wpFeaturedmedia // ignore: cast_nullable_to_non_nullable
+              as List<WpFeaturedmedia>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$EmbeddedImplCopyWith<$Res> implements $EmbeddedCopyWith<$Res> {
+  factory _$$EmbeddedImplCopyWith(_$EmbeddedImpl value, $Res Function(_$EmbeddedImpl) then) =
+      __$$EmbeddedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'wp:featuredmedia') List<WpFeaturedmedia>? wpFeaturedmedia});
+}
+
+/// @nodoc
+class __$$EmbeddedImplCopyWithImpl<$Res> extends _$EmbeddedCopyWithImpl<$Res, _$EmbeddedImpl>
+    implements _$$EmbeddedImplCopyWith<$Res> {
+  __$$EmbeddedImplCopyWithImpl(_$EmbeddedImpl _value, $Res Function(_$EmbeddedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? wpFeaturedmedia = freezed,
+  }) {
+    return _then(_$EmbeddedImpl(
+      wpFeaturedmedia: freezed == wpFeaturedmedia
+          ? _value._wpFeaturedmedia
+          : wpFeaturedmedia // ignore: cast_nullable_to_non_nullable
+              as List<WpFeaturedmedia>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$EmbeddedImpl implements _Embedded {
+  const _$EmbeddedImpl(
+      {@JsonKey(name: 'wp:featuredmedia') final List<WpFeaturedmedia>? wpFeaturedmedia})
+      : _wpFeaturedmedia = wpFeaturedmedia;
+
+  factory _$EmbeddedImpl.fromJson(Map<String, dynamic> json) => _$$EmbeddedImplFromJson(json);
+
+  final List<WpFeaturedmedia>? _wpFeaturedmedia;
+  @override
+  @JsonKey(name: 'wp:featuredmedia')
+  List<WpFeaturedmedia>? get wpFeaturedmedia {
+    final value = _wpFeaturedmedia;
+    if (value == null) return null;
+    if (_wpFeaturedmedia is EqualUnmodifiableListView) return _wpFeaturedmedia;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'Embedded(wpFeaturedmedia: $wpFeaturedmedia)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EmbeddedImpl &&
+            const DeepCollectionEquality().equals(other._wpFeaturedmedia, _wpFeaturedmedia));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_wpFeaturedmedia));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmbeddedImplCopyWith<_$EmbeddedImpl> get copyWith =>
+      __$$EmbeddedImplCopyWithImpl<_$EmbeddedImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EmbeddedImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Embedded implements Embedded {
+  const factory _Embedded(
+          {@JsonKey(name: 'wp:featuredmedia') final List<WpFeaturedmedia>? wpFeaturedmedia}) =
+      _$EmbeddedImpl;
+
+  factory _Embedded.fromJson(Map<String, dynamic> json) = _$EmbeddedImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'wp:featuredmedia')
+  List<WpFeaturedmedia>? get wpFeaturedmedia;
+  @override
+  @JsonKey(ignore: true)
+  _$$EmbeddedImplCopyWith<_$EmbeddedImpl> get copyWith => throw _privateConstructorUsedError;
+}
+
+WpFeaturedmedia _$WpFeaturedmediaFromJson(Map<String, dynamic> json) {
+  return _WpFeaturedmedia.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WpFeaturedmedia {
+  int get id => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
+  String get slug => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'source_url')
+  String get sourceUrl => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WpFeaturedmediaCopyWith<WpFeaturedmedia> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WpFeaturedmediaCopyWith<$Res> {
+  factory $WpFeaturedmediaCopyWith(WpFeaturedmedia value, $Res Function(WpFeaturedmedia) then) =
+      _$WpFeaturedmediaCopyWithImpl<$Res, WpFeaturedmedia>;
+  @useResult
+  $Res call(
+      {int id,
+      DateTime date,
+      String slug,
+      String type,
+      @JsonKey(name: 'source_url') String sourceUrl});
+}
+
+/// @nodoc
+class _$WpFeaturedmediaCopyWithImpl<$Res, $Val extends WpFeaturedmedia>
+    implements $WpFeaturedmediaCopyWith<$Res> {
+  _$WpFeaturedmediaCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? date = null,
+    Object? slug = null,
+    Object? type = null,
+    Object? sourceUrl = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      sourceUrl: null == sourceUrl
+          ? _value.sourceUrl
+          : sourceUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WpFeaturedmediaImplCopyWith<$Res> implements $WpFeaturedmediaCopyWith<$Res> {
+  factory _$$WpFeaturedmediaImplCopyWith(
+          _$WpFeaturedmediaImpl value, $Res Function(_$WpFeaturedmediaImpl) then) =
+      __$$WpFeaturedmediaImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      DateTime date,
+      String slug,
+      String type,
+      @JsonKey(name: 'source_url') String sourceUrl});
+}
+
+/// @nodoc
+class __$$WpFeaturedmediaImplCopyWithImpl<$Res>
+    extends _$WpFeaturedmediaCopyWithImpl<$Res, _$WpFeaturedmediaImpl>
+    implements _$$WpFeaturedmediaImplCopyWith<$Res> {
+  __$$WpFeaturedmediaImplCopyWithImpl(
+      _$WpFeaturedmediaImpl _value, $Res Function(_$WpFeaturedmediaImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? date = null,
+    Object? slug = null,
+    Object? type = null,
+    Object? sourceUrl = null,
+  }) {
+    return _then(_$WpFeaturedmediaImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      sourceUrl: null == sourceUrl
+          ? _value.sourceUrl
+          : sourceUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WpFeaturedmediaImpl implements _WpFeaturedmedia {
+  const _$WpFeaturedmediaImpl(
+      {required this.id,
+      required this.date,
+      required this.slug,
+      required this.type,
+      @JsonKey(name: 'source_url') required this.sourceUrl});
+
+  factory _$WpFeaturedmediaImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WpFeaturedmediaImplFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final DateTime date;
+  @override
+  final String slug;
+  @override
+  final String type;
+  @override
+  @JsonKey(name: 'source_url')
+  final String sourceUrl;
+
+  @override
+  String toString() {
+    return 'WpFeaturedmedia(id: $id, date: $date, slug: $slug, type: $type, sourceUrl: $sourceUrl)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WpFeaturedmediaImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.slug, slug) || other.slug == slug) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.sourceUrl, sourceUrl) || other.sourceUrl == sourceUrl));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, date, slug, type, sourceUrl);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WpFeaturedmediaImplCopyWith<_$WpFeaturedmediaImpl> get copyWith =>
+      __$$WpFeaturedmediaImplCopyWithImpl<_$WpFeaturedmediaImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WpFeaturedmediaImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WpFeaturedmedia implements WpFeaturedmedia {
+  const factory _WpFeaturedmedia(
+      {required final int id,
+      required final DateTime date,
+      required final String slug,
+      required final String type,
+      @JsonKey(name: 'source_url') required final String sourceUrl}) = _$WpFeaturedmediaImpl;
+
+  factory _WpFeaturedmedia.fromJson(Map<String, dynamic> json) = _$WpFeaturedmediaImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  DateTime get date;
+  @override
+  String get slug;
+  @override
+  String get type;
+  @override
+  @JsonKey(name: 'source_url')
+  String get sourceUrl;
+  @override
+  @JsonKey(ignore: true)
+  _$$WpFeaturedmediaImplCopyWith<_$WpFeaturedmediaImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

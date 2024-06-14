@@ -6,14 +6,19 @@ part 'post.g.dart';
 
 @freezed
 class Post with _$Post {
+  const Post._();
+
   const factory Post({
     required int id,
     required Renderable title,
-    Renderable? content,
-    Renderable? excerpt,
-    String? date,
-    String? imageUrl,
+    required Renderable content,
+    required Renderable excerpt,
+    required DateTime date,
+    required String link,
+    @JsonKey(name: '_embedded') Embedded? embedded,
   }) = _Post;
+
+  String? get imageUrl => embedded?.wpFeaturedmedia?.firstOrNull?.sourceUrl;
 
   factory Post.fromJson(Map<String, Object?> json) => _$PostFromJson(json);
 
@@ -30,4 +35,26 @@ class Renderable with _$Renderable {
   }) = _Renderable;
 
   factory Renderable.fromJson(Map<String, Object?> json) => _$RenderableFromJson(json);
+}
+
+@freezed
+class Embedded with _$Embedded {
+  const factory Embedded({
+    @JsonKey(name: 'wp:featuredmedia') List<WpFeaturedmedia>? wpFeaturedmedia,
+  }) = _Embedded;
+
+  factory Embedded.fromJson(Map<String, dynamic> json) => _$EmbeddedFromJson(json);
+}
+
+@freezed
+class WpFeaturedmedia with _$WpFeaturedmedia {
+  const factory WpFeaturedmedia({
+    required int id,
+    required DateTime date,
+    required String slug,
+    required String type,
+    @JsonKey(name: 'source_url') required String sourceUrl,
+  }) = _WpFeaturedmedia;
+
+  factory WpFeaturedmedia.fromJson(Map<String, dynamic> json) => _$WpFeaturedmediaFromJson(json);
 }
