@@ -12,7 +12,37 @@ import 'package:mocktail/mocktail.dart';
 
 import '../data/test_data.dart';
 
-class MockDatabase extends Mock implements Database {}
+class MockDatabase extends Mock implements Database {
+  final List<FavoritePost> favorites = List.empty(growable: true);
+  final StreamController<List<FavoritePost>> favoritesController =
+      StreamController<List<FavoritePost>>();
+
+  MockDatabase() {
+    favorites.clear();
+    favoritesController.add(favorites);
+  }
+
+  @override
+  Stream<List<FavoritePost>> watchPosts() => favoritesController.stream;
+  @override
+  Future<List<FavoritePost>> getPosts() => Future.value(favorites);
+
+  void add(FavoritePost post) {
+    favorites.add(post);
+    favoritesController.add(favorites);
+  }
+
+  void remove(FavoritePost post) {
+    favorites.remove(post);
+    favoritesController.add(favorites);
+  }
+
+  @override
+  Future<void> close() async {
+    await favoritesController.close();
+    reset(this);
+  }
+}
 
 void main() {
   Future<void> pumpApp(WidgetTester tester, Database database) async {
@@ -28,21 +58,19 @@ void main() {
   }
 
   final exception = Exception('Failed');
+  final mockFavoritePost = FavoritePost(id: 1, post: mockPosts.first);
 
   group('Test Favorite action', () {
+    setUpAll(() {
+      registerFallbackValue(FavoritePostsCompanion.insert(post: mockPosts.first));
+    });
     testWidgets('empty list', (tester) async {
       final database = MockDatabase();
-      final List<FavoritePost> favorites = List.empty(growable: true);
-      final StreamController<List<FavoritePost>> favoritesController =
-          StreamController<List<FavoritePost>>();
 
-      addTearDown(favoritesController.close);
+      addTearDown(database.close);
 
-      when(() => database.watchPosts()).thenAnswer((invocation) => favoritesController.stream);
       // Load app widget.
       await pumpApp(tester, database);
-      favorites.clear();
-      favoritesController.add(favorites);
       await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
 
@@ -67,26 +95,15 @@ void main() {
     });
     testWidgets('add one to favorites success', (tester) async {
       final database = MockDatabase();
-      final List<FavoritePost> favorites = List.empty(growable: true);
-      final StreamController<List<FavoritePost>> favoritesController =
-          StreamController<List<FavoritePost>>();
-      final mockFavoritePost = FavoritePost(id: 1, post: mockPosts.first);
-
-      when(() => database.watchPosts()).thenAnswer((invocation) => favoritesController.stream);
-      when(() => database.insertFavoritePost(FavoritePostsCompanion.insert(post: mockPosts.first)))
-          .thenAnswer((invocation) async {
-        favorites.add(mockFavoritePost);
-        favoritesController.add(favorites);
-        return 0;
+      when(() => database.insertFavoritePost(any())).thenAnswer((invocation) {
+        database.add(mockFavoritePost);
+        return Future.value(0);
       });
-      addTearDown(favoritesController.close);
+
+      addTearDown(database.close);
 
       // Load app widget.
       await pumpApp(tester, database);
-
-      // Clear favorites list
-      favorites.clear();
-      favoritesController.add(favorites);
 
       await tester.pumpAndSettle();
 
@@ -117,21 +134,11 @@ void main() {
     });
     testWidgets('add one to favorites failure', (tester) async {
       final database = MockDatabase();
-      final List<FavoritePost> favorites = List.empty(growable: true);
-      final StreamController<List<FavoritePost>> favoritesController =
-          StreamController<List<FavoritePost>>();
-
-      when(() => database.watchPosts()).thenAnswer((invocation) => favoritesController.stream);
-      when(() => database.insertFavoritePost(FavoritePostsCompanion.insert(post: mockPosts.first)))
-          .thenThrow(exception);
-      addTearDown(favoritesController.close);
+      when(() => database.insertFavoritePost(any())).thenThrow(exception);
+      addTearDown(database.close);
 
       // Load app widget.
       await pumpApp(tester, database);
-
-      // Clear favorites list
-      favorites.clear();
-      favoritesController.add(favorites);
 
       await tester.pumpAndSettle();
 
@@ -155,27 +162,19 @@ void main() {
     });
     testWidgets('remove one from favorites success', (tester) async {
       final database = MockDatabase();
-      final List<FavoritePost> favorites = List.empty(growable: true);
-      final StreamController<List<FavoritePost>> favoritesController =
-          StreamController<List<FavoritePost>>();
-      final mockFavoritePost = FavoritePost(id: 1, post: mockPosts.first);
 
-      when(() => database.watchPosts()).thenAnswer((invocation) => favoritesController.stream);
-      when(() => database.getPosts()).thenAnswer((invocation) async => Future.value(favorites));
-      when(() => database.deleteFavoritePost(1)).thenAnswer((invocation) async {
-        favorites.remove(mockFavoritePost);
-        favoritesController.add(favorites);
-        return 0;
+      when(() => database.deleteFavoritePost(any())).thenAnswer((invocation) {
+        database.remove(mockFavoritePost);
+        return Future.value(0);
       });
-      addTearDown(favoritesController.close);
+
+      addTearDown(database.close);
 
       // Load app widget.
       await pumpApp(tester, database);
 
       // Clear favorites list and add one post
-      favorites.clear();
-      favorites.add(mockFavoritePost);
-      favoritesController.add(favorites);
+      database.add(mockFavoritePost);
       await tester.pumpAndSettle();
 
       // Move to Favorites screen
@@ -205,23 +204,15 @@ void main() {
     });
     testWidgets('remove one from favorites failure', (tester) async {
       final database = MockDatabase();
-      final List<FavoritePost> favorites = List.empty(growable: true);
-      final StreamController<List<FavoritePost>> favoritesController =
-          StreamController<List<FavoritePost>>();
       final mockFavoritePost = FavoritePost(id: 1, post: mockPosts.first);
-
-      when(() => database.watchPosts()).thenAnswer((invocation) => favoritesController.stream);
-      when(() => database.getPosts()).thenAnswer((invocation) async => Future.value(favorites));
-      when(() => database.deleteFavoritePost(1)).thenThrow(exception);
-      addTearDown(favoritesController.close);
+      when(() => database.deleteFavoritePost(any())).thenThrow(exception);
+      addTearDown(database.close);
 
       // Load app widget.
       await pumpApp(tester, database);
 
       // Clear favorites list and add one post
-      favorites.clear();
-      favorites.add(mockFavoritePost);
-      favoritesController.add(favorites);
+      database.add(mockFavoritePost);
       await tester.pumpAndSettle();
 
       // Move to Favorites screen

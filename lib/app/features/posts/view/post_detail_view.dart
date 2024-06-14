@@ -43,7 +43,9 @@ class PostDetailView extends StatelessWidget {
               if (post.imageUrl != null)
                 CachedNetworkImage(
                   imageUrl: post.imageUrl!,
+                  // coverage:ignore-start
                   errorWidget: (_, __, ___) => const Icon(Icons.cloud_off),
+                  // coverage:ignore-end
                   fit: BoxFit.fitWidth,
                 ),
               Html(
@@ -51,16 +53,13 @@ class PostDetailView extends StatelessWidget {
                 style: {'*': Style.fromTextStyle(theme.textTheme.headlineLarge!)},
               ),
               Html(
-                // coverage:ignore-start
                 data: DateFormat.yMMMMd().format(post.date).toString(),
-                // coverage:ignore-end
                 style: {'*': Style.fromTextStyle(theme.textTheme.labelLarge!)},
               ),
               Html(
                 data: post.content.rendered,
-                // coverage:ignore-start
+                //coverage:ignore-line
                 onLinkTap: (url, attributes, element) => _launchURL(url),
-                // coverage:ignore-end
               ),
             ],
           ),

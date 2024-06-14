@@ -44,7 +44,9 @@ class PostCell extends StatelessWidget {
                             fit: BoxFit.fitWidth,
                             child: CachedNetworkImage(
                               imageUrl: post.imageUrl!,
+                              // coverage:ignore-start
                               errorWidget: (_, __, ___) => const Icon(Icons.cloud_off),
+                              // coverage:ignore-end
                             ),
                           ),
                         ),

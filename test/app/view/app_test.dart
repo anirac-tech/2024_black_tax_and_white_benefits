@@ -10,7 +10,7 @@ void main() {
       // Load app widget.
       await tester.pumpApp(const App());
 
-      await tester.tap(find.byIcon(Icons.home));
+      await tester.tap(find.byKey(Key('homeIcon')));
       await tester.pumpAndSettle();
 
       expect(find.text('Black Tax White Benefits'), findsOneWidget);
@@ -19,7 +19,7 @@ void main() {
       // Load app widget.
       await tester.pumpApp(const App());
 
-      await tester.tap(find.byIcon(Icons.favorite));
+      await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
 
       expect(find.text('Favorites'), findsAny);
@@ -48,13 +48,13 @@ void main() {
 
       await tester.pumpApp(const App());
       // View Home Screen
-      await tester.tap(find.byIcon(Icons.home));
+      await tester.tap(find.byKey(Key('homeIcon')));
       await tester.pumpAndSettle();
 
       expect(find.text('Black Tax White Benefits'), findsOneWidget);
 
       // View Favorites screen
-      await tester.tap(find.byIcon(Icons.favorite));
+      await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
 
       expect(find.text('Favorites'), findsAny);
