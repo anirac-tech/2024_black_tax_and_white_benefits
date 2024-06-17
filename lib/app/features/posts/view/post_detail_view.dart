@@ -1,6 +1,7 @@
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/favorite_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/share_icon_button.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/wpa_image.dart';
 import 'package:black_tax_and_white_benefits/app/features/text_size/adjustable_text_widget.dart';
 import 'package:black_tax_and_white_benefits/app/features/text_size/text_size_icon_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -47,11 +48,8 @@ class PostDetailView extends StatelessWidget {
             child: Column(
               children: [
                 if (post.imageUrl != null)
-                  CachedNetworkImage(
-                    imageUrl: post.imageUrl!,
-                    // coverage:ignore-start
-                    errorWidget: (_, __, ___) => const Icon(Icons.cloud_off),
-                    // coverage:ignore-end
+                  WpaImage(
+                    post.imageUrl!,
                     fit: BoxFit.fitWidth,
                   ),
                 Html(
