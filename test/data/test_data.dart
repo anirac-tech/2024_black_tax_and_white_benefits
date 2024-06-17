@@ -5,6 +5,7 @@ part 'test_data.g.dart';
 
 @JsonLiteral('post_data.json')
 List<Map<String, Object?>> get postData => _$postDataJsonLiteral;
+
 List<Post> get mockPosts => postData
     .map(
       (e) => Post.fromJson(e),

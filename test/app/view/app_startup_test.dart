@@ -1,0 +1,27 @@
+import 'package:black_tax_and_white_benefits/app/app.dart';
+import 'package:black_tax_and_white_benefits/app/features/settings/shared_preferences.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final Exception _exception = Exception('App failed to load');
+void main() {
+  group('Test App Startup', () {
+    testWidgets('error', (tester) async {
+      // Load app widget.
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            sharedPreferencesProvider.overrideWith((ref) => throw (_exception)),
+          ],
+          child: const App(),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text(_exception.toString()), findsOneWidget);
+
+      await tester.tap(find.text('Retry'));
+      await tester.pumpAndSettle();
+    });
+  });
+}

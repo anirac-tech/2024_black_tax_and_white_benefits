@@ -10,6 +10,7 @@ environment:
   # yes, it would be worth considering ./flutterw or nvm
   # 3.19.5 is stable channel from March 27, 2024
 dependencies:
+  cached_network_image: ^3.3.1
   dio: ^5.4.3+1
   drift: ^2.18.0
   flutter:
@@ -26,6 +27,9 @@ dependencies:
   path_provider: ^2.1.3
   retrofit: ^4.1.0
   riverpod_annotation: ^2.3.5
+  settings_ui: ^2.0.2
+  share_plus: ^9.0.0
+  shared_preferences: ^2.2.3
   sqlite3_flutter_libs: ^0.5.22
   url_launcher: ^6.3.0
 
