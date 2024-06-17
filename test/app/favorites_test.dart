@@ -5,12 +5,14 @@ import 'package:black_tax_and_white_benefits/app/features/posts/data/database.da
 import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
+import 'package:black_tax_and_white_benefits/app/features/settings/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../data/test_data.dart';
+import '../helpers/helpers.dart';
 
 class MockDatabase extends Mock implements Database {
   final List<FavoritePost> favorites = List.empty(growable: true);
@@ -51,6 +53,7 @@ void main() {
         overrides: [
           getPostsProvider.overrideWith((ref) async => Future.value(mockPosts)),
           databaseProvider.overrideWith((ref) => database),
+          sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
         ],
         child: const App(),
       ),
@@ -71,10 +74,33 @@ void main() {
 
       // Load app widget.
       await pumpApp(tester, database);
+      await tester.pumpAndSettle();
+
       await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
 
       expect(find.text('You have nothing in your favorites.'), findsOneWidget);
+    });
+    testWidgets('loading', (tester) async {
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            getPostsProvider.overrideWith((ref) async => Future.value(mockPosts)),
+            favoriteListProvider.overrideWith(
+                (ref) => Stream.fromFuture(Future.delayed(Duration(seconds: 2), () => mockPosts))),
+            sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
+          ],
+          child: const App(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Navigate back to Favorites screen
+      await tester.tap(find.byKey(Key('favoritesIcon')));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PostCell), findsExactly(2));
     });
     testWidgets('error', (tester) async {
       // Load app widget.
@@ -83,10 +109,12 @@ void main() {
           overrides: [
             getPostsProvider.overrideWith((ref) async => Future.value(mockPosts)),
             favoriteListProvider.overrideWith((ref) => throw exception),
+            sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
           ],
           child: const App(),
         ),
       );
+      await tester.pumpAndSettle();
 
       await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
@@ -104,7 +132,6 @@ void main() {
 
       // Load app widget.
       await pumpApp(tester, database);
-
       await tester.pumpAndSettle();
 
       // Make sure on home screen
@@ -210,6 +237,7 @@ void main() {
 
       // Load app widget.
       await pumpApp(tester, database);
+      await tester.pumpAndSettle();
 
       // Clear favorites list and add one post
       database.add(mockFavoritePost);

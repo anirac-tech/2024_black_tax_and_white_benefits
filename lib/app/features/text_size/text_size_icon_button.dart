@@ -5,25 +5,26 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class TextSizeIconButton extends ConsumerWidget {
   const TextSizeIconButton({
     super.key,
-    this.increaseSize = true,
+    this.isIncrease = true,
   });
 
-  final bool increaseSize;
+  final bool isIncrease;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textSize = ref.watch(textSizeControllerProvider);
-    final enabled = (increaseSize && textSize < 2) || (!increaseSize && textSize > 0.8);
+    final enabled = (isIncrease && textSize < TextSizeController.maxTextSize) ||
+        (!isIncrease && textSize > TextSizeController.minTextSize);
 
     return IconButton(
       onPressed: enabled
-          ? increaseSize
+          ? isIncrease
               ? ref.read(textSizeControllerProvider.notifier).increase
               : ref.read(textSizeControllerProvider.notifier).decrease
           : null,
       icon: Icon(
-        increaseSize ? Icons.text_increase_rounded : Icons.text_decrease_rounded,
-        size: 32,
+        isIncrease ? Icons.text_increase_rounded : Icons.text_decrease_rounded,
+        size: 36,
       ),
     );
   }

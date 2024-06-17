@@ -112,12 +112,12 @@ void main() {
       when(() => postClient.getPosts(any())).thenAnswer((invocation) => Future.value(mockPosts));
 
       await pumpApp(tester, postClient);
-      await tester.tap(find.byKey(Key('homeIcon')));
-
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
-
       await tester.pumpAndSettle();
-      expect(find.byType(PostCell), findsExactly(2));
+
+      await tester.tap(find.byKey(Key('homeIcon')));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PostCell), findsExactly(mockPosts.length));
     });
     testWidgets('failure', (tester) async {
       final postClient = MockPostClient();
@@ -125,11 +125,11 @@ void main() {
       when(() => postClient.getPosts(any())).thenThrow(exception);
 
       await pumpApp(tester, postClient);
-      await tester.tap(find.byKey(Key('homeIcon')));
-
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
-
       await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(Key('homeIcon')));
+      await tester.pumpAndSettle();
+
       expect(find.text(exception.toString()), findsOneWidget);
     });
   });

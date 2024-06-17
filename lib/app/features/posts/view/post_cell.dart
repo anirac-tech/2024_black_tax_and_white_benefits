@@ -12,81 +12,84 @@ class PostCell extends StatelessWidget {
   final Post post;
   final VoidCallback? onTap;
 
+  static const double _kMaxTextScaleFactor = 1.7;
+
   @override
-  Widget build(BuildContext context) => Card(
-        shadowColor: Colors.transparent,
-        child: ListTile(
-          title: Row(
-            children: [
-              Expanded(
-                child: Html(
-                  data: post.title.rendered,
-                  style: {
-                    '*': Style(
-                      fontWeight: FontWeight.w600,
-                      maxLines: 4,
-                      textOverflow: TextOverflow.ellipsis,
-                    )
-                  },
+  Widget build(BuildContext context) => MediaQuery.withClampedTextScaling(
+        maxScaleFactor: _kMaxTextScaleFactor,
+        child: Card(
+          shadowColor: Colors.transparent,
+          child: ListTile(
+            title: Row(
+              children: [
+                Expanded(
+                  child: Html(
+                    data: post.title.rendered,
+                    style: {
+                      '*': Style(
+                        fontWeight: FontWeight.w600,
+                        maxLines: 4,
+                        textOverflow: TextOverflow.ellipsis,
+                      )
+                    },
+                  ),
                 ),
-              ),
-              post.imageUrl != null
-                  ? Container(
-                      padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-                      alignment: Alignment.topLeft,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: SizedBox(
-                          height: 60,
-                          width: 80,
-                          child: FittedBox(
-                            clipBehavior: Clip.hardEdge,
-                            fit: BoxFit.fitWidth,
-                            child: CachedNetworkImage(
-                              imageUrl: post.imageUrl!,
-                              // coverage:ignore-start
-                              errorWidget: (_, __, ___) => const Icon(Icons.cloud_off),
-                              // coverage:ignore-end
+                post.imageUrl != null
+                    ? Container(
+                        padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                        alignment: Alignment.topLeft,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: SizedBox(
+                            height: 60,
+                            width: 80,
+                            child: FittedBox(
+                              clipBehavior: Clip.hardEdge,
+                              fit: BoxFit.fitWidth,
+                              child: CachedNetworkImage(
+                                imageUrl: post.imageUrl!,
+                                // coverage:ignore-start
+                                errorWidget: (_, __, ___) => const Icon(Icons.cloud_off),
+                                // coverage:ignore-end
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    )
-                  : const SizedBox(),
-            ],
-          ),
-          subtitle: Column(
-            children: [
-              Html(
-                data: post.excerpt.rendered,
-                style: {
-                  '*': Style(
-                    maxLines: 3,
-                    textOverflow: TextOverflow.ellipsis,
-                  ),
-                },
-              ),
-              SizedBox(
-                height: 40,
-                child: Row(
-                  children: [
-                    // coverage:ignore-start
-                    Expanded(
-                      child: Html(
-                        data: DateFormat.yMMMd().format(post.date).toString(),
-                        shrinkWrap: true,
-                        style: {'*': Style(fontWeight: FontWeight.w200)},
-                      ),
+                      )
+                    : const SizedBox(),
+              ],
+            ),
+            subtitle: Column(
+              children: [
+                Html(
+                  data: post.excerpt.rendered,
+                  style: {
+                    '*': Style(
+                      maxLines: 3,
+                      textOverflow: TextOverflow.ellipsis,
                     ),
-                    // coverage:ignore-end
-                    ShareIconButton(post.link),
-                    FavoriteIconButton(post),
-                  ],
+                  },
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 40,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Html(
+                          data: DateFormat.yMMMd().format(post.date).toString(),
+                          shrinkWrap: true,
+                          style: {'*': Style(fontWeight: FontWeight.w200)},
+                        ),
+                      ),
+                      ShareIconButton(post.link),
+                      FavoriteIconButton(post),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            onTap: onTap,
           ),
-          onTap: onTap,
         ),
       );
 }

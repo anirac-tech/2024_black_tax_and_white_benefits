@@ -9,6 +9,7 @@ void main() {
     testWidgets('Home', (tester) async {
       // Load app widget.
       await tester.pumpApp(const App());
+      await tester.pumpAndSettle();
 
       await tester.tap(find.byKey(Key('homeIcon')));
       await tester.pumpAndSettle();
@@ -18,6 +19,7 @@ void main() {
     testWidgets('Favorites', (tester) async {
       // Load app widget.
       await tester.pumpApp(const App());
+      await tester.pumpAndSettle();
 
       await tester.tap(find.byKey(Key('favoritesIcon')));
       await tester.pumpAndSettle();
@@ -47,6 +49,7 @@ void main() {
       addTearDown(tester.view.resetDevicePixelRatio);
 
       await tester.pumpApp(const App());
+      await tester.pumpAndSettle();
       // View Home Screen
       await tester.tap(find.byKey(Key('homeIcon')));
       await tester.pumpAndSettle();

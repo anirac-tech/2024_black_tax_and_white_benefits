@@ -7,16 +7,16 @@ part 'text_size_controller.g.dart';
 class TextSizeController extends _$TextSizeController {
   double build() {
     final prefs = ref.watch(sharedPreferencesProvider);
-    return prefs.valueOrNull?.getDouble(textSizeKey) ?? 1.0;
+    return prefs.requireValue.getDouble(textSizeKey) ?? 1.0;
   }
 
   static const String textSizeKey = 'textSize';
+  static const double maxTextSize = 2.3;
+  static const double minTextSize = 0.8;
 
   Future<void> _storeState() async {
     final prefs = ref.read(sharedPreferencesProvider);
-    if (prefs.hasValue) {
-      await prefs.value!.setDouble(textSizeKey, state);
-    }
+    await prefs.requireValue.setDouble(textSizeKey, state);
   }
 
   void increase() {

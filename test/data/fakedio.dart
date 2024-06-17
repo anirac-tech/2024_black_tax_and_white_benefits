@@ -7,15 +7,8 @@ class FakeDio implements Dio {
   FakeDio();
 
   @override
-  Future<Response<T>> get<T>(
-    String path, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    switch (path) {
+  Future<Response<T>> fetch<T>(RequestOptions requestOptions) async {
+    switch (requestOptions.path) {
       case 'https://blacktaxandwhitebenefits.com/wp-json/wp/v2/posts?_embed=true&per_page=100':
         return FakeResponse(postData) as Response<T>;
       default:
