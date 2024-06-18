@@ -1,4 +1,5 @@
 import 'package:black_tax_and_white_benefits/app/app.dart';
+import 'package:black_tax_and_white_benefits/app/shared/navigation_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -11,7 +12,7 @@ void main() {
       await tester.pumpApp(const App());
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byKey(Key('homeIcon')));
+      await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
       expect(find.text('Black Tax White Benefits'), findsOneWidget);
@@ -21,7 +22,7 @@ void main() {
       await tester.pumpApp(const App());
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byKey(Key('favoritesIcon')));
+      await tester.tap(find.byKey(favoritesIconKey));
       await tester.pumpAndSettle();
 
       expect(find.text('Favorites'), findsAny);
@@ -51,13 +52,13 @@ void main() {
       await tester.pumpApp(const App());
       await tester.pumpAndSettle();
       // View Home Screen
-      await tester.tap(find.byKey(Key('homeIcon')));
+      await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
       expect(find.text('Black Tax White Benefits'), findsOneWidget);
 
       // View Favorites screen
-      await tester.tap(find.byKey(Key('favoritesIcon')));
+      await tester.tap(find.byKey(favoritesIconKey));
       await tester.pumpAndSettle();
 
       expect(find.text('Favorites'), findsAny);

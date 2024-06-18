@@ -4,7 +4,7 @@ import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart
 import 'package:black_tax_and_white_benefits/app/app.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
 import 'package:black_tax_and_white_benefits/app/features/settings/shared_preferences.dart';
-import 'package:flutter/material.dart';
+import 'package:black_tax_and_white_benefits/app/shared/navigation_icons.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
@@ -114,7 +114,7 @@ void main() {
       await pumpApp(tester, postClient);
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byKey(Key('homeIcon')));
+      await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
       expect(find.byType(PostCell), findsExactly(mockPosts.length));
@@ -127,7 +127,7 @@ void main() {
       await pumpApp(tester, postClient);
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byKey(Key('homeIcon')));
+      await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
       expect(find.text(exception.toString()), findsOneWidget);

@@ -1,4 +1,4 @@
-import 'package:black_tax_and_white_benefits/app/config/navigation_icons.dart';
+import 'package:black_tax_and_white_benefits/app/shared/navigation_icons.dart';
 import 'package:flutter/material.dart';
 
 class ScaffoldWithNavigationBar extends StatelessWidget {

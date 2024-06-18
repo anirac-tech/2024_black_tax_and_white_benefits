@@ -6,6 +6,7 @@ import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_r
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
 import 'package:black_tax_and_white_benefits/app/features/settings/shared_preferences.dart';
+import 'package:black_tax_and_white_benefits/app/shared/navigation_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -76,7 +77,7 @@ void main() {
       await pumpApp(tester, database);
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byKey(Key('favoritesIcon')));
+      await tester.tap(find.byKey(favoritesIconKey));
       await tester.pumpAndSettle();
 
       expect(find.text('You have nothing in your favorites.'), findsOneWidget);
@@ -97,7 +98,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Navigate back to Favorites screen
-      await tester.tap(find.byKey(Key('favoritesIcon')));
+      await tester.tap(find.byKey(favoritesIconKey));
       await tester.pumpAndSettle();
 
       expect(find.byType(PostCell), findsExactly(2));
@@ -116,7 +117,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byKey(Key('favoritesIcon')));
+      await tester.tap(find.byKey(favoritesIconKey));
       await tester.pumpAndSettle();
 
       expect(find.text(exception.toString()), findsOneWidget);
@@ -135,7 +136,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Make sure on home screen
-      await tester.tap(find.byKey(Key('homeIcon')));
+      await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
       // Go to Post Details
@@ -154,7 +155,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Navigate back to Favorites screen
-      await tester.tap(find.byKey(Key('favoritesIcon')));
+      await tester.tap(find.byKey(favoritesIconKey));
       await tester.pumpAndSettle();
 
       expect(find.byType(PostCell), findsOneWidget);
@@ -170,7 +171,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Make sure on home screen
-      await tester.tap(find.byKey(Key('homeIcon')));
+      await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
       // Go to Post Details
@@ -205,7 +206,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Move to Favorites screen
-      await tester.tap(find.byKey(Key('favoritesIcon')));
+      await tester.tap(find.byKey(favoritesIconKey));
       await tester.pumpAndSettle();
 
       // Expect to find one Post in Favorites
@@ -244,7 +245,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Move to Favorites screen
-      await tester.tap(find.byKey(Key('favoritesIcon')));
+      await tester.tap(find.byKey(favoritesIconKey));
       await tester.pumpAndSettle();
 
       // Go to Post Details
