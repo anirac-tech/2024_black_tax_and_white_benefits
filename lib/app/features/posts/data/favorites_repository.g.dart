@@ -6,18 +6,15 @@ part of 'favorites_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$favoritesRepositoryHash() =>
-    r'5f99dcd24c9d465d7cf553d878c6bae1a4a0c318';
+String _$favoritesRepositoryHash() => r'5f99dcd24c9d465d7cf553d878c6bae1a4a0c318';
 
 /// See also [favoritesRepository].
 @ProviderFor(favoritesRepository)
-final favoritesRepositoryProvider =
-    AutoDisposeProvider<FavoritesRepository>.internal(
+final favoritesRepositoryProvider = AutoDisposeProvider<FavoritesRepository>.internal(
   favoritesRepository,
   name: r'favoritesRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$favoritesRepositoryHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$favoritesRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

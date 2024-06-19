@@ -6,18 +6,15 @@ part of 'text_size_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$textSizeControllerHash() =>
-    r'ba4398a47491f0d6b884ebc1dddfaa4e27753918';
+String _$textSizeControllerHash() => r'ba4398a47491f0d6b884ebc1dddfaa4e27753918';
 
 /// See also [TextSizeController].
 @ProviderFor(TextSizeController)
-final textSizeControllerProvider =
-    NotifierProvider<TextSizeController, double>.internal(
+final textSizeControllerProvider = NotifierProvider<TextSizeController, double>.internal(
   TextSizeController.new,
   name: r'textSizeControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$textSizeControllerHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$textSizeControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

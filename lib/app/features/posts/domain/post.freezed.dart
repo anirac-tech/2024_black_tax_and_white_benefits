@@ -36,8 +36,7 @@ mixin _$Post {
 
 /// @nodoc
 abstract class $PostCopyWith<$Res> {
-  factory $PostCopyWith(Post value, $Res Function(Post) then) =
-      _$PostCopyWithImpl<$Res, Post>;
+  factory $PostCopyWith(Post value, $Res Function(Post) then) = _$PostCopyWithImpl<$Res, Post>;
   @useResult
   $Res call(
       {int id,
@@ -55,8 +54,7 @@ abstract class $PostCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PostCopyWithImpl<$Res, $Val extends Post>
-    implements $PostCopyWith<$Res> {
+class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res> {
   _$PostCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -146,8 +144,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
 
 /// @nodoc
 abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
-  factory _$$PostImplCopyWith(
-          _$PostImpl value, $Res Function(_$PostImpl) then) =
+  factory _$$PostImplCopyWith(_$PostImpl value, $Res Function(_$PostImpl) then) =
       __$$PostImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -171,8 +168,7 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$PostImplCopyWithImpl<$Res>
-    extends _$PostCopyWithImpl<$Res, _$PostImpl>
+class __$$PostImplCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$PostImpl>
     implements _$$PostImplCopyWith<$Res> {
   __$$PostImplCopyWithImpl(_$PostImpl _value, $Res Function(_$PostImpl) _then)
       : super(_value, _then);
@@ -234,8 +230,7 @@ class _$PostImpl extends _Post {
       @JsonKey(name: '_embedded') this.embedded})
       : super._();
 
-  factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PostImplFromJson(json);
+  factory _$PostImpl.fromJson(Map<String, dynamic> json) => _$$PostImplFromJson(json);
 
   @override
   final int id;
@@ -269,14 +264,12 @@ class _$PostImpl extends _Post {
             (identical(other.excerpt, excerpt) || other.excerpt == excerpt) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.link, link) || other.link == link) &&
-            (identical(other.embedded, embedded) ||
-                other.embedded == embedded));
+            (identical(other.embedded, embedded) || other.embedded == embedded));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, content, excerpt, date, link, embedded);
+  int get hashCode => Object.hash(runtimeType, id, title, content, excerpt, date, link, embedded);
 
   @JsonKey(ignore: true)
   @override
@@ -322,8 +315,7 @@ abstract class _Post extends Post {
   Embedded? get embedded;
   @override
   @JsonKey(ignore: true)
-  _$$PostImplCopyWith<_$PostImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PostImplCopyWith<_$PostImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 Renderable _$RenderableFromJson(Map<String, dynamic> json) {
@@ -336,22 +328,19 @@ mixin _$Renderable {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RenderableCopyWith<Renderable> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RenderableCopyWith<Renderable> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RenderableCopyWith<$Res> {
-  factory $RenderableCopyWith(
-          Renderable value, $Res Function(Renderable) then) =
+  factory $RenderableCopyWith(Renderable value, $Res Function(Renderable) then) =
       _$RenderableCopyWithImpl<$Res, Renderable>;
   @useResult
   $Res call({String rendered});
 }
 
 /// @nodoc
-class _$RenderableCopyWithImpl<$Res, $Val extends Renderable>
-    implements $RenderableCopyWith<$Res> {
+class _$RenderableCopyWithImpl<$Res, $Val extends Renderable> implements $RenderableCopyWith<$Res> {
   _$RenderableCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -374,10 +363,8 @@ class _$RenderableCopyWithImpl<$Res, $Val extends Renderable>
 }
 
 /// @nodoc
-abstract class _$$RenderableImplCopyWith<$Res>
-    implements $RenderableCopyWith<$Res> {
-  factory _$$RenderableImplCopyWith(
-          _$RenderableImpl value, $Res Function(_$RenderableImpl) then) =
+abstract class _$$RenderableImplCopyWith<$Res> implements $RenderableCopyWith<$Res> {
+  factory _$$RenderableImplCopyWith(_$RenderableImpl value, $Res Function(_$RenderableImpl) then) =
       __$$RenderableImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -385,11 +372,9 @@ abstract class _$$RenderableImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$RenderableImplCopyWithImpl<$Res>
-    extends _$RenderableCopyWithImpl<$Res, _$RenderableImpl>
+class __$$RenderableImplCopyWithImpl<$Res> extends _$RenderableCopyWithImpl<$Res, _$RenderableImpl>
     implements _$$RenderableImplCopyWith<$Res> {
-  __$$RenderableImplCopyWithImpl(
-      _$RenderableImpl _value, $Res Function(_$RenderableImpl) _then)
+  __$$RenderableImplCopyWithImpl(_$RenderableImpl _value, $Res Function(_$RenderableImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -411,8 +396,7 @@ class __$$RenderableImplCopyWithImpl<$Res>
 class _$RenderableImpl implements _Renderable {
   const _$RenderableImpl({required this.rendered});
 
-  factory _$RenderableImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RenderableImplFromJson(json);
+  factory _$RenderableImpl.fromJson(Map<String, dynamic> json) => _$$RenderableImplFromJson(json);
 
   @override
   final String rendered;
@@ -427,8 +411,7 @@ class _$RenderableImpl implements _Renderable {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RenderableImpl &&
-            (identical(other.rendered, rendered) ||
-                other.rendered == rendered));
+            (identical(other.rendered, rendered) || other.rendered == rendered));
   }
 
   @JsonKey(ignore: true)
@@ -450,18 +433,15 @@ class _$RenderableImpl implements _Renderable {
 }
 
 abstract class _Renderable implements Renderable {
-  const factory _Renderable({required final String rendered}) =
-      _$RenderableImpl;
+  const factory _Renderable({required final String rendered}) = _$RenderableImpl;
 
-  factory _Renderable.fromJson(Map<String, dynamic> json) =
-      _$RenderableImpl.fromJson;
+  factory _Renderable.fromJson(Map<String, dynamic> json) = _$RenderableImpl.fromJson;
 
   @override
   String get rendered;
   @override
   @JsonKey(ignore: true)
-  _$$RenderableImplCopyWith<_$RenderableImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$RenderableImplCopyWith<_$RenderableImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 Embedded _$EmbeddedFromJson(Map<String, dynamic> json) {
@@ -471,13 +451,11 @@ Embedded _$EmbeddedFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Embedded {
   @JsonKey(name: 'wp:featuredmedia')
-  List<WpFeaturedmedia>? get wpFeaturedmedia =>
-      throw _privateConstructorUsedError;
+  List<WpFeaturedmedia>? get wpFeaturedmedia => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $EmbeddedCopyWith<Embedded> get copyWith =>
-      throw _privateConstructorUsedError;
+  $EmbeddedCopyWith<Embedded> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -485,14 +463,11 @@ abstract class $EmbeddedCopyWith<$Res> {
   factory $EmbeddedCopyWith(Embedded value, $Res Function(Embedded) then) =
       _$EmbeddedCopyWithImpl<$Res, Embedded>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'wp:featuredmedia')
-      List<WpFeaturedmedia>? wpFeaturedmedia});
+  $Res call({@JsonKey(name: 'wp:featuredmedia') List<WpFeaturedmedia>? wpFeaturedmedia});
 }
 
 /// @nodoc
-class _$EmbeddedCopyWithImpl<$Res, $Val extends Embedded>
-    implements $EmbeddedCopyWith<$Res> {
+class _$EmbeddedCopyWithImpl<$Res, $Val extends Embedded> implements $EmbeddedCopyWith<$Res> {
   _$EmbeddedCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -515,24 +490,18 @@ class _$EmbeddedCopyWithImpl<$Res, $Val extends Embedded>
 }
 
 /// @nodoc
-abstract class _$$EmbeddedImplCopyWith<$Res>
-    implements $EmbeddedCopyWith<$Res> {
-  factory _$$EmbeddedImplCopyWith(
-          _$EmbeddedImpl value, $Res Function(_$EmbeddedImpl) then) =
+abstract class _$$EmbeddedImplCopyWith<$Res> implements $EmbeddedCopyWith<$Res> {
+  factory _$$EmbeddedImplCopyWith(_$EmbeddedImpl value, $Res Function(_$EmbeddedImpl) then) =
       __$$EmbeddedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'wp:featuredmedia')
-      List<WpFeaturedmedia>? wpFeaturedmedia});
+  $Res call({@JsonKey(name: 'wp:featuredmedia') List<WpFeaturedmedia>? wpFeaturedmedia});
 }
 
 /// @nodoc
-class __$$EmbeddedImplCopyWithImpl<$Res>
-    extends _$EmbeddedCopyWithImpl<$Res, _$EmbeddedImpl>
+class __$$EmbeddedImplCopyWithImpl<$Res> extends _$EmbeddedCopyWithImpl<$Res, _$EmbeddedImpl>
     implements _$$EmbeddedImplCopyWith<$Res> {
-  __$$EmbeddedImplCopyWithImpl(
-      _$EmbeddedImpl _value, $Res Function(_$EmbeddedImpl) _then)
+  __$$EmbeddedImplCopyWithImpl(_$EmbeddedImpl _value, $Res Function(_$EmbeddedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -553,12 +522,10 @@ class __$$EmbeddedImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EmbeddedImpl implements _Embedded {
   const _$EmbeddedImpl(
-      {@JsonKey(name: 'wp:featuredmedia')
-      final List<WpFeaturedmedia>? wpFeaturedmedia})
+      {@JsonKey(name: 'wp:featuredmedia') final List<WpFeaturedmedia>? wpFeaturedmedia})
       : _wpFeaturedmedia = wpFeaturedmedia;
 
-  factory _$EmbeddedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$EmbeddedImplFromJson(json);
+  factory _$EmbeddedImpl.fromJson(Map<String, dynamic> json) => _$$EmbeddedImplFromJson(json);
 
   final List<WpFeaturedmedia>? _wpFeaturedmedia;
   @override
@@ -581,14 +548,13 @@ class _$EmbeddedImpl implements _Embedded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EmbeddedImpl &&
-            const DeepCollectionEquality()
-                .equals(other._wpFeaturedmedia, _wpFeaturedmedia));
+            const DeepCollectionEquality().equals(other._wpFeaturedmedia, _wpFeaturedmedia));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_wpFeaturedmedia));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_wpFeaturedmedia));
 
   @JsonKey(ignore: true)
   @override
@@ -606,19 +572,17 @@ class _$EmbeddedImpl implements _Embedded {
 
 abstract class _Embedded implements Embedded {
   const factory _Embedded(
-      {@JsonKey(name: 'wp:featuredmedia')
-      final List<WpFeaturedmedia>? wpFeaturedmedia}) = _$EmbeddedImpl;
+          {@JsonKey(name: 'wp:featuredmedia') final List<WpFeaturedmedia>? wpFeaturedmedia}) =
+      _$EmbeddedImpl;
 
-  factory _Embedded.fromJson(Map<String, dynamic> json) =
-      _$EmbeddedImpl.fromJson;
+  factory _Embedded.fromJson(Map<String, dynamic> json) = _$EmbeddedImpl.fromJson;
 
   @override
   @JsonKey(name: 'wp:featuredmedia')
   List<WpFeaturedmedia>? get wpFeaturedmedia;
   @override
   @JsonKey(ignore: true)
-  _$$EmbeddedImplCopyWith<_$EmbeddedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$EmbeddedImplCopyWith<_$EmbeddedImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 WpFeaturedmedia _$WpFeaturedmediaFromJson(Map<String, dynamic> json) {
@@ -636,14 +600,12 @@ mixin _$WpFeaturedmedia {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $WpFeaturedmediaCopyWith<WpFeaturedmedia> get copyWith =>
-      throw _privateConstructorUsedError;
+  $WpFeaturedmediaCopyWith<WpFeaturedmedia> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $WpFeaturedmediaCopyWith<$Res> {
-  factory $WpFeaturedmediaCopyWith(
-          WpFeaturedmedia value, $Res Function(WpFeaturedmedia) then) =
+  factory $WpFeaturedmediaCopyWith(WpFeaturedmedia value, $Res Function(WpFeaturedmedia) then) =
       _$WpFeaturedmediaCopyWithImpl<$Res, WpFeaturedmedia>;
   @useResult
   $Res call(
@@ -699,10 +661,9 @@ class _$WpFeaturedmediaCopyWithImpl<$Res, $Val extends WpFeaturedmedia>
 }
 
 /// @nodoc
-abstract class _$$WpFeaturedmediaImplCopyWith<$Res>
-    implements $WpFeaturedmediaCopyWith<$Res> {
-  factory _$$WpFeaturedmediaImplCopyWith(_$WpFeaturedmediaImpl value,
-          $Res Function(_$WpFeaturedmediaImpl) then) =
+abstract class _$$WpFeaturedmediaImplCopyWith<$Res> implements $WpFeaturedmediaCopyWith<$Res> {
+  factory _$$WpFeaturedmediaImplCopyWith(
+          _$WpFeaturedmediaImpl value, $Res Function(_$WpFeaturedmediaImpl) then) =
       __$$WpFeaturedmediaImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -795,8 +756,7 @@ class _$WpFeaturedmediaImpl implements _WpFeaturedmedia {
             (identical(other.date, date) || other.date == date) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.sourceUrl, sourceUrl) ||
-                other.sourceUrl == sourceUrl));
+            (identical(other.sourceUrl, sourceUrl) || other.sourceUrl == sourceUrl));
   }
 
   @JsonKey(ignore: true)
@@ -807,8 +767,7 @@ class _$WpFeaturedmediaImpl implements _WpFeaturedmedia {
   @override
   @pragma('vm:prefer-inline')
   _$$WpFeaturedmediaImplCopyWith<_$WpFeaturedmediaImpl> get copyWith =>
-      __$$WpFeaturedmediaImplCopyWithImpl<_$WpFeaturedmediaImpl>(
-          this, _$identity);
+      __$$WpFeaturedmediaImplCopyWithImpl<_$WpFeaturedmediaImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -820,15 +779,13 @@ class _$WpFeaturedmediaImpl implements _WpFeaturedmedia {
 
 abstract class _WpFeaturedmedia implements WpFeaturedmedia {
   const factory _WpFeaturedmedia(
-          {required final int id,
-          required final DateTime date,
-          required final String slug,
-          required final String type,
-          @JsonKey(name: 'source_url') required final String sourceUrl}) =
-      _$WpFeaturedmediaImpl;
+      {required final int id,
+      required final DateTime date,
+      required final String slug,
+      required final String type,
+      @JsonKey(name: 'source_url') required final String sourceUrl}) = _$WpFeaturedmediaImpl;
 
-  factory _WpFeaturedmedia.fromJson(Map<String, dynamic> json) =
-      _$WpFeaturedmediaImpl.fromJson;
+  factory _WpFeaturedmedia.fromJson(Map<String, dynamic> json) = _$WpFeaturedmediaImpl.fromJson;
 
   @override
   int get id;

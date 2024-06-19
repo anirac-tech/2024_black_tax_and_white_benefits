@@ -26,26 +26,23 @@ class _PostClient implements PostClient {
     final queryParameters = <String, dynamic>{r'per_page': n};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Post>>(Options(
+    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<Post>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/posts?_embed=true',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    var value = _result.data!
-        .map((dynamic i) => Post.fromJson(i as Map<String, dynamic>))
-        .toList();
+        .compose(
+          _dio.options,
+          '/posts?_embed=true',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    var value = _result.data!.map((dynamic i) => Post.fromJson(i as Map<String, dynamic>)).toList();
     return value;
   }
 
@@ -91,8 +88,7 @@ String _$postClientHash() => r'1cb22ed93a34b0ff4fa5151e3f4e92cadde3e846';
 final postClientProvider = AutoDisposeProvider<PostClient>.internal(
   postClient,
   name: r'postClientProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$postClientHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$postClientHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -105,8 +101,7 @@ String _$getPostsHash() => r'7bf5779563164308b87f3095d82296678086f475';
 final getPostsProvider = AutoDisposeFutureProvider<List<Post>>.internal(
   getPosts,
   name: r'getPostsProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$getPostsHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$getPostsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
