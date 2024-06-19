@@ -15,8 +15,8 @@ class FavoritesRepository {
   Future<int> addFavorite(Post post) async {
     try {
       return database.insertFavoritePost(FavoritePostsCompanion.insert(post: post));
-    } on Exception {
-      logger.e('Could not insert post.');
+    } catch (e) {
+      logger.e(e);
       return -1;
     }
   }
@@ -25,8 +25,8 @@ class FavoritesRepository {
     try {
       final row = (await database.getPosts()).firstWhere((element) => element.post == post);
       return database.deleteFavoritePost(row.id);
-    } on Exception {
-      logger.e('Could not remove post.');
+    } catch (e) {
+      logger.e(e);
       return -1;
     }
   }

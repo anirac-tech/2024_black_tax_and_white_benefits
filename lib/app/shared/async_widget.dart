@@ -17,7 +17,7 @@ class AsyncValueWidget<T> extends StatelessWidget {
         logger.e(e.toString());
         return Center(
           child: Text(e.toString(),
-              style: theme.textTheme.titleLarge!.copyWith(
+              style: theme.textTheme.titleLarge?.copyWith(
                 color: theme.colorScheme.error,
               )),
         );
