@@ -25,7 +25,7 @@ class FavoritesView extends StatelessWidget {
             child: Consumer(
               builder: (context, ref, child) {
                 final posts = ref.watch(favoriteListProvider);
-                logger.d("[Favorites Stream] ${posts.valueOrNull?.map((e) => '${e.id}')}");
+                Log.d("[Favorites Stream] ${posts.valueOrNull?.map((e) => '${e.id}')}");
 
                 return AsyncValueWidget<List<Post>>(
                   value: posts,

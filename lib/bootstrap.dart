@@ -9,10 +9,10 @@ import 'package:intl/date_symbol_data_local.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
-    logger.e(details.exceptionAsString(), stackTrace: details.stack);
+    Log.e(details.exceptionAsString(), details.exception, stackTrace: details.stack);
   };
 
-  logger.d('appFlavor=$appFlavor');
+  Log.d('appFlavor=$appFlavor');
 
   // turn off the # in the URLs on the web
   usePathUrlStrategy();

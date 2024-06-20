@@ -14,7 +14,7 @@ class AsyncValueWidget<T> extends StatelessWidget {
       data: data,
       loading: () => const Center(child: CircularProgressIndicator.adaptive()),
       error: (e, _) {
-        logger.e(e.toString());
+        Log.e(e.toString(), e);
         return Center(
           child: Text(e.toString(),
               style: theme.textTheme.titleLarge?.copyWith(

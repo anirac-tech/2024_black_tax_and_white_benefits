@@ -1,18 +1,14 @@
 import 'package:logger/logger.dart';
 
 // Not a singleton class
-class WpaLogger {
-  final _logger = Logger();
+class Log {
+  static final logger = Logger(
+      printer: PrettyPrinter(
+    methodCount: 0,
+  ));
 
-  void d(String message) {
-    _logger.d(message);
-  }
+  static void d(String message) => logger.d(message);
 
-  void e(Object e, {StackTrace? stackTrace}) => switch (e) {
-        String => _logger.e(e, stackTrace: stackTrace),
-        Exception => _logger.e(e.toString(), error: e, stackTrace: stackTrace),
-        Object() => _logger.e(e.toString(), stackTrace: stackTrace),
-      };
+  static void e(String message, Object error, {StackTrace? stackTrace}) =>
+      logger.e(message, error: error, stackTrace: stackTrace);
 }
-
-final logger = WpaLogger();

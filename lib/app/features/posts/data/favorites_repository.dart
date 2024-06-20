@@ -16,7 +16,7 @@ class FavoritesRepository {
     try {
       return database.insertFavoritePost(FavoritePostsCompanion.insert(post: post));
     } catch (e) {
-      logger.e(e);
+      Log.e(e.toString(), e);
       return -1;
     }
   }
@@ -26,7 +26,7 @@ class FavoritesRepository {
       final row = (await database.getPosts()).firstWhere((element) => element.post == post);
       return database.deleteFavoritePost(row.id);
     } catch (e) {
-      logger.e(e);
+      Log.e(e.toString(), e);
       return -1;
     }
   }
