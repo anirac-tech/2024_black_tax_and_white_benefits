@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/database.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -16,8 +15,8 @@ class FavoritesRepository {
   Future<int> addFavorite(Post post) async {
     try {
       return database.insertFavoritePost(FavoritePostsCompanion.insert(post: post));
-    } on Exception {
-      log('[ERROR] could not insert post.');
+    } catch (e) {
+      Log.e(e.toString(), e);
       return -1;
     }
   }
@@ -26,8 +25,8 @@ class FavoritesRepository {
     try {
       final row = (await database.getPosts()).firstWhere((element) => element.post == post);
       return database.deleteFavoritePost(row.id);
-    } on Exception {
-      log('[ERROR] could not remove post.');
+    } catch (e) {
+      Log.e(e.toString(), e);
       return -1;
     }
   }

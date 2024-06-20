@@ -17,7 +17,7 @@ void main() {
       when(() => mockCacheManager.getImageFile(any())).thenThrow(Exception());
 
       await tester.pumpApp(const App());
-      await tester.tap(find.byKey(Key('homeIcon')));
+      await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
       expect(find.byIcon(Icons.cloud_off), findsOneWidget);
@@ -28,7 +28,7 @@ void main() {
       when(() => mockCacheManager.getImageFile(any())).thenThrow(Exception());
 
       await tester.pumpApp(const App());
-      await tester.tap(find.byKey(Key('homeIcon')));
+      await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
       await tester.tap(find.text('Black Tax'));

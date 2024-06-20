@@ -1,5 +1,5 @@
 import 'package:black_tax_and_white_benefits/app/app_startup.dart';
-import 'package:black_tax_and_white_benefits/app/config/home_screen.dart';
+import 'package:black_tax_and_white_benefits/app/shared/home_screen.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/favorites_view.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_detail_view.dart';

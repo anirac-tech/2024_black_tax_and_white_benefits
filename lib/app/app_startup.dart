@@ -24,8 +24,8 @@ class AppStartupView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appStartupState = ref.watch(appStartupProvider);
     return appStartupState.when(
-      loading: () => const AppStartupLoadingWidget(),
-      error: (e, st) => AppStartupErrorWidget(
+      loading: () => const AppStartupLoadingView(),
+      error: (e, st) => AppStartupErrorView(
         message: e.toString(),
         onRetry: () => ref.invalidate(appStartupProvider),
       ),
@@ -34,8 +34,8 @@ class AppStartupView extends ConsumerWidget {
   }
 }
 
-class AppStartupLoadingWidget extends StatelessWidget {
-  const AppStartupLoadingWidget({super.key});
+class AppStartupLoadingView extends StatelessWidget {
+  const AppStartupLoadingView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +48,8 @@ class AppStartupLoadingWidget extends StatelessWidget {
   }
 }
 
-class AppStartupErrorWidget extends StatelessWidget {
-  const AppStartupErrorWidget({super.key, required this.message, required this.onRetry});
+class AppStartupErrorView extends StatelessWidget {
+  const AppStartupErrorView({super.key, required this.message, required this.onRetry});
   final String message;
   final VoidCallback onRetry;
 
