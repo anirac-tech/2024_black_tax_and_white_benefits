@@ -19,8 +19,10 @@ class UrlLauncher extends _$UrlLauncher {
     final Uri _url = Uri.parse(url);
     state = await AsyncValue.guard(() async {
       if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) {
-        // coverage:ignore-line
+        // coverage:ignore-start
+        // Don't know how to mock actual launchUrl method yet
         throw Exception('Could not launch $_url');
+        // coverage:ignore-end
       }
     });
   }
