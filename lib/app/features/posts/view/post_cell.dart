@@ -1,7 +1,7 @@
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/favorite_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/share_icon_button.dart';
-import 'package:black_tax_and_white_benefits/app/features/posts/view/wpa_image.dart';
+import 'package:black_tax_and_white_benefits/app/shared/wpa_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:intl/intl.dart';
@@ -68,12 +68,20 @@ class PostCell extends StatelessWidget {
                 SizedBox(
                   height: 40,
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        child: Html(
-                          data: DateFormat.yMMMd().format(post.date).toString(),
-                          shrinkWrap: true,
-                          style: {'*': Style(fontWeight: FontWeight.w200)},
+                        child: MediaQuery.withNoTextScaling(
+                          child: Html(
+                            data: DateFormat.yMMMd().format(post.date).toString(),
+                            shrinkWrap: true,
+                            style: {
+                              '*': Style(
+                                fontWeight: FontWeight.w200,
+                                fontSize: FontSize.large,
+                              )
+                            },
+                          ),
                         ),
                       ),
                       ShareIconButton(post.link),

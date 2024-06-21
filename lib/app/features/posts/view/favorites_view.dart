@@ -41,7 +41,10 @@ class FavoritesView extends StatelessWidget {
                           },
                           separatorBuilder: (_, __) => SizedBox(height: 10),
                         )
-                      : const Text('You have nothing in your favorites.'),
+                      : const Text(
+                          'You have nothing in your favorites.',
+                          textAlign: TextAlign.center,
+                        ),
                 );
               },
             ),
