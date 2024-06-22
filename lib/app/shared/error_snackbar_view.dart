@@ -19,9 +19,9 @@ class ErrorSnackbarView<T> extends ConsumerWidget {
     final theme = Theme.of(context);
     ref.listen(
       provider,
-      (_, state) {
-        if (state.hasError) {
-          Log.e(state.error.toString(), state.error!);
+      (_, state) => state.maybeWhen(
+        error: (error, stackTrace) {
+          Log.e(error.toString(), error);
           ScaffoldMessenger.of(context).removeCurrentSnackBar();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -40,8 +40,9 @@ class ErrorSnackbarView<T> extends ConsumerWidget {
               ),
             ),
           );
-        }
-      },
+        },
+        orElse: () => null,
+      ),
     );
     return child;
   }

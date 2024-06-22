@@ -1,5 +1,5 @@
 import 'package:black_tax_and_white_benefits/app/app.dart';
-import 'package:black_tax_and_white_benefits/app/features/settings/shared_preferences.dart';
+import 'package:black_tax_and_white_benefits/app/app_startup.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -11,7 +11,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            sharedPreferencesProvider.overrideWith((ref) => throw (_exception)),
+            appStartupProvider.overrideWith((ref) => throw (_exception)),
           ],
           child: const App(),
         ),
@@ -22,6 +22,8 @@ void main() {
 
       await tester.tap(find.text('Retry'));
       await tester.pumpAndSettle();
+
+      expect(find.text('Retry'), findsOneWidget);
     });
   });
 }

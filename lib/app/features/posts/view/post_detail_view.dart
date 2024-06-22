@@ -7,11 +7,12 @@ import 'package:black_tax_and_white_benefits/app/features/text_size/adjustable_t
 import 'package:black_tax_and_white_benefits/app/features/text_size/text_size_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/shared/url_launcher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class PostDetailView extends ConsumerWidget {
+class PostDetailView extends HookConsumerWidget {
   const PostDetailView(this.post, {super.key, this.bottomSheetHeight = 70});
 
   // Route information
@@ -24,9 +25,10 @@ class PostDetailView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final state = ref.watch(urlLauncherProvider);
+    final _url = useState(null as String?);
+
     return ErrorSnackbarView(
-      provider: urlLauncherProvider,
+      provider: launchProvider(url: _url.value),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Post Details'),
@@ -58,7 +60,7 @@ class PostDetailView extends ConsumerWidget {
                     data: post.content.rendered,
                     //coverage:ignore-line
                     onLinkTap: (url, _, __) =>
-                        state.isLoading ? null : ref.read(urlLauncherProvider.notifier).launch(url),
+                        (url == _url.value) ? ref.invalidate(launchProvider) : _url.value = url,
                   ),
                 ],
               ),
