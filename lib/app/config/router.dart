@@ -1,4 +1,5 @@
 import 'package:black_tax_and_white_benefits/app/app_startup.dart';
+import 'package:black_tax_and_white_benefits/app/features/about/view/about_view.dart';
 import 'package:black_tax_and_white_benefits/app/shared/home_screen.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/favorites_view.dart';
@@ -15,6 +16,7 @@ part 'router.g.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorAKey = GlobalKey<NavigatorState>(debugLabel: 'shellA');
 final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
+final _shellNavigatorCKey = GlobalKey<NavigatorState>(debugLabel: 'shellC');
 
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
@@ -71,6 +73,19 @@ GoRouter goRouter(GoRouterRef ref) {
                 name: FavoritesView.name,
                 pageBuilder: (_, __) => const NoTransitionPage(
                   child: FavoritesView(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _shellNavigatorCKey,
+            routes: [
+              // About View
+              GoRoute(
+                path: AboutView.path,
+                name: AboutView.name,
+                pageBuilder: (_, __) => const NoTransitionPage(
+                  child: AboutView(),
                 ),
               ),
             ],

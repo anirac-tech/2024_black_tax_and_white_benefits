@@ -30,6 +30,10 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
                 label: Text('Favorites'),
                 icon: favoritesIcon,
               ),
+              NavigationRailDestination(
+                label: Text('About'),
+                icon: aboutIcon,
+              ),
             ],
           ),
           const VerticalDivider(thickness: 1, width: 1),

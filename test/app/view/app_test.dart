@@ -27,6 +27,16 @@ void main() {
 
       expect(find.text('Favorites'), findsAny);
     });
+    testWidgets('About', (tester) async {
+      // Load app widget.
+      await tester.pumpApp(const App());
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(aboutIconKey));
+      await tester.pumpAndSettle();
+
+      expect(find.text('About'), findsAny);
+    });
     testWidgets('Detail', (tester) async {
       // Load app widget.
       await tester.pumpApp(const App());
@@ -62,6 +72,12 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Favorites'), findsAny);
+
+      // View About screen
+      await tester.tap(find.byKey(aboutIconKey));
+      await tester.pumpAndSettle();
+
+      expect(find.text('About'), findsAny);
     });
   });
 }
