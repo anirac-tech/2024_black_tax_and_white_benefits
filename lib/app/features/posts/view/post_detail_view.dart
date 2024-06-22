@@ -52,9 +52,13 @@ class PostDetailView extends HookConsumerWidget {
                     data: post.title.rendered,
                     style: {'*': Style.fromTextStyle(theme.textTheme.headlineLarge!)},
                   ),
-                  Html(
-                    data: DateFormat.yMMMMd().format(post.date).toString(),
-                    style: {'*': Style.fromTextStyle(theme.textTheme.labelLarge!)},
+                  Container(
+                    padding: EdgeInsets.only(left: 8.0),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      DateFormat.yMMMMd().format(post.date).toString(),
+                      style: theme.textTheme.labelLarge!,
+                    ),
                   ),
                   Html(
                     data: post.content.rendered,

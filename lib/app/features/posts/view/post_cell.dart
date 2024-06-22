@@ -68,19 +68,17 @@ class PostCell extends StatelessWidget {
                 SizedBox(
                   height: 40,
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
-                        child: MediaQuery.withNoTextScaling(
-                          child: Html(
-                            data: DateFormat.yMMMd().format(post.date).toString(),
-                            shrinkWrap: true,
-                            style: {
-                              '*': Style(
-                                fontWeight: FontWeight.w200,
-                                fontSize: FontSize.large,
-                              )
-                            },
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            DateFormat.yMMMd().format(post.date).toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w200,
+                              fontSize: 12,
+                            ),
                           ),
                         ),
                       ),
