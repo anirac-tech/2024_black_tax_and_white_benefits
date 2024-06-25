@@ -52,7 +52,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          getPostsProvider.overrideWith((ref) async => Future.value(mockPosts)),
+          getPostsProvider.overrideWith((ref) async => Future.value(mockPostResponse)),
           databaseProvider.overrideWith((ref) => database),
           sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
         ],
@@ -86,7 +86,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            getPostsProvider.overrideWith((ref) async => Future.value(mockPosts)),
+            getPostsProvider.overrideWith((ref) async => Future.value(mockPostResponse)),
             favoriteListProvider.overrideWith(
                 (ref) => Stream.fromFuture(Future.delayed(Duration(seconds: 2), () => mockPosts))),
             sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
@@ -108,7 +108,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            getPostsProvider.overrideWith((ref) async => Future.value(mockPosts)),
+            getPostsProvider.overrideWith((ref) async => Future.value(mockPostResponse)),
             favoriteListProvider.overrideWith((ref) => throw exception),
             sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
           ],

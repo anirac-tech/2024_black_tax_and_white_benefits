@@ -34,24 +34,27 @@ https://gordonferguson.org/wp-content/uploads/2016/11/Final-Main-Header.jpg''';
         body: AdjustableTextWidget(
           child: MediaQuery.withClampedTextScaling(
             maxScaleFactor: 1.7,
-            child: Center(
-              child: Column(
-                children: [
-                  const SizedBox(height: 30),
-                  WpaImage(_imageUrl),
-                  Html(
-                    data: _resourcesHtml,
-                    shrinkWrap: true,
-                    style: {
-                      '*': Style(
-                        fontSize: FontSize.large,
-                        textAlign: TextAlign.center,
-                      )
-                    },
-                    onLinkTap: (String? url, _, __) =>
-                        (url == _url.value) ? ref.invalidate(launchProvider) : _url.value = url,
-                  ),
-                ],
+            child: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 30),
+                    WpaImage(_imageUrl),
+                    Html(
+                      data: _resourcesHtml,
+                      shrinkWrap: true,
+                      style: {
+                        '*': Style(
+                          fontSize: FontSize.large,
+                          textAlign: TextAlign.center,
+                        )
+                      },
+                      onLinkTap: (String? url, _, __) =>
+                          (url == _url.value) ? ref.invalidate(launchProvider) : _url.value = url,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
