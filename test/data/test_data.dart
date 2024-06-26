@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post_response.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/posts_view.dart';
@@ -22,6 +24,21 @@ rf.HttpResponse<List<Post>> get mockHttpResponse {
   headers.add('X-WP-Total', '${mockPosts.length}');
   return rf.HttpResponse(
     mockPosts,
+    Response<dynamic>(requestOptions: RequestOptions(), headers: headers),
+  );
+}
+
+rf.HttpResponse<List<Post>> mockHttpPaginationResponse(int page, int totalLength) {
+  assert(totalLength > 0 && page > 0);
+  final pages = totalLength ~/ PostsView.pageSize + 1;
+  final length = min(PostsView.pageSize, totalLength - (page - 1) * PostsView.pageSize);
+  final headers = Headers();
+
+  headers.add(PostResponse.totalPagesHeader, '$pages');
+  headers.add(PostResponse.totalHeader, '$totalLength');
+
+  return rf.HttpResponse(
+    List.generate(length, (index) => (index == 0 && page == 1) ? mockPosts.first : mockPosts.last),
     Response<dynamic>(requestOptions: RequestOptions(), headers: headers),
   );
 }

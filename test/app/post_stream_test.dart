@@ -3,9 +3,11 @@ import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client
 import 'package:black_tax_and_white_benefits/app/app.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post_response.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/posts_view.dart';
 import 'package:black_tax_and_white_benefits/app/features/settings/shared_preferences.dart';
 import 'package:black_tax_and_white_benefits/app/shared/navigation_icons.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
@@ -137,6 +139,70 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(exception.toString()), findsOneWidget);
+    });
+  });
+  group('Test Pagination', () {
+    testWidgets('success', (tester) async {
+      final postClient = MockPostClient();
+      final response1 = mockHttpPaginationResponse(1, PostsView.pageSize + 1);
+      final response2 = mockHttpPaginationResponse(2, PostsView.pageSize + 1);
+      when(() => postClient.getPosts(1, any())).thenAnswer((invocation) => Future.value(response1));
+      when(() => postClient.getPosts(2, any())).thenAnswer((invocation) => Future.delayed(
+            const Duration(seconds: 3),
+            () => response2,
+          ));
+
+      await pumpApp(tester, postClient);
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(homeIconKey));
+      await tester.pumpAndSettle();
+
+      await tester.scrollUntilVisible(find.byType(PostCellLoading), 500);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PostCell), findsAtLeast(2));
+    });
+    testWidgets('failure', (tester) async {
+      final postClient = MockPostClient();
+      final exception = Exception('Posts connection failed');
+      final response1 = mockHttpPaginationResponse(1, PostsView.pageSize + 1);
+      when(() => postClient.getPosts(1, any())).thenAnswer((invocation) => Future.value(response1));
+      when(() => postClient.getPosts(2, any())).thenThrow(exception);
+
+      await pumpApp(tester, postClient);
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(homeIconKey));
+      await tester.pumpAndSettle();
+
+      await tester.scrollUntilVisible(find.byType(PostCellError), 500);
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(PostCellError));
+
+      await tester.pumpAndSettle();
+
+      expect(find.text(exception.toString()), findsAny);
+    });
+    testWidgets('refresh', (tester) async {
+      final postClient = MockPostClient();
+      when(() => postClient.getPosts(any(), any()))
+          .thenAnswer((invocation) => Future.value(mockHttpResponse));
+
+      await pumpApp(tester, postClient);
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(homeIconKey));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PostCell), findsExactly(mockPosts.length));
+
+      await tester.drag(find.text('Black Tax'), const Offset(0, 500));
+      expect(find.byType(RefreshIndicator), findsOneWidget);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PostCell), findsExactly(mockPosts.length));
     });
   });
 }

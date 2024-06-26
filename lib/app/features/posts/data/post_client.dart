@@ -14,11 +14,17 @@ typedef PostQueryData = ({int page});
 abstract class PostClient {
   factory PostClient(Dio dio, {String baseUrl}) = _PostClient;
 
-  @GET('/posts?_embed=true&per_page=10')
+  static const postTimeout = Duration(minutes: 2);
+
+  @GET('/posts')
   Future<HttpResponse<List<Post>>> getPosts(
     @Query('page') int page,
-    @CancelRequest() CancelToken cancelToken,
-  );
+    @CancelRequest() CancelToken cancelToken, {
+    @Query('per_page') int perPage = 10,
+    @Query('_embed') bool embed = true,
+    @Query('orderby') String orderBy = 'date',
+    @Query('order') String order = 'desc',
+  });
 }
 
 //coverage:ignore-start
@@ -34,24 +40,21 @@ FutureOr<PostResponse> getPosts(GetPostsRef ref, PostQueryData postQueryData) as
   final client = ref.watch(postClientProvider);
 
   final cancelToken = CancelToken();
-  // When a page is no-longer used, keep it in the cache.
   final link = ref.keepAlive();
-  // a timer to be used by the callbacks below
+
   Timer? timer;
-  // When the provider is destroyed, cancel the http request and the timer
+
   ref.onDispose(() {
     cancelToken.cancel();
     timer?.cancel();
   });
-  // When the last listener is removed, start a timer to dispose the cached data
   ref.onCancel(() {
-    // start a timer
-    timer = Timer(const Duration(minutes: 2), () {
-      // dispose on timeout
+    timer = Timer(PostClient.postTimeout, () {
+      // coverage:ignore-start
       link.close();
+      // coverage:ignore-end
     });
   });
-  // If the provider is listened again after it was paused, cancel the timer
   ref.onResume(() {
     timer?.cancel();
   });

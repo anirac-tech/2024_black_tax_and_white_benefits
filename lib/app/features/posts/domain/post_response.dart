@@ -8,13 +8,16 @@ class PostResponse {
     required this.totalResults,
   });
 
+  static const String totalPagesHeader = 'X-WP-TotalPages';
+  static const String totalHeader = 'X-WP-Total';
+
   final List<Post> posts;
   final int totalPages;
   final int totalResults;
 
   factory PostResponse.fromHttpResponse(HttpResponse<List<Post>> http) {
-    final totalPages = int.parse(http.response.headers.value('X-WP-TotalPages')!);
-    final totalResults = int.parse(http.response.headers.value('X-WP-Total')!);
+    final totalPages = int.parse(http.response.headers.value(totalPagesHeader)!);
+    final totalResults = int.parse(http.response.headers.value(totalHeader)!);
     return PostResponse(totalPages: totalPages, totalResults: totalResults, posts: http.data);
   }
 }

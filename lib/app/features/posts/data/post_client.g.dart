@@ -23,10 +23,20 @@ class _PostClient implements PostClient {
   @override
   Future<HttpResponse<List<Post>>> getPosts(
     int page,
-    CancelToken cancelToken,
-  ) async {
+    CancelToken cancelToken, {
+    int perPage = 10,
+    bool embed = true,
+    String orderBy = 'date',
+    String order = 'desc',
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'per_page': perPage,
+      r'_embed': embed,
+      r'orderby': orderBy,
+      r'order': order,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =
@@ -37,7 +47,7 @@ class _PostClient implements PostClient {
     )
             .compose(
               _dio.options,
-              '/posts?_embed=true&per_page=10',
+              '/posts',
               queryParameters: queryParameters,
               data: _data,
               cancelToken: cancelToken,
@@ -100,7 +110,7 @@ final postClientProvider = AutoDisposeProvider<PostClient>.internal(
 );
 
 typedef PostClientRef = AutoDisposeProviderRef<PostClient>;
-String _$getPostsHash() => r'd2682f91870fae2d8f5a8c2a7ff69c373079c334';
+String _$getPostsHash() => r'2b9fbc2d054da8728bc6cf9892b46e17c6c3db1e';
 
 /// Copied from Dart SDK
 class _SystemHash {
