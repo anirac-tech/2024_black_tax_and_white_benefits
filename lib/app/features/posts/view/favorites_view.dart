@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
@@ -19,7 +21,10 @@ class FavoritesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: const Text('Favorites'), actions: [SettingsIconButton()]),
+        appBar: AppBar(
+            title: const Text('Favorites'),
+            centerTitle: Platform.isAndroid,
+            actions: [SettingsIconButton()]),
         body: AdjustableTextWidget(
           child: Center(
             child: Consumer(

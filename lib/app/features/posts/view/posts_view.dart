@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post_response.dart';
@@ -21,8 +23,10 @@ class PostsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar:
-            AppBar(title: const Text('Black Tax White Benefits'), actions: [SettingsIconButton()]),
+        appBar: AppBar(
+            title: const Text('Black Tax White Benefits'),
+            centerTitle: Platform.isAndroid,
+            actions: [SettingsIconButton()]),
         body: AdjustableTextWidget(
           child: Center(
             child: Consumer(

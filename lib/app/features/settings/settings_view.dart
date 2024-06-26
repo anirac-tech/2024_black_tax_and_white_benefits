@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:black_tax_and_white_benefits/app/features/text_size/adjustable_text_widget.dart';
 import 'package:black_tax_and_white_benefits/app/features/text_size/text_size_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text('Settings'),
+          centerTitle: Platform.isAndroid,
           surfaceTintColor: Colors.transparent,
         ),
         body: AdjustableTextWidget(
