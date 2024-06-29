@@ -12,8 +12,8 @@ class FavoritePosts extends Table {
 }
 
 @DriftDatabase(tables: [FavoritePosts])
-class WPADatabase extends _$WPADatabase {
-  WPADatabase(QueryExecutor e) : super(e);
+class WpaDatabase extends _$WpaDatabase {
+  WpaDatabase(QueryExecutor e) : super(e);
 
   @override
   int get schemaVersion => 1;
@@ -28,6 +28,6 @@ class WPADatabase extends _$WPADatabase {
 }
 
 @Riverpod(keepAlive: true)
-WPADatabase database(DatabaseRef _) => constructDb();
+WpaDatabase database(DatabaseRef _) => constructDb();
 
 //coverage:ignore-end

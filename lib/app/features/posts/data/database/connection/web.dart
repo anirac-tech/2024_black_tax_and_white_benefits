@@ -2,8 +2,8 @@ import 'package:black_tax_and_white_benefits/app/features/posts/data/database/da
 import 'package:drift/drift.dart';
 import 'package:drift/wasm.dart';
 
-WPADatabase constructDb() {
-  return WPADatabase(connectOnWeb());
+WpaDatabase constructDb() {
+  return WpaDatabase(connectOnWeb());
 }
 
 DatabaseConnection connectOnWeb() {

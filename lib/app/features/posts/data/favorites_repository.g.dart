@@ -6,7 +6,7 @@ part of 'favorites_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$favoritesRepositoryHash() => r'fecdce9d68b97245ca147e43dd9b3827641ebbc0';
+String _$favoritesRepositoryHash() => r'91c7b8a1b29f210b43690f980bdde5e3abc86ed2';
 
 /// See also [favoritesRepository].
 @ProviderFor(favoritesRepository)
@@ -20,7 +20,7 @@ final favoritesRepositoryProvider = AutoDisposeProvider<FavoritesRepository>.int
 );
 
 typedef FavoritesRepositoryRef = AutoDisposeProviderRef<FavoritesRepository>;
-String _$favoriteListHash() => r'9a0d8a32aff24049b7f1ed1bdd33eb417be28f18';
+String _$favoriteListHash() => r'8e35c8ef83701ae6ccbd60442aaa031ede07af45';
 
 /// See also [favoriteList].
 @ProviderFor(favoriteList)

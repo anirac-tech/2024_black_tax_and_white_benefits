@@ -9,9 +9,9 @@ import 'package:sqlite3/sqlite3.dart';
 import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 
 //  coverage:ignore-start
-WPADatabase constructDb() {
+WpaDatabase constructDb() {
   final db = _openConnection();
-  return WPADatabase(db);
+  return WpaDatabase(db);
 }
 
 LazyDatabase _openConnection() {

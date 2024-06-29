@@ -1,10 +1,7 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
-class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
-  AdaptiveAppBar({
+class WpaAppBar extends StatelessWidget implements PreferredSizeWidget {
+  WpaAppBar({
     this.title,
     this.actions,
     this.surfaceTintColor,
@@ -23,7 +20,7 @@ class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: title,
-      centerTitle: kIsWeb ? false : Platform.isAndroid,
+      centerTitle: false,
       actions: actions,
       surfaceTintColor: surfaceTintColor,
     );

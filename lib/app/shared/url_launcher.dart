@@ -8,9 +8,7 @@ Future<void> launch(LaunchRef ref, {String? url}) async {
   if (url == null) return;
   final Uri _url = Uri.parse(url);
   if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) {
-    // coverage:ignore-start
     // Don't know how to mock actual launchUrl method yet
-    throw Exception('Could not launch $_url');
-    // coverage:ignore-end
+    throw Exception('Could not launch $_url'); //coverage:ignore-line
   }
 }

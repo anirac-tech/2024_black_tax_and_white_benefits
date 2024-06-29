@@ -10,7 +10,7 @@ class FavoritesRepository {
     required this.database,
   });
 
-  final WPADatabase database;
+  final WpaDatabase database;
 
   Future<int> addFavorite(Post post) async {
     try {
@@ -34,13 +34,13 @@ class FavoritesRepository {
 
 @riverpod
 FavoritesRepository favoritesRepository(FavoritesRepositoryRef ref) {
-  final WPADatabase database = ref.watch(databaseProvider);
+  final WpaDatabase database = ref.watch(databaseProvider);
   return FavoritesRepository(database: database);
 }
 
 @Riverpod(keepAlive: true)
 Stream<List<Post>> favoriteList(FavoriteListRef ref) {
-  final WPADatabase database = ref.watch(databaseProvider);
+  final WpaDatabase database = ref.watch(databaseProvider);
 
   return database.watchPosts().map((entry) => entry.map((element) => element.post).toList());
 }

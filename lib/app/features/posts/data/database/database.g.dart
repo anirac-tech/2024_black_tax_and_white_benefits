@@ -170,9 +170,9 @@ class FavoritePostsCompanion extends UpdateCompanion<FavoritePost> {
   }
 }
 
-abstract class _$WPADatabase extends GeneratedDatabase {
-  _$WPADatabase(QueryExecutor e) : super(e);
-  _$WPADatabaseManager get managers => _$WPADatabaseManager(this);
+abstract class _$WpaDatabase extends GeneratedDatabase {
+  _$WpaDatabase(QueryExecutor e) : super(e);
+  _$WpaDatabaseManager get managers => _$WpaDatabaseManager(this);
   late final $FavoritePostsTable favoritePosts = $FavoritePostsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
@@ -191,7 +191,7 @@ typedef $$FavoritePostsTableUpdateCompanionBuilder = FavoritePostsCompanion Func
 });
 
 class $$FavoritePostsTableTableManager extends RootTableManager<
-    _$WPADatabase,
+    _$WpaDatabase,
     $FavoritePostsTable,
     FavoritePost,
     $$FavoritePostsTableFilterComposer,
@@ -199,7 +199,7 @@ class $$FavoritePostsTableTableManager extends RootTableManager<
     $$FavoritePostsTableProcessedTableManager,
     $$FavoritePostsTableInsertCompanionBuilder,
     $$FavoritePostsTableUpdateCompanionBuilder> {
-  $$FavoritePostsTableTableManager(_$WPADatabase db, $FavoritePostsTable table)
+  $$FavoritePostsTableTableManager(_$WpaDatabase db, $FavoritePostsTable table)
       : super(TableManagerState(
           db: db,
           table: table,
@@ -226,7 +226,7 @@ class $$FavoritePostsTableTableManager extends RootTableManager<
 }
 
 class $$FavoritePostsTableProcessedTableManager extends ProcessedTableManager<
-    _$WPADatabase,
+    _$WpaDatabase,
     $FavoritePostsTable,
     FavoritePost,
     $$FavoritePostsTableFilterComposer,
@@ -238,7 +238,7 @@ class $$FavoritePostsTableProcessedTableManager extends ProcessedTableManager<
 }
 
 class $$FavoritePostsTableFilterComposer
-    extends FilterComposer<_$WPADatabase, $FavoritePostsTable> {
+    extends FilterComposer<_$WpaDatabase, $FavoritePostsTable> {
   $$FavoritePostsTableFilterComposer(super.$state);
   ColumnFilters<int> get id => $state.composableBuilder(
       column: $state.table.id,
@@ -251,7 +251,7 @@ class $$FavoritePostsTableFilterComposer
 }
 
 class $$FavoritePostsTableOrderingComposer
-    extends OrderingComposer<_$WPADatabase, $FavoritePostsTable> {
+    extends OrderingComposer<_$WpaDatabase, $FavoritePostsTable> {
   $$FavoritePostsTableOrderingComposer(super.$state);
   ColumnOrderings<int> get id => $state.composableBuilder(
       column: $state.table.id,
@@ -262,9 +262,9 @@ class $$FavoritePostsTableOrderingComposer
       builder: (column, joinBuilders) => ColumnOrderings(column, joinBuilders: joinBuilders));
 }
 
-class _$WPADatabaseManager {
-  final _$WPADatabase _db;
-  _$WPADatabaseManager(this._db);
+class _$WpaDatabaseManager {
+  final _$WpaDatabase _db;
+  _$WpaDatabaseManager(this._db);
   $$FavoritePostsTableTableManager get favoritePosts =>
       $$FavoritePostsTableTableManager(_db, _db.favoritePosts);
 }
@@ -273,11 +273,11 @@ class _$WPADatabaseManager {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$databaseHash() => r'559ac9deb5d9d30e4e3eb411ad67ee9aec936d57';
+String _$databaseHash() => r'f58931026859955ce6c44d9cd5744ae8a8cce998';
 
 /// See also [database].
 @ProviderFor(database)
-final databaseProvider = Provider<WPADatabase>.internal(
+final databaseProvider = Provider<WpaDatabase>.internal(
   database,
   name: r'databaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$databaseHash,
@@ -285,6 +285,6 @@ final databaseProvider = Provider<WPADatabase>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef DatabaseRef = ProviderRef<WPADatabase>;
+typedef DatabaseRef = ProviderRef<WpaDatabase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package

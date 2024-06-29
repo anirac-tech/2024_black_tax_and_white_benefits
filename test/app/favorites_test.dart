@@ -15,7 +15,7 @@ import 'package:mocktail/mocktail.dart';
 import '../data/test_data.dart';
 import '../helpers/helpers.dart';
 
-class MockDatabase extends Mock implements WPADatabase {
+class MockDatabase extends Mock implements WpaDatabase {
   final List<FavoritePost> favorites = List.empty(growable: true);
   final StreamController<List<FavoritePost>> favoritesController =
       StreamController<List<FavoritePost>>();
@@ -48,7 +48,7 @@ class MockDatabase extends Mock implements WPADatabase {
 }
 
 void main() {
-  Future<void> pumpApp(WidgetTester tester, WPADatabase database) async {
+  Future<void> pumpApp(WidgetTester tester, WpaDatabase database) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [

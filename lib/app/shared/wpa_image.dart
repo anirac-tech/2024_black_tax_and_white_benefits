@@ -19,9 +19,7 @@ class WpaImage extends StatelessWidget {
       // coverage:ignore-end
       : CachedNetworkImage(
           imageUrl: imageUrl,
-          // coverage:ignore-start
-          errorWidget: (_, __, ___) => const Icon(Icons.cloud_off),
-          // coverage:ignore-end
+          errorWidget: (_, __, ___) => const Icon(Icons.cloud_off), //coverage:ignore-line
           fit: fit,
         );
 }

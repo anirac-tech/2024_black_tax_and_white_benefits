@@ -50,9 +50,7 @@ FutureOr<PostResponse> getPosts(GetPostsRef ref, PostQueryData postQueryData) as
   });
   ref.onCancel(() {
     timer = Timer(PostClient.postTimeout, () {
-      // coverage:ignore-start
-      link.close();
-      // coverage:ignore-end
+      link.close(); //coverage:ignore-line
     });
   });
   ref.onResume(() {

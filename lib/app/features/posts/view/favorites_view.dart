@@ -5,7 +5,7 @@ import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.d
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_detail_view.dart';
 import 'package:black_tax_and_white_benefits/app/features/settings/settings_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/features/text_size/adjustable_text_widget.dart';
-import 'package:black_tax_and_white_benefits/app/shared/adaptive_app_bar.dart';
+import 'package:black_tax_and_white_benefits/app/shared/wpa_app_bar.dart';
 import 'package:black_tax_and_white_benefits/app/shared/async_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +20,7 @@ class FavoritesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AdaptiveAppBar(
+        appBar: WpaAppBar(
           title: const Text('Favorites'),
           actions: [SettingsIconButton()],
         ),

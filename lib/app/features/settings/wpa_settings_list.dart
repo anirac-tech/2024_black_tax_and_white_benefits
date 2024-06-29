@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-class WPASettingsList extends StatelessWidget {
-  const WPASettingsList({super.key});
+class WpaSettingsList extends StatelessWidget {
+  const WpaSettingsList({super.key});
 
   @override
   Widget build(BuildContext context) => kIsWeb
