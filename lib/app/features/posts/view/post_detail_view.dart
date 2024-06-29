@@ -1,6 +1,7 @@
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/favorite_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/share_icon_button.dart';
+import 'package:black_tax_and_white_benefits/app/shared/adaptive_app_bar.dart';
 import 'package:black_tax_and_white_benefits/app/shared/error_snackbar_view.dart';
 import 'package:black_tax_and_white_benefits/app/shared/wpa_image.dart';
 import 'package:black_tax_and_white_benefits/app/features/text_size/adjustable_text_widget.dart';
@@ -30,7 +31,7 @@ class PostDetailView extends HookConsumerWidget {
     return ErrorSnackbarView(
       provider: launchProvider(url: _url.value),
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AdaptiveAppBar(
           title: const Text('Post Details'),
           actions: <Widget>[
             ShareIconButton(post.link),

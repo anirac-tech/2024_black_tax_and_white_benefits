@@ -1,5 +1,5 @@
 import 'package:black_tax_and_white_benefits/app/config/logger.dart';
-import 'package:black_tax_and_white_benefits/app/features/posts/data/database.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/data/database/database.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,7 +10,7 @@ class FavoritesRepository {
     required this.database,
   });
 
-  final Database database;
+  final WPADatabase database;
 
   Future<int> addFavorite(Post post) async {
     try {
@@ -34,13 +34,13 @@ class FavoritesRepository {
 
 @riverpod
 FavoritesRepository favoritesRepository(FavoritesRepositoryRef ref) {
-  final Database database = ref.watch(databaseProvider);
+  final WPADatabase database = ref.watch(databaseProvider);
   return FavoritesRepository(database: database);
 }
 
 @Riverpod(keepAlive: true)
 Stream<List<Post>> favoriteList(FavoriteListRef ref) {
-  final Database database = ref.watch(databaseProvider);
+  final WPADatabase database = ref.watch(databaseProvider);
 
   return database.watchPosts().map((entry) => entry.map((element) => element.post).toList());
 }

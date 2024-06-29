@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:black_tax_and_white_benefits/app/app.dart';
-import 'package:black_tax_and_white_benefits/app/features/posts/data/database.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/data/database/database.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
@@ -15,7 +15,7 @@ import 'package:mocktail/mocktail.dart';
 import '../data/test_data.dart';
 import '../helpers/helpers.dart';
 
-class MockDatabase extends Mock implements Database {
+class MockDatabase extends Mock implements WPADatabase {
   final List<FavoritePost> favorites = List.empty(growable: true);
   final StreamController<List<FavoritePost>> favoritesController =
       StreamController<List<FavoritePost>>();
@@ -48,7 +48,7 @@ class MockDatabase extends Mock implements Database {
 }
 
 void main() {
-  Future<void> pumpApp(WidgetTester tester, Database database) async {
+  Future<void> pumpApp(WidgetTester tester, WPADatabase database) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [

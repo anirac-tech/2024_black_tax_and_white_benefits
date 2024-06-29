@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:black_tax_and_white_benefits/app/features/settings/settings_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/features/text_size/adjustable_text_widget.dart';
+import 'package:black_tax_and_white_benefits/app/shared/adaptive_app_bar.dart';
 import 'package:black_tax_and_white_benefits/app/shared/error_snackbar_view.dart';
 import 'package:black_tax_and_white_benefits/app/shared/url_launcher.dart';
 import 'package:black_tax_and_white_benefits/app/shared/wpa_image.dart';
@@ -32,10 +31,7 @@ https://gordonferguson.org/wp-content/uploads/2016/11/Final-Main-Header.jpg''';
     return ErrorSnackbarView<void>(
       provider: launchProvider(url: _url.value),
       child: Scaffold(
-        appBar: AppBar(
-            title: const Text('About'),
-            centerTitle: Platform.isAndroid,
-            actions: [SettingsIconButton()]),
+        appBar: AdaptiveAppBar(title: const Text('About'), actions: [SettingsIconButton()]),
         body: AdjustableTextWidget(
           child: MediaQuery.withClampedTextScaling(
             maxScaleFactor: 1.7,

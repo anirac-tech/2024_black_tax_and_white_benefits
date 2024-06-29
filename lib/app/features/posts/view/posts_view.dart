@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post_response.dart';
@@ -7,6 +5,7 @@ import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.d
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_detail_view.dart';
 import 'package:black_tax_and_white_benefits/app/features/settings/settings_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/features/text_size/adjustable_text_widget.dart';
+import 'package:black_tax_and_white_benefits/app/shared/adaptive_app_bar.dart';
 import 'package:black_tax_and_white_benefits/app/shared/async_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -23,10 +22,10 @@ class PostsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-            title: const Text('Black Tax White Benefits'),
-            centerTitle: Platform.isAndroid,
-            actions: [SettingsIconButton()]),
+        appBar: AdaptiveAppBar(
+          title: const Text('Black Tax White Benefits'),
+          actions: [SettingsIconButton()],
+        ),
         body: AdjustableTextWidget(
           child: Center(
             child: Consumer(
