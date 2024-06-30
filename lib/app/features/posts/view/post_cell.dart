@@ -135,9 +135,7 @@ class PostCellError extends ConsumerWidget {
         onTap: isLoading
             ? null
             : () {
-                // invalidate the provider for the errored page
                 ref.invalidate(getPostsProvider((page: page)));
-                // wait until the page is loaded again
                 return ref.read(getPostsProvider((page: page)).future);
               },
         subtitle: const Text('Tap to reload'),

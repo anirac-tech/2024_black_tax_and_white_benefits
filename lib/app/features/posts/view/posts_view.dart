@@ -23,7 +23,7 @@ class PostsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: WpaAppBar(
-          title: const Text('Black Tax White Benefits'),
+          title: const Text('Black Tax & White Benefits'),
           actions: [SettingsIconButton()],
         ),
         body: AdjustableTextWidget(
