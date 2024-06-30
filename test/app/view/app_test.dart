@@ -15,7 +15,7 @@ void main() {
       await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
-      expect(find.text('Black Tax White Benefits'), findsOneWidget);
+      expect(find.text('Black Tax & White Benefits'), findsOneWidget);
     });
     testWidgets('Favorites', (tester) async {
       // Load app widget.
@@ -65,7 +65,7 @@ void main() {
       await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
-      expect(find.text('Black Tax White Benefits'), findsOneWidget);
+      expect(find.text('Black Tax & White Benefits'), findsOneWidget);
 
       // View Favorites screen
       await tester.tap(find.byKey(favoritesIconKey));
