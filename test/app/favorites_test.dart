@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:black_tax_and_white_benefits/app/app.dart';
-import 'package:black_tax_and_white_benefits/app/features/posts/data/database.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/data/database/database.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
@@ -15,7 +15,7 @@ import 'package:mocktail/mocktail.dart';
 import '../data/test_data.dart';
 import '../helpers/helpers.dart';
 
-class MockDatabase extends Mock implements Database {
+class MockDatabase extends Mock implements WpaDatabase {
   final List<FavoritePost> favorites = List.empty(growable: true);
   final StreamController<List<FavoritePost>> favoritesController =
       StreamController<List<FavoritePost>>();
@@ -48,11 +48,11 @@ class MockDatabase extends Mock implements Database {
 }
 
 void main() {
-  Future<void> pumpApp(WidgetTester tester, Database database) async {
+  Future<void> pumpApp(WidgetTester tester, WpaDatabase database) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          getPostsProvider.overrideWith((ref) async => Future.value(mockPosts)),
+          getPostsProvider.overrideWith((ref) async => Future.value(mockPostResponse)),
           databaseProvider.overrideWith((ref) => database),
           sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
         ],
@@ -86,7 +86,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            getPostsProvider.overrideWith((ref) async => Future.value(mockPosts)),
+            getPostsProvider.overrideWith((ref) async => Future.value(mockPostResponse)),
             favoriteListProvider.overrideWith(
                 (ref) => Stream.fromFuture(Future.delayed(Duration(seconds: 2), () => mockPosts))),
             sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
@@ -108,7 +108,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            getPostsProvider.overrideWith((ref) async => Future.value(mockPosts)),
+            getPostsProvider.overrideWith((ref) async => Future.value(mockPostResponse)),
             favoriteListProvider.overrideWith((ref) => throw exception),
             sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
           ],

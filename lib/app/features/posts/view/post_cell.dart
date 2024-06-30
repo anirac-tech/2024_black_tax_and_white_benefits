@@ -1,9 +1,11 @@
+import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/favorite_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/share_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/shared/wpa_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 class PostCell extends StatelessWidget {
@@ -93,4 +95,51 @@ class PostCell extends StatelessWidget {
           ),
         ),
       );
+}
+
+class PostCellLoading extends StatelessWidget {
+  const PostCellLoading({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shadowColor: Colors.transparent,
+      child: SizedBox(
+        height: 300,
+        child: CircularProgressIndicator.adaptive(),
+      ),
+    );
+  }
+}
+
+class PostCellError extends ConsumerWidget {
+  const PostCellError({
+    super.key,
+    required this.page,
+    required this.indexInPage,
+    required this.isLoading,
+    required this.error,
+  });
+
+  final int page;
+  final int indexInPage;
+  final bool isLoading;
+  final String error;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Card(
+      shadowColor: Colors.transparent,
+      child: ListTile(
+        title: Text(error),
+        onTap: isLoading
+            ? null
+            : () {
+                ref.invalidate(getPostsProvider((page: page)));
+                return ref.read(getPostsProvider((page: page)).future);
+              },
+        subtitle: const Text('Tap to reload'),
+      ),
+    );
+  }
 }

@@ -31,7 +31,7 @@ extension PumpApp on WidgetTester {
     return pumpWidget(
       ProviderScope(
         overrides: [
-          getPostsProvider.overrideWith((ref) async => Future.value(mockPosts)),
+          getPostsProvider.overrideWith((ref) async => Future.value(mockPostResponse)),
           favoriteListProvider.overrideWith((ref) => Stream.value(mockPosts)),
           sharedPreferencesProvider.overrideWith((ref) => Future.value(sharedPreferences)),
           if (overrides != null) ...overrides,

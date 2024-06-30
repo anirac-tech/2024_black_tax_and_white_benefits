@@ -1,5 +1,6 @@
 import 'package:black_tax_and_white_benefits/app/features/settings/settings_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/features/text_size/adjustable_text_widget.dart';
+import 'package:black_tax_and_white_benefits/app/shared/wpa_app_bar.dart';
 import 'package:black_tax_and_white_benefits/app/shared/error_snackbar_view.dart';
 import 'package:black_tax_and_white_benefits/app/shared/url_launcher.dart';
 import 'package:black_tax_and_white_benefits/app/shared/wpa_image.dart';
@@ -30,12 +31,14 @@ https://gordonferguson.org/wp-content/uploads/2016/11/Final-Main-Header.jpg''';
     return ErrorSnackbarView<void>(
       provider: launchProvider(url: _url.value),
       child: Scaffold(
-        appBar: AppBar(title: const Text('About'), actions: [SettingsIconButton()]),
+        appBar: WpaAppBar(title: const Text('About'), actions: [SettingsIconButton()]),
         body: AdjustableTextWidget(
           child: MediaQuery.withClampedTextScaling(
             maxScaleFactor: 1.7,
-            child: Center(
+            child: SingleChildScrollView(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 30),
                   WpaImage(_imageUrl),
