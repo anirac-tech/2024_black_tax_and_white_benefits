@@ -34,47 +34,37 @@ class PostsView extends StatelessWidget {
                 final posts = responseAsync.valueOrNull?.posts;
                 Log.d("[Post Stream] ${posts?.map((e) => '${e.id}')}");
 
-                return RefreshIndicator.adaptive(
-                  onRefresh: () async {
-                    ref.invalidate(getPostsProvider);
-                    try {
-                      await ref.read(
-                        getPostsProvider((page: 1)).future,
+                return AsyncValueWidget<PostResponse>(
+                  value: responseAsync,
+                  data: (data) => ListView.separated(
+                    itemCount: data.totalResults,
+                    itemBuilder: (context, index) {
+                      final page = index ~/ pageSize + 1;
+                      final indexInPage = index % pageSize;
+                      final responseAsync = ref.watch(
+                        getPostsProvider((page: page)),
                       );
-                    } catch (e) {}
-                  },
-                  child: AsyncValueWidget<PostResponse>(
-                    value: responseAsync,
-                    data: (data) => ListView.separated(
-                      itemCount: data.totalResults,
-                      itemBuilder: (context, index) {
-                        final page = index ~/ pageSize + 1;
-                        final indexInPage = index % pageSize;
-                        final responseAsync = ref.watch(
-                          getPostsProvider((page: page)),
-                        );
-                        return responseAsync.when(
-                          error: (err, stack) => PostCellError(
-                            page: page,
-                            indexInPage: indexInPage,
-                            error: err.toString(),
-                            isLoading: responseAsync.isLoading,
-                          ),
-                          loading: () => const PostCellLoading(),
-                          data: (data) {
-                            if (indexInPage >= data.posts.length) {
-                              return null;
-                            }
-                            final post = data.posts[indexInPage];
-                            return PostCell(
-                              post,
-                              onTap: () => context.pushNamed(PostDetailView.name, extra: post),
-                            );
-                          },
-                        );
-                      },
-                      separatorBuilder: (_, __) => SizedBox(height: 10),
-                    ),
+                      return responseAsync.when(
+                        error: (err, stack) => PostCellError(
+                          page: page,
+                          indexInPage: indexInPage,
+                          error: err.toString(),
+                          isLoading: responseAsync.isLoading,
+                        ),
+                        loading: () => const PostCellLoading(),
+                        data: (data) {
+                          if (indexInPage >= data.posts.length) {
+                            return null;
+                          }
+                          final post = data.posts[indexInPage];
+                          return PostCell(
+                            post,
+                            onTap: () => context.pushNamed(PostDetailView.name, extra: post),
+                          );
+                        },
+                      );
+                    },
+                    separatorBuilder: (_, __) => SizedBox(height: 10),
                   ),
                 );
               },
