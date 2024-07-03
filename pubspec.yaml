@@ -11,7 +11,7 @@ environment:
   # 3.19.5 is stable channel from March 27, 2024
 dependencies:
   cached_network_image: ^3.3.1
-  dio: ^5.4.3+1
+  dio: ^5.5.0
   drift: ^2.18.0
   flutter:
     sdk: flutter
