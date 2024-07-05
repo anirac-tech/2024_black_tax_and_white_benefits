@@ -34,7 +34,7 @@ class PostDetailView extends HookConsumerWidget {
         appBar: WpaAppBar(
           title: const Text('Post Details'),
           actions: <Widget>[
-            ShareIconButton(post.link),
+            ShareIconButton(post),
             FavoriteIconButton(post),
           ],
         ),

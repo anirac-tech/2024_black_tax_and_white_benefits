@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post_response.dart';
-import 'package:black_tax_and_white_benefits/app/features/posts/view/posts_view.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/screens/posts_view.dart';
 import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart' as rf;

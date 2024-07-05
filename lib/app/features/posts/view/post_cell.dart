@@ -84,7 +84,7 @@ class PostCell extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ShareIconButton(post.link),
+                      ShareIconButton(post),
                       FavoriteIconButton(post),
                     ],
                   ),

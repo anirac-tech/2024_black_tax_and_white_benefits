@@ -3,7 +3,7 @@ import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client
 import 'package:black_tax_and_white_benefits/app/app.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post_response.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
-import 'package:black_tax_and_white_benefits/app/features/posts/view/posts_view.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/screens/posts_view.dart';
 import 'package:black_tax_and_white_benefits/app/features/settings/shared_preferences.dart';
 import 'package:black_tax_and_white_benefits/app/shared/navigation_icons.dart';
 import 'package:dio/dio.dart';
@@ -13,8 +13,6 @@ import 'package:mocktail/mocktail.dart';
 
 import '../data/test_data.dart';
 import '../helpers/helpers.dart';
-
-class MockPostClient extends Mock implements PostClient {}
 
 const emptyResponse = PostResponse(posts: [], totalPages: 0, totalResults: 0);
 
@@ -31,16 +29,11 @@ void main() {
 
   Future<void> pumpApp(WidgetTester tester, PostClient postClient) async {
     final sharedPreferences = MockSharedPreferences();
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          postClientProvider.overrideWithValue(postClient),
-          favoriteListProvider.overrideWith((ref) => Stream.empty()),
-          sharedPreferencesProvider.overrideWith((ref) => Future.value(sharedPreferences)),
-        ],
-        child: const App(),
-      ),
-    );
+    await tester.pumpApp(const App(), overrides: [
+      postClientProvider.overrideWithValue(postClient),
+      favoriteListProvider.overrideWith((ref) => Stream.empty()),
+      sharedPreferencesProvider.overrideWith((ref) => Future.value(sharedPreferences)),
+    ]);
   }
 
   setUpAll(() {

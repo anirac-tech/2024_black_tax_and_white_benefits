@@ -1,3 +1,4 @@
+import 'package:black_tax_and_white_benefits/app/config/analytics.dart';
 import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,11 +18,12 @@ class ErrorSnackbarView<T> extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final crashlytics = ref.watch(crashlyticsProvider);
     ref.listen(
       provider,
       (_, state) => state.maybeWhen(
         error: (error, stackTrace) {
-          Log.e(error.toString(), error);
+          Log.e(error.toString(), error, crashlytics: crashlytics);
           ScaffoldMessenger.of(context).removeCurrentSnackBar();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

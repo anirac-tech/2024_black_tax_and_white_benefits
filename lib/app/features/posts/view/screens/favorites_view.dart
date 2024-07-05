@@ -2,7 +2,7 @@ import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
-import 'package:black_tax_and_white_benefits/app/features/posts/view/post_detail_view.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/screens/post_detail_view.dart';
 import 'package:black_tax_and_white_benefits/app/features/settings/settings_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/features/text_size/adjustable_text_widget.dart';
 import 'package:black_tax_and_white_benefits/app/shared/wpa_app_bar.dart';
