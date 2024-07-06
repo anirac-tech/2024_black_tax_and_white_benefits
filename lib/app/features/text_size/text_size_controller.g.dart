@@ -6,7 +6,7 @@ part of 'text_size_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$textSizeControllerHash() => r'ba4398a47491f0d6b884ebc1dddfaa4e27753918';
+String _$textSizeControllerHash() => r'a96f58d7045457fa85a925e0be4ff30c27866459';
 
 /// See also [TextSizeController].
 @ProviderFor(TextSizeController)

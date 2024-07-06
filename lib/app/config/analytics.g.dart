@@ -6,11 +6,11 @@ part of 'analytics.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$analyticsHash() => r'e7d675283c55e439ced6f2a741cd6fcaee3ee38d';
+String _$analyticsHash() => r'6f8fdbe4c8115d0d44e80c9be4ce95133975716a';
 
 /// See also [analytics].
 @ProviderFor(analytics)
-final analyticsProvider = AutoDisposeProvider<Analytics>.internal(
+final analyticsProvider = Provider<Analytics>.internal(
   analytics,
   name: r'analyticsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$analyticsHash,
@@ -18,12 +18,12 @@ final analyticsProvider = AutoDisposeProvider<Analytics>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AnalyticsRef = AutoDisposeProviderRef<Analytics>;
-String _$crashlyticsHash() => r'9278aa9eae46a102120cac019404d7e1fd80e2b4';
+typedef AnalyticsRef = ProviderRef<Analytics>;
+String _$crashlyticsHash() => r'4532b15dd16b8e05cf8a5aed33f2d126b5b2d975';
 
 /// See also [crashlytics].
 @ProviderFor(crashlytics)
-final crashlyticsProvider = AutoDisposeProvider<FirebaseCrashlytics>.internal(
+final crashlyticsProvider = Provider<FirebaseCrashlytics>.internal(
   crashlytics,
   name: r'crashlyticsProvider',
   debugGetCreateSourceHash:
@@ -32,6 +32,6 @@ final crashlyticsProvider = AutoDisposeProvider<FirebaseCrashlytics>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef CrashlyticsRef = AutoDisposeProviderRef<FirebaseCrashlytics>;
+typedef CrashlyticsRef = ProviderRef<FirebaseCrashlytics>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package

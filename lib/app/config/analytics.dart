@@ -37,8 +37,8 @@ class Analytics {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Analytics analytics(AnalyticsRef ref) => Analytics();
 
-@riverpod
+@Riverpod(keepAlive: true)
 FirebaseCrashlytics crashlytics(CrashlyticsRef ref) => FirebaseCrashlytics.instance;
