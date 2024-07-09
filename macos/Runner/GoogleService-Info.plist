@@ -2,18 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>823282339018-7fbpbs5cpdkb8eeq05j006mc0gavssl6.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAB9akSMqa5YSxeYHczH_H0j1xsovumRhY</string>
+	<string>AIzaSyCIjs-8C_Fn7o8rXbfYI0KZSa5VKuxwbcA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>485161242483</string>
+	<string>823282339018</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.myApp</string>
 	<key>PROJECT_ID</key>
-	<string>black-tax-white-benefits-8d374</string>
+	<string>black-tax-and-white-benefits</string>
 	<key>STORAGE_BUCKET</key>
-	<string>black-tax-white-benefits-8d374.appspot.com</string>
+	<string>black-tax-and-white-benefits.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +27,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:485161242483:ios:afad3490ec965443dbff06</string>
+	<string>1:823282339018:ios:cb3b9759849e51d042f833</string>
+	<key>DATABASE_URL</key>
+	<string>https://black-tax-and-white-benefits.firebaseio.com</string>
 </dict>
 </plist>

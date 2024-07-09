@@ -5,7 +5,7 @@ const Key favoritesIconKey = Key('favoritesIcon');
 const Key aboutIconKey = Key('aboutIcon');
 
 const homeIcon = Icon(
-  Icons.home,
+  Icons.explore,
   key: homeIconKey,
 );
 const favoritesIcon = Icon(

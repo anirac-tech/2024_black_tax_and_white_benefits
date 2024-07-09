@@ -1,4 +1,3 @@
-import 'package:black_tax_and_white_benefits/app/config/analytics.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/settings/shared_preferences.dart';
@@ -21,11 +20,7 @@ extension PumpApp on WidgetTester {
 
     return pumpWidget(
       ProviderScope(
-        overrides: [
-          analyticsProvider.overrideWithValue(MockAnalytics()),
-          crashlyticsProvider.overrideWithValue(MockCrashlytics()),
-          ...overrides,
-        ],
+        overrides: overrides,
         child: widget,
       ),
     );

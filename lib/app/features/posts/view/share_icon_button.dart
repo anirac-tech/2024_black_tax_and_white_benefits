@@ -1,4 +1,4 @@
-import 'package:black_tax_and_white_benefits/app/config/analytics.dart';
+import 'package:black_tax_and_white_benefits/app/config/log_manager.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,7 +9,7 @@ class ShareIconButton extends ConsumerWidget {
 
   final Post post;
 
-  Future<void> _onShare(BuildContext context, Analytics analytics) async {
+  Future<void> _onShare(BuildContext context, LogManager logManager) async {
     final box = context.findRenderObject() as RenderBox?;
 
     final ShareResult shareResult = await Share.share(
@@ -19,7 +19,7 @@ class ShareIconButton extends ConsumerWidget {
     );
 
     // coverage:ignore-start
-    analytics.logShare(
+    logManager.logShare(
       post: post,
       shareResult: shareResult,
     );
@@ -28,7 +28,7 @@ class ShareIconButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => IconButton(
-        onPressed: () => _onShare(context, ref.read(analyticsProvider)),
+        onPressed: () => _onShare(context, ref.read(logManagerProvider)),
         icon: const Icon(Icons.share),
       );
 }

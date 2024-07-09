@@ -6,7 +6,7 @@ part of 'url_launcher.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$launchHash() => r'436ba000e39a403b824e0db9e65383c56e6f13dd';
+String _$launchHash() => r'cf1311cbd6789815730cb24cfcfc1c92fc24933a';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -1,4 +1,3 @@
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:logger/logger.dart';
 
 // Not a singleton class
@@ -16,9 +15,6 @@ class Log {
     String message,
     Object error, {
     StackTrace? stackTrace,
-    FirebaseCrashlytics? crashlytics,
-  }) {
-    logger.e(message, error: error, stackTrace: stackTrace);
-    if (crashlytics != null) crashlytics.recordError(error, stackTrace, fatal: true);
-  }
+  }) =>
+      logger.e(message, error: error, stackTrace: stackTrace);
 }

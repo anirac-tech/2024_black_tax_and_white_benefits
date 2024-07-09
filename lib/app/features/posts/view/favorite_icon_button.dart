@@ -1,4 +1,3 @@
-import 'package:black_tax_and_white_benefits/app/config/analytics.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +11,6 @@ class FavoriteIconButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final favoritesList = ref.watch(favoriteListProvider);
-    final analytics = ref.watch(analyticsProvider);
-    final crashlytics = ref.watch(crashlyticsProvider);
     final isFavorite = favoritesList.hasValue ? favoritesList.value!.contains(post) : false;
 
     return IconButton(
@@ -22,13 +19,9 @@ class FavoriteIconButton extends ConsumerWidget {
           : isFavorite
               ? ref.read(favoritesRepositoryProvider).removeFavorite(
                     post,
-                    analytics: analytics,
-                    crashlytics: crashlytics,
                   )
               : ref.read(favoritesRepositoryProvider).addFavorite(
                     post,
-                    analytics: analytics,
-                    crashlytics: crashlytics,
                   ),
       icon: Icon(
         isFavorite ? Icons.favorite : Icons.favorite_border,

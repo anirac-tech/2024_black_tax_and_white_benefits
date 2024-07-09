@@ -1,4 +1,5 @@
 import 'package:black_tax_and_white_benefits/app/config/router.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -23,6 +24,7 @@ class App extends ConsumerWidget {
         ),
       ),
       themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: kDebugMode,
     );
   }
 }

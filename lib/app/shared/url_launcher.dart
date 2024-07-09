@@ -1,4 +1,4 @@
-import 'package:black_tax_and_white_benefits/app/config/analytics.dart';
+import 'package:black_tax_and_white_benefits/app/config/log_manager.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -8,7 +8,7 @@ part 'url_launcher.g.dart';
 Future<void> launch(LaunchRef ref, {String? url}) async {
   if (url == null) return;
 
-  ref.read(analyticsProvider).logEvent(
+  ref.read(logManagerProvider).logEvent(
     name: 'open_link',
     parameters: {'url': url},
   );

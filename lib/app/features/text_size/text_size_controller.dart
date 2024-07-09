@@ -1,4 +1,4 @@
-import 'package:black_tax_and_white_benefits/app/config/analytics.dart';
+import 'package:black_tax_and_white_benefits/app/config/log_manager.dart';
 import 'package:black_tax_and_white_benefits/app/features/settings/shared_preferences.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -22,7 +22,7 @@ class TextSizeController extends _$TextSizeController {
 
   void increase() {
     state *= 1.28;
-    ref.read(analyticsProvider).logEvent(
+    ref.read(logManagerProvider).logEvent(
       name: 'increase_text_size',
       parameters: {'value': '${(state.toStringAsFixed(5))}'},
     );
@@ -31,7 +31,7 @@ class TextSizeController extends _$TextSizeController {
 
   void decrease() {
     state *= 0.78125;
-    ref.read(analyticsProvider).logEvent(
+    ref.read(logManagerProvider).logEvent(
       name: 'decrease_text_size',
       parameters: {'value': '${(state.toStringAsFixed(5))}'},
     );
