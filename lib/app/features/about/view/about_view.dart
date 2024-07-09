@@ -48,7 +48,7 @@ https://gordonferguson.org/wp-content/uploads/2016/11/Final-Main-Header.jpg''';
                     style: {
                       '*': Style(
                         fontSize: FontSize.large,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.justify,
                       )
                     },
                     onLinkTap: (String? url, _, __) =>

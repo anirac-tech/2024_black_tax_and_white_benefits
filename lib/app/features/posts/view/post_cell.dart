@@ -84,7 +84,7 @@ class PostCell extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ShareIconButton(post.link),
+                      ShareIconButton(post),
                       FavoriteIconButton(post),
                     ],
                   ),
@@ -106,7 +106,12 @@ class PostCellLoading extends StatelessWidget {
       shadowColor: Colors.transparent,
       child: SizedBox(
         height: 300,
-        child: CircularProgressIndicator.adaptive(),
+        child: Container(
+          height: 50,
+          width: 50,
+          alignment: Alignment.center,
+          child: CircularProgressIndicator.adaptive(),
+        ),
       ),
     );
   }

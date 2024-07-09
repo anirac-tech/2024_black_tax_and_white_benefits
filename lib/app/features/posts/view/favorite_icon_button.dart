@@ -17,8 +17,12 @@ class FavoriteIconButton extends ConsumerWidget {
       onPressed: () => favoritesList.isLoading
           ? null
           : isFavorite
-              ? ref.read(favoritesRepositoryProvider).removeFavorite(post)
-              : ref.read(favoritesRepositoryProvider).addFavorite(post),
+              ? ref.read(favoritesRepositoryProvider).removeFavorite(
+                    post,
+                  )
+              : ref.read(favoritesRepositoryProvider).addFavorite(
+                    post,
+                  ),
       icon: Icon(
         isFavorite ? Icons.favorite : Icons.favorite_border,
         color: Colors.red,

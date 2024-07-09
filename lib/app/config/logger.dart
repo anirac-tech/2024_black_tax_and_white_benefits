@@ -11,6 +11,10 @@ class Log {
 
   static void w(String message) => logger.w(message); // coverage:ignore-line
 
-  static void e(String message, Object error, {StackTrace? stackTrace}) =>
+  static void e(
+    String message,
+    Object error, {
+    StackTrace? stackTrace,
+  }) =>
       logger.e(message, error: error, stackTrace: stackTrace);
 }
