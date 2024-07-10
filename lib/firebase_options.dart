@@ -47,6 +47,7 @@ class DefaultFirebaseOptions {
     authDomain: 'black-tax-and-white-benefits.firebaseapp.com',
     databaseURL: 'https://black-tax-and-white-benefits.firebaseio.com',
     storageBucket: 'black-tax-and-white-benefits.appspot.com',
+    measurementId: 'G-4H3YDMNG30',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -88,5 +89,6 @@ class DefaultFirebaseOptions {
     authDomain: 'black-tax-and-white-benefits.firebaseapp.com',
     databaseURL: 'https://black-tax-and-white-benefits.firebaseio.com',
     storageBucket: 'black-tax-and-white-benefits.appspot.com',
+    measurementId: 'G-4HCFB7Y8ME',
   );
 }

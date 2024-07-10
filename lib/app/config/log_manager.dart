@@ -23,7 +23,7 @@ class LogManager {
     AnalyticsCallOptions? callOptions,
   }) async {
     await analytics?.logEvent(name: name, parameters: parameters, callOptions: callOptions);
-    Log.d('[Firebase] Sent $name with params $parameters');
+    Log.d('[${analytics != null ? 'Firebase' : 'Event'}] Sent $name with params $parameters');
   }
 
   Future<void> logAppOpen(String? appFlavor) async {
@@ -38,7 +38,8 @@ class LogManager {
       method: 'icon',
       parameters: {'status': '${shareResult.status.name}'},
     );
-    Log.d('[Firebase] Shared post ${post.id} with status ${shareResult.status.name}');
+    Log.d('''[${analytics != null ? 'Firebase' : 'Event'}] 
+        Shared post ${post.id} with status ${shareResult.status.name}''');
   }
 
   Future<void> logError(
