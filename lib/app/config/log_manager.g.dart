@@ -33,7 +33,7 @@ final crashlyticsProvider = FutureProvider<FirebaseCrashlytics>.internal(
 );
 
 typedef CrashlyticsRef = FutureProviderRef<FirebaseCrashlytics>;
-String _$logManagerHash() => r'b640cc2c018088fbfac186c0a460aebe5f3a65ea';
+String _$logManagerHash() => r'11fba30f58c18982817c5a5e95a663b7e04f0914';
 
 /// See also [logManager].
 @ProviderFor(logManager)

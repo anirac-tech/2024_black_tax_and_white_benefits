@@ -17,7 +17,7 @@ class App extends ConsumerWidget {
       theme: theme.lightPlatform,
       darkTheme: theme.darkPlatform,
       themeMode: ThemeMode.system,
-      debugShowCheckedModeBanner: appFlavor == Flavor.dev,
+      debugShowCheckedModeBanner: appFlavor != Flavor.prod,
     );
   }
 }
