@@ -111,8 +111,5 @@ app.*.map.json
 !.idea/dictionaries/
 !.idea/runConfigurations/
 
-# Screenshots
-**/test/integration_test/goldens
-
 # Fastlane
 /android/fastlane/metadata/android/en-US/images/
