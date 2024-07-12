@@ -91,5 +91,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'black-tax-and-white-benefits.appspot.com',
     measurementId: 'G-4HCFB7Y8ME',
   );
-
 }
