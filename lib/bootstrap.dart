@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:black_tax_and_white_benefits/app/config/initialize_firebase.dart';
+import 'package:black_tax_and_white_benefits/env/initialize_firebase.dart';
 import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';

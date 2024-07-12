@@ -1,4 +1,4 @@
-import 'package:black_tax_and_white_benefits/app/config/flavor.dart';
+import 'package:black_tax_and_white_benefits/env/flavor.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:black_tax_and_white_benefits/firebase_options.dart' as prod;
 import 'package:black_tax_and_white_benefits/firebase_options_dev.dart' as dev;

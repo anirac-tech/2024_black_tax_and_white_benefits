@@ -1,5 +1,5 @@
 // coverage:ignore-file
-import 'package:black_tax_and_white_benefits/app/config/flavor.dart';
+import 'package:black_tax_and_white_benefits/env/flavor.dart';
 import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
