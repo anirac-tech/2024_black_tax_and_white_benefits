@@ -12,6 +12,6 @@ Flavor getFlavor() {
     'staging' => Flavor.stg,
     'development' => Flavor.dev,
     null => Flavor.dev, // * if not specified, default to dev
-    _ => throw UnsupportedError('Invalid flavor: $appFlavor'),
+    _ => throw UnsupportedError('Invalid flavor: $appFlavor'), //coverage:ignore-line
   };
 }
