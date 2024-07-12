@@ -1,3 +1,4 @@
+import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -9,7 +10,7 @@ void main() {
       final post = mockPosts.first;
       final String sql = Post.converter.toSql(post);
 
-      print(sql);
+      Log.d(sql);
       expect(Post.converter.fromSql(sql), post);
     });
   });

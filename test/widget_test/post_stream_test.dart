@@ -1,3 +1,4 @@
+import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/app.dart';
@@ -176,6 +177,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(exception.toString()), findsAny);
+      Log.e(exception.toString(), exception);
     });
   });
 }
