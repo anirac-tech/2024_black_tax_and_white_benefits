@@ -10,12 +10,12 @@ class AsyncValueWidget<T> extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final logManager = ref.watch(logManagerProvider);
+    final log = ref.watch(logManagerProvider);
     return value.when(
       data: data,
       loading: () => const Center(child: CircularProgressIndicator.adaptive()),
       error: (error, stackTrace) {
-        logManager.logError(error.toString(), error, stackTrace: stackTrace);
+        log.e(error.toString(), error, stackTrace: stackTrace);
         return Center(
           child: Text(error.toString(),
               style: theme.textTheme.titleLarge?.copyWith(

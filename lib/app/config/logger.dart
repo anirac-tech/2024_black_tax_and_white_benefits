@@ -7,6 +7,18 @@ class Log {
     methodCount: 0,
   ));
 
+  static final verboseLogger = Logger(
+      level: Level.all,
+      printer: PrettyPrinter(
+        methodCount: 0,
+      ));
+
+  static final prodLogger = Logger(
+      level: Level.off,
+      printer: PrettyPrinter(
+        methodCount: 0,
+      ));
+
   static void d(String message) => logger.d(message);
 
   static void w(String message) => logger.w(message); // coverage:ignore-line

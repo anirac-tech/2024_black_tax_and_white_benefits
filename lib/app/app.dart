@@ -1,3 +1,4 @@
+import 'package:black_tax_and_white_benefits/app/config/flavor.dart';
 import 'package:black_tax_and_white_benefits/app/config/router.dart';
 import 'package:black_tax_and_white_benefits/app/config/theme.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,13 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final goRouter = ref.watch(goRouterProvider);
     final theme = ref.watch(themeProvider);
+    final appFlavor = ref.watch(flavorProvider);
     return MaterialApp.router(
       routerConfig: goRouter,
       theme: theme.lightPlatform,
       darkTheme: theme.darkPlatform,
       themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: appFlavor == 'development',
     );
   }
 }

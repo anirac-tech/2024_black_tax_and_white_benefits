@@ -1,4 +1,4 @@
-import 'package:black_tax_and_white_benefits/app/config/logger.dart';
+import 'package:black_tax_and_white_benefits/app/config/log_manager.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post_response.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
@@ -17,7 +17,8 @@ class PostStreamTableView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final responseAsync = ref.watch(getPostsProvider((page: 1)));
     final posts = responseAsync.valueOrNull?.posts;
-    Log.d("[Post Stream] ${posts?.map((e) => '${e.id}')}");
+    final log = ref.watch(logManagerProvider);
+    log.d("[Post Stream] ${posts?.map((e) => '${e.id}')}");
 
     return AsyncValueWidget<PostResponse>(
       value: responseAsync,
