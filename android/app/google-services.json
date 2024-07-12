@@ -1,82 +1,26 @@
 {
   "project_info": {
-    "project_number": "823282339018",
-    "firebase_url": "https://black-tax-and-white-benefits.firebaseio.com",
-    "project_id": "black-tax-and-white-benefits",
-    "storage_bucket": "black-tax-and-white-benefits.appspot.com"
+    "project_number": "1033053592862",
+    "project_id": "black-tax-white-benefits-dev",
+    "storage_bucket": "black-tax-white-benefits-dev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:823282339018:android:269f067f535553f0",
+        "mobilesdk_app_id": "1:1033053592862:android:938383a35a61de508f3d0f",
         "android_client_info": {
-          "package_name": "com.blacktaxandwhitebenefits"
+          "package_name": "com.blacktaxandwhitebenefits.gfapp.dev"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "823282339018-7fbpbs5cpdkb8eeq05j006mc0gavssl6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.blacktaxandwhitebenefits",
-            "certificate_hash": "be1cab2f54db786588f748474608ebd43fe6f9e6"
-          }
-        },
-        {
-          "client_id": "823282339018-lnikhr9b8954vnvpf6esu100p3d5glfo.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.blacktaxandwhitebenefits",
-            "certificate_hash": "bd07e3d079c70fc3d6e84bf0eef6aeb6f95f3c4b"
-          }
-        },
-        {
-          "client_id": "823282339018-smj93253mc40s3tcom1v90jl73a36mpb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAWPqo45AgRew8nKKZChpEY9YholFc1_l4"
+          "current_key": "AIzaSyCnE2fLaBHUiNb9tOisqafzukrrezor9Ks"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "823282339018-smj93253mc40s3tcom1v90jl73a36mpb.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:823282339018:android:e47e873e16b386ec42f833",
-        "android_client_info": {
-          "package_name": "com.blacktaxandwhitebenefits.gfapp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "823282339018-smj93253mc40s3tcom1v90jl73a36mpb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAWPqo45AgRew8nKKZChpEY9YholFc1_l4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "823282339018-smj93253mc40s3tcom1v90jl73a36mpb.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

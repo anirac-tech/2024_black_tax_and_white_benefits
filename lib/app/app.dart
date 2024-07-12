@@ -11,13 +11,13 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final goRouter = ref.watch(goRouterProvider);
     final theme = ref.watch(themeProvider);
-    final appFlavor = ref.watch(flavorProvider);
+    final appFlavor = getFlavor();
     return MaterialApp.router(
       routerConfig: goRouter,
       theme: theme.lightPlatform,
       darkTheme: theme.darkPlatform,
       themeMode: ThemeMode.system,
-      debugShowCheckedModeBanner: appFlavor == 'development',
+      debugShowCheckedModeBanner: appFlavor == Flavor.dev,
     );
   }
 }

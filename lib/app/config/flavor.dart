@@ -1,7 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'flavor.g.dart';
+// ignore_for_file:no-equal-switch-expression-cases,avoid-nullable-interpolation
 
-@Riverpod(keepAlive: true)
-String? flavor(FlavorRef ref) => appFlavor;
+enum Flavor { dev, stg, prod }
+
+/// Global function to return the current flavor
+/// Always returns Flavor.prod on Flutter web release builds
+Flavor getFlavor() {
+  if (kIsWeb && kReleaseMode) {
+    return Flavor.prod; // --flavor is not supported on web
+  }
+  return switch (appFlavor) {
+    'production' => Flavor.prod,
+    'staging' => Flavor.stg,
+    'development' => Flavor.dev,
+    null => Flavor.dev, // * if not specified, default to dev
+    _ => throw UnsupportedError('Invalid flavor: $appFlavor'),
+  };
+}

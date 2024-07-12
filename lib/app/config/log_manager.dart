@@ -72,8 +72,8 @@ FutureOr<FirebaseCrashlytics> crashlytics(CrashlyticsRef ref) => FirebaseCrashly
 LogManager logManager(LogManagerRef ref) {
   final analytics = ref.watch(analyticsProvider);
   final crashlytics = ref.watch(crashlyticsProvider);
-  final appFlavor = ref.watch(flavorProvider);
-  final logger = (appFlavor == 'production') ? Log.prodLogger : Log.logger;
+  final appFlavor = getFlavor();
+  final logger = (appFlavor == Flavor.prod) ? Log.prodLogger : Log.logger;
   return LogManager(
       analytics: analytics.valueOrNull, crashlytics: crashlytics.valueOrNull, logger: logger);
 }
