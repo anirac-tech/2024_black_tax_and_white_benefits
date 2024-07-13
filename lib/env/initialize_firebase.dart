@@ -1,4 +1,6 @@
+import 'package:black_tax_and_white_benefits/app/config/logger.dart';
 import 'package:black_tax_and_white_benefits/env/flavor.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:black_tax_and_white_benefits/firebase_options.dart' as prod;
 import 'package:black_tax_and_white_benefits/firebase_options_stg.dart' as stg;
@@ -12,9 +14,10 @@ Future<void> initializeFirebaseApp() async {
     Flavor.dev => dev.DefaultFirebaseOptions.currentPlatform,
   };
 
-  final name = 'blacktaxandwhitebenefits${flavor.name}';
-  await Firebase.initializeApp(
-    name: name,
-    options: firebaseOptions,
-  );
+  try {
+    await Firebase.initializeApp(options: firebaseOptions);
+    await FirebaseAnalytics.instance.logAppOpen(parameters: {'app_flavor': '${flavor.name}'});
+  } catch (e) {
+    Log.e(e.toString(), e);
+  }
 }

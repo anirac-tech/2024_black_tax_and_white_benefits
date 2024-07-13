@@ -54,6 +54,12 @@
 		3849243F85A97D8D7D8F751A /* Pods-RunnerTests.profile-development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-development.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-development.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		5CAE2B352C42081F002F81DF /* Config */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Config; sourceTree = "<group>"; };
+		5CAE2B492C4339F3002F81DF /* Release-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Release-Staging.xcconfig"; path = "Flutter/Release-Staging.xcconfig"; sourceTree = "<group>"; };
+		5CAE2B4A2C4339F3002F81DF /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Staging.xcconfig; path = Flutter/Staging.xcconfig; sourceTree = "<group>"; };
+		5CAE2B4B2C4339F3002F81DF /* Release-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Release-Development.xcconfig"; path = "Flutter/Release-Development.xcconfig"; sourceTree = "<group>"; };
+		5CAE2B4C2C4339F3002F81DF /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Production.xcconfig; path = Flutter/Production.xcconfig; sourceTree = "<group>"; };
+		5CAE2B4D2C4339F3002F81DF /* Release-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Release-Production.xcconfig"; path = "Flutter/Release-Production.xcconfig"; sourceTree = "<group>"; };
+		5CAE2B4E2C4339F3002F81DF /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Development.xcconfig; path = Flutter/Development.xcconfig; sourceTree = "<group>"; };
 		5FDF60F777B583EE85A07AB9 /* Pods-Runner.release-development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-development.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-development.xcconfig"; sourceTree = "<group>"; };
 		628EF24E56F7BC90D5706847 /* Pods-Runner.profile-production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-production.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-production.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -121,6 +127,12 @@
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
+				5CAE2B4E2C4339F3002F81DF /* Development.xcconfig */,
+				5CAE2B4C2C4339F3002F81DF /* Production.xcconfig */,
+				5CAE2B4B2C4339F3002F81DF /* Release-Development.xcconfig */,
+				5CAE2B4D2C4339F3002F81DF /* Release-Production.xcconfig */,
+				5CAE2B492C4339F3002F81DF /* Release-Staging.xcconfig */,
+				5CAE2B4A2C4339F3002F81DF /* Staging.xcconfig */,
 				3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */,
 				9740EEB21CF90195004384FC /* Debug.xcconfig */,
 				7AFA3C8E1D35360C0083082E /* Release.xcconfig */,
@@ -221,7 +233,7 @@
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
-				5CAE2B302C41FCE9002F81DF /* Copy Google Plist File */,
+				5CAE2B302C41FCE9002F81DF /* Set Up Firebase GoogleService-Info */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
@@ -315,24 +327,24 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
 		};
-		5CAE2B302C41FCE9002F81DF /* Copy Google Plist File */ = {
+		5CAE2B302C41FCE9002F81DF /* Set Up Firebase GoogleService-Info */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Google Plist File";
+			name = "Set Up Firebase GoogleService-Info";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"",
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "setopt KSH_ARRAYS BASH_REMATCH\nenvironment=\"default\"\n\n# Regex to extract the scheme name from the Build Configuration\n# We have named our Build Configurations as Debug-dev, Debug-prod etc.\n# Here, dev and prod are the scheme names. This kind of naming is required by Flutter for flavors to work.\n# We are using the $CONFIGURATION variable available in the XCode build environment to extract \n# the environment (or flavor)\n# For eg.\n# If CONFIGURATION=\"Debug-prod\", then environment will get set to \"prod\".\nif [[ $CONFIGURATION =~ -([^-]*)$ ]]; then\nenvironment=${BASH_REMATCH[1]}\nfi\n\necho $environment\n\n# Name and path of the resource we're copying\nGOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist\nGOOGLESERVICE_INFO_FILE=${PROJECT_DIR}/Config/${environment}/${GOOGLESERVICE_INFO_PLIST}\n\n# Make sure GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_FILE}\"\nif [ ! -f $GOOGLESERVICE_INFO_FILE ]\nthen\necho \"No GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\nexit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\n# This is the default location where Firebase init code expects to find GoogleServices-Info.plist file\nPLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\necho \"Will copy ${GOOGLESERVICE_INFO_PLIST} to final destination: ${PLIST_DESTINATION}\"\n\n# Copy over the prod GoogleService-Info.plist for Release builds\ncp \"${GOOGLESERVICE_INFO_FILE}\" \"${PLIST_DESTINATION}\"\nunsetopt KSH_ARRAYS\n";
+			shellScript = "# Get a reference to the destination location for the GoogleService-Info.plist\nPLIST_DESTINATION=\"${PROJECT_DIR}/Runner/GoogleService-Info.plist\"\n\n# Copy plist\necho \"Using ${GOOGLESERVICE_INFO_PLIST} ${PLIST_DESTINATION}\"\necho \"cp -r ${GOOGLESERVICE_INFO_PLIST} ${PLIST_DESTINATION}\"\ncp -r \"${GOOGLESERVICE_INFO_PLIST}\" \"${PLIST_DESTINATION}\"\n";
 		};
 		666C1E82F11CED74B6430D41 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -535,7 +547,7 @@
 		};
 		3C9C551A2B07AC99000E5FCD /* Debug-production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
+			baseConfigurationReference = 5CAE2B4C2C4339F3002F81DF /* Production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -629,7 +641,7 @@
 		};
 		3C9C551D2B07ACA4000E5FCD /* Release-production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
+			baseConfigurationReference = 5CAE2B4D2C4339F3002F81DF /* Release-Production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -718,7 +730,7 @@
 		};
 		3C9C55232B07ACBD000E5FCD /* Profile-production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
+			baseConfigurationReference = 5CAE2B4D2C4339F3002F81DF /* Release-Production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -812,7 +824,7 @@
 		};
 		3C9C55262B07ACE7000E5FCD /* Debug-development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
+			baseConfigurationReference = 5CAE2B4E2C4339F3002F81DF /* Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
@@ -904,7 +916,7 @@
 		};
 		3C9C552C2B07AD09000E5FCD /* Profile-development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
+			baseConfigurationReference = 5CAE2B4B2C4339F3002F81DF /* Release-Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
@@ -995,7 +1007,7 @@
 		};
 		3C9C552F2B07AD1B000E5FCD /* Release-development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
+			baseConfigurationReference = 5CAE2B4B2C4339F3002F81DF /* Release-Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
@@ -1089,7 +1101,7 @@
 		};
 		3C9C55322B07AD26000E5FCD /* Debug-staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
+			baseConfigurationReference = 5CAE2B4A2C4339F3002F81DF /* Staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
@@ -1183,7 +1195,7 @@
 		};
 		3C9C55352B07AD41000E5FCD /* Release-staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
+			baseConfigurationReference = 5CAE2B492C4339F3002F81DF /* Release-Staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
@@ -1272,7 +1284,7 @@
 		};
 		3C9C55382B07AD4B000E5FCD /* Profile-staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
+			baseConfigurationReference = 5CAE2B492C4339F3002F81DF /* Release-Staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
