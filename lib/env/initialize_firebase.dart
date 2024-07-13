@@ -11,8 +11,10 @@ Future<void> initializeFirebaseApp() async {
     Flavor.stg => stg.DefaultFirebaseOptions.currentPlatform,
     Flavor.dev => dev.DefaultFirebaseOptions.currentPlatform,
   };
+
+  final name = 'blacktaxandwhitebenefits${flavor.name}';
   await Firebase.initializeApp(
-    name: 'btwb${flavor == Flavor.prod ? '' : ' ${flavor.name}'}',
+    name: name,
     options: firebaseOptions,
   );
 }
