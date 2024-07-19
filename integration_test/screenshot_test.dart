@@ -1,8 +1,6 @@
 import 'package:black_tax_and_white_benefits/app/app.dart';
 import 'package:black_tax_and_white_benefits/app/config/logger.dart';
-import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
-import 'package:black_tax_and_white_benefits/app/features/posts/view/post_stream_table_view.dart';
 import 'package:black_tax_and_white_benefits/app/shared/navigation_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -41,11 +39,7 @@ Future<void> main() async {
         expect(find.byType(PostCell), findsAny);
 
         // Get the first post that was loaded
-        final element = tester.element(find.byType(PostStreamTableView));
-        final container = ProviderScope.containerOf(element);
-
-        final response = await container.read(getPostsProvider((page: 1)).future);
-        await tester.tap(find.text(response.posts.first.title.rendered));
+        await tester.tap(find.byKey(Key('post_0')));
         await tester.pumpAndSettle();
 
         await takeScreenShot(binding: binding, tester: tester, screenShotName: name);
@@ -66,11 +60,7 @@ Future<void> main() async {
         expect(find.byType(PostCell), findsAny);
 
         // Get the second post that was loaded
-        final element = tester.element(find.byType(PostStreamTableView));
-        final container = ProviderScope.containerOf(element);
-
-        final response = await container.read(getPostsProvider((page: 1)).future);
-        await tester.tap(find.text(response.posts[1].title.rendered));
+        await tester.tap(find.byKey(Key('post_1')));
         await tester.pumpAndSettle();
 
         await tester.tap(find.byIcon(Icons.favorite_outline));

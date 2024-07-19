@@ -42,7 +42,7 @@ void main() {
       await tester.pumpApp(const App());
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text('Black Tax'));
+      await tester.tap(find.byKey(Key('post_0')));
       await tester.pumpAndSettle();
 
       expect(find.text('Post Details'), findsOneWidget);

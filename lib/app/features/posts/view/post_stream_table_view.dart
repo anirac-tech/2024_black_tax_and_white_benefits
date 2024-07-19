@@ -46,6 +46,7 @@ class PostStreamTableView extends ConsumerWidget {
               final post = data.posts[indexInPage];
               return PostCell(
                 post,
+                key: Key('post_$index'),
                 onTap: () => context.pushNamed(PostDetailView.name, extra: post),
               );
             },

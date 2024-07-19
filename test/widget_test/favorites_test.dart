@@ -98,7 +98,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Go to Post Details
-      await tester.tap(find.text('Black Tax'));
+      await tester.tap(find.byKey(Key('post_0')));
       await tester.pumpAndSettle();
 
       // Tap favorite
@@ -133,7 +133,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Go to Post Details
-      await tester.tap(find.text('Black Tax'));
+      await tester.tap(find.byKey(Key('post_0')));
       await tester.pumpAndSettle();
 
       // Tap favorite
@@ -171,7 +171,7 @@ void main() {
       expect(find.byType(PostCell), findsOneWidget);
 
       // Go to Post Details
-      await tester.tap(find.text('Black Tax'));
+      await tester.tap(find.byKey(Key('favorite_post_0')));
       await tester.pumpAndSettle();
 
       // Tap favorite
@@ -207,7 +207,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Go to Post Details
-      await tester.tap(find.text('Black Tax'));
+      await tester.tap(find.byKey(Key('favorite_post_0')));
       await tester.pumpAndSettle();
 
       // Tap favorite and expect error
