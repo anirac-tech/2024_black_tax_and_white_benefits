@@ -39,8 +39,8 @@ Future<void> main() async {
         await tester.pumpAndSettle();
 
         expect(find.byType(PostCell), findsAny);
-        // Wait for cached images to load
 
+        // Get the first post that was loaded
         final element = tester.element(find.byType(PostStreamTableView));
         final container = ProviderScope.containerOf(element);
 
@@ -64,8 +64,8 @@ Future<void> main() async {
         await tester.pumpAndSettle();
 
         expect(find.byType(PostCell), findsAny);
-        // Wait for cached images to load
 
+        // Get the second post that was loaded
         final element = tester.element(find.byType(PostStreamTableView));
         final container = ProviderScope.containerOf(element);
 

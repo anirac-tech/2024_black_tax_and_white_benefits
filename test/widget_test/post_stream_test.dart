@@ -177,7 +177,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(exception.toString()), findsAny);
-      Log.e(exception.toString(), exception);
+      Log.e('Debug error log: $exception', exception);
     });
   });
 }
