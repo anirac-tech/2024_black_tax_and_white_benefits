@@ -1,4 +1,4 @@
-import 'package:black_tax_and_white_benefits/app/config/logger.dart';
+import 'package:black_tax_and_white_benefits/app/config/log_manager.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
@@ -29,7 +29,8 @@ class FavoritesView extends StatelessWidget {
             child: Consumer(
               builder: (context, ref, child) {
                 final posts = ref.watch(favoriteListProvider);
-                Log.d("[Favorites Stream] ${posts.valueOrNull?.map((e) => '${e.id}')}");
+                final log = ref.watch(logManagerProvider);
+                log.d("[Favorites Stream] ${posts.valueOrNull?.map((e) => '${e.id}')}");
 
                 return AsyncValueWidget<List<Post>>(
                   value: posts,
@@ -40,6 +41,7 @@ class FavoritesView extends StatelessWidget {
                             final post = data[index];
                             return PostCell(
                               post,
+                              key: Key('favorite_post_$index'),
                               onTap: () => context.pushNamed(PostDetailView.name, extra: post),
                             );
                           },

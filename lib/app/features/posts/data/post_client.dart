@@ -22,8 +22,8 @@ abstract class PostClient {
     @CancelRequest() CancelToken cancelToken, {
     @Query('per_page') int perPage = 10,
     @Query('_embed') bool embed = true,
-    @Query('orderby') String orderBy = 'date',
-    @Query('order') String order = 'desc',
+    @Query('order') String? order,
+    @Query('orderby') String? orderBy,
   });
 }
 

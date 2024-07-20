@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class WpaAppBar extends StatelessWidget implements PreferredSizeWidget {
+class WpaAppBar extends ConsumerWidget implements PreferredSizeWidget {
   WpaAppBar({
     this.title,
     this.actions,
@@ -17,12 +18,10 @@ class WpaAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(height);
 
   @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: title,
-      centerTitle: false,
-      actions: actions,
-      surfaceTintColor: surfaceTintColor,
-    );
-  }
+  Widget build(BuildContext context, WidgetRef ref) => AppBar(
+        title: title,
+        centerTitle: false,
+        actions: actions,
+        surfaceTintColor: surfaceTintColor,
+      );
 }

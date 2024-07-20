@@ -47,6 +47,7 @@ class DefaultFirebaseOptions {
     authDomain: 'black-tax-and-white-benefits.firebaseapp.com',
     databaseURL: 'https://black-tax-and-white-benefits.firebaseio.com',
     storageBucket: 'black-tax-and-white-benefits.appspot.com',
+    measurementId: 'G-4H3YDMNG30',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -71,13 +72,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyCIjs-8C_Fn7o8rXbfYI0KZSa5VKuxwbcA',
-    appId: '1:823282339018:ios:cb3b9759849e51d042f833',
+    appId: '1:823282339018:ios:d68c4decc7a883cc42f833',
     messagingSenderId: '823282339018',
     projectId: 'black-tax-and-white-benefits',
     databaseURL: 'https://black-tax-and-white-benefits.firebaseio.com',
     storageBucket: 'black-tax-and-white-benefits.appspot.com',
     androidClientId: '823282339018-7fbpbs5cpdkb8eeq05j006mc0gavssl6.apps.googleusercontent.com',
-    iosBundleId: 'com.example.myApp',
+    iosBundleId: 'com.blacktaxandwhitebenefits.gfapp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
@@ -88,5 +89,6 @@ class DefaultFirebaseOptions {
     authDomain: 'black-tax-and-white-benefits.firebaseapp.com',
     databaseURL: 'https://black-tax-and-white-benefits.firebaseio.com',
     storageBucket: 'black-tax-and-white-benefits.appspot.com',
+    measurementId: 'G-4HCFB7Y8ME',
   );
 }

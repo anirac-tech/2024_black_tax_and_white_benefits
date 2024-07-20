@@ -26,17 +26,18 @@ class _PostClient implements PostClient {
     CancelToken cancelToken, {
     int perPage = 10,
     bool embed = true,
-    String orderBy = 'date',
-    String order = 'desc',
+    String? order,
+    String? orderBy,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'per_page': perPage,
       r'_embed': embed,
-      r'orderby': orderBy,
       r'order': order,
+      r'orderby': orderBy,
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =
