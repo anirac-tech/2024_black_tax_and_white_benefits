@@ -40,15 +40,18 @@ class PostCell extends StatelessWidget {
                     ? Container(
                         padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                         alignment: Alignment.topLeft,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: SizedBox(
-                            height: 60,
-                            width: 80,
-                            child: FittedBox(
-                              clipBehavior: Clip.hardEdge,
-                              fit: BoxFit.fitWidth,
-                              child: WpaImage(post.imageUrl!),
+                        child: Hero(
+                          tag: 'post_${post.id}',
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: SizedBox(
+                              height: 60,
+                              width: 80,
+                              child: FittedBox(
+                                clipBehavior: Clip.hardEdge,
+                                fit: BoxFit.fitWidth,
+                                child: WpaImage(post.imageUrl!),
+                              ),
                             ),
                           ),
                         ),

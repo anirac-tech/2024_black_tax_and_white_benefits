@@ -27,6 +27,7 @@ class PostDetailView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final _url = useState(null as String?);
+    final heroMode = useState(true);
 
     return ErrorSnackbarView(
       provider: launchProvider(url: _url.value),
@@ -41,32 +42,46 @@ class PostDetailView extends HookConsumerWidget {
         body: AdjustableTextWidget(
           child: Padding(
             padding: EdgeInsets.only(bottom: bottomSheetHeight),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  if (post.imageUrl != null)
-                    WpaImage(
-                      post.imageUrl!,
-                      fit: BoxFit.fitWidth,
+            child: NotificationListener<ScrollNotification>(
+              onNotification: (ScrollNotification notification) {
+                // Deactivate hero mode if user has scrolled on page
+                final hasScrolled = notification.metrics.pixels == 0;
+                if (heroMode.value != hasScrolled) heroMode.value = hasScrolled;
+                return true;
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    if (post.imageUrl != null)
+                      HeroMode(
+                        enabled: heroMode.value,
+                        child: Hero(
+                          tag: 'post_${post.id}',
+                          child: WpaImage(
+                            post.imageUrl!,
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                    Html(
+                      data: post.title.rendered,
+                      style: {'*': Style.fromTextStyle(theme.textTheme.headlineLarge!)},
                     ),
-                  Html(
-                    data: post.title.rendered,
-                    style: {'*': Style.fromTextStyle(theme.textTheme.headlineLarge!)},
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 8.0),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      DateFormat.yMMMMd().format(post.date).toString(),
-                      style: theme.textTheme.labelLarge!,
+                    Container(
+                      padding: EdgeInsets.only(left: 8.0),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        DateFormat.yMMMMd().format(post.date).toString(),
+                        style: theme.textTheme.labelLarge!,
+                      ),
                     ),
-                  ),
-                  Html(
-                    data: post.content.rendered,
-                    onLinkTap: (url, _, __) =>
-                        (url == _url.value) ? ref.invalidate(launchProvider) : _url.value = url,
-                  ),
-                ],
+                    Html(
+                      data: post.content.rendered,
+                      onLinkTap: (url, _, __) =>
+                          (url == _url.value) ? ref.invalidate(launchProvider) : _url.value = url,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
