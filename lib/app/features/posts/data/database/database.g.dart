@@ -103,6 +103,13 @@ class FavoritePost extends DataClass implements Insertable<FavoritePost> {
         id: id ?? this.id,
         post: post ?? this.post,
       );
+  FavoritePost copyWithCompanion(FavoritePostsCompanion data) {
+    return FavoritePost(
+      id: data.id.present ? data.id.value : this.id,
+      post: data.post.present ? data.post.value : this.post,
+    );
+  }
+
   @override
   String toString() {
     return (StringBuffer('FavoritePost(')
@@ -172,7 +179,7 @@ class FavoritePostsCompanion extends UpdateCompanion<FavoritePost> {
 
 abstract class _$WpaDatabase extends GeneratedDatabase {
   _$WpaDatabase(QueryExecutor e) : super(e);
-  _$WpaDatabaseManager get managers => _$WpaDatabaseManager(this);
+  $WpaDatabaseManager get managers => $WpaDatabaseManager(this);
   late final $FavoritePostsTable favoritePosts = $FavoritePostsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
@@ -181,7 +188,7 @@ abstract class _$WpaDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [favoritePosts];
 }
 
-typedef $$FavoritePostsTableInsertCompanionBuilder = FavoritePostsCompanion Function({
+typedef $$FavoritePostsTableCreateCompanionBuilder = FavoritePostsCompanion Function({
   Value<int> id,
   required Post post,
 });
@@ -196,8 +203,7 @@ class $$FavoritePostsTableTableManager extends RootTableManager<
     FavoritePost,
     $$FavoritePostsTableFilterComposer,
     $$FavoritePostsTableOrderingComposer,
-    $$FavoritePostsTableProcessedTableManager,
-    $$FavoritePostsTableInsertCompanionBuilder,
+    $$FavoritePostsTableCreateCompanionBuilder,
     $$FavoritePostsTableUpdateCompanionBuilder> {
   $$FavoritePostsTableTableManager(_$WpaDatabase db, $FavoritePostsTable table)
       : super(TableManagerState(
@@ -205,8 +211,7 @@ class $$FavoritePostsTableTableManager extends RootTableManager<
           table: table,
           filteringComposer: $$FavoritePostsTableFilterComposer(ComposerState(db, table)),
           orderingComposer: $$FavoritePostsTableOrderingComposer(ComposerState(db, table)),
-          getChildManagerBuilder: (p) => $$FavoritePostsTableProcessedTableManager(p),
-          getUpdateCompanionBuilder: ({
+          updateCompanionCallback: ({
             Value<int> id = const Value.absent(),
             Value<Post> post = const Value.absent(),
           }) =>
@@ -214,7 +219,7 @@ class $$FavoritePostsTableTableManager extends RootTableManager<
             id: id,
             post: post,
           ),
-          getInsertCompanionBuilder: ({
+          createCompanionCallback: ({
             Value<int> id = const Value.absent(),
             required Post post,
           }) =>
@@ -223,18 +228,6 @@ class $$FavoritePostsTableTableManager extends RootTableManager<
             post: post,
           ),
         ));
-}
-
-class $$FavoritePostsTableProcessedTableManager extends ProcessedTableManager<
-    _$WpaDatabase,
-    $FavoritePostsTable,
-    FavoritePost,
-    $$FavoritePostsTableFilterComposer,
-    $$FavoritePostsTableOrderingComposer,
-    $$FavoritePostsTableProcessedTableManager,
-    $$FavoritePostsTableInsertCompanionBuilder,
-    $$FavoritePostsTableUpdateCompanionBuilder> {
-  $$FavoritePostsTableProcessedTableManager(super.$state);
 }
 
 class $$FavoritePostsTableFilterComposer
@@ -262,9 +255,9 @@ class $$FavoritePostsTableOrderingComposer
       builder: (column, joinBuilders) => ColumnOrderings(column, joinBuilders: joinBuilders));
 }
 
-class _$WpaDatabaseManager {
+class $WpaDatabaseManager {
   final _$WpaDatabase _db;
-  _$WpaDatabaseManager(this._db);
+  $WpaDatabaseManager(this._db);
   $$FavoritePostsTableTableManager get favoritePosts =>
       $$FavoritePostsTableTableManager(_db, _db.favoritePosts);
 }

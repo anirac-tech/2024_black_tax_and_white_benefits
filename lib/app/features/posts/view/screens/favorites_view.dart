@@ -41,7 +41,8 @@ class FavoritesView extends StatelessWidget {
                             final post = data[index];
                             return PostCell(
                               post,
-                              key: Key('favorite_post_$index'),
+                              key: Key('${FavoritesView.name}_${post.id}'),
+                              routeName: FavoritesView.name,
                               onTap: () => context.pushNamed(PostDetailView.name, extra: post),
                             );
                           },

@@ -3,6 +3,7 @@ import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post_response.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/screens/post_detail_view.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/screens/posts_view.dart';
 import 'package:black_tax_and_white_benefits/app/shared/async_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -46,7 +47,8 @@ class PostStreamTableView extends ConsumerWidget {
               final post = data.posts[indexInPage];
               return PostCell(
                 post,
-                key: Key('post_$index'),
+                key: Key('${PostsView.name}_${post.id}'),
+                routeName: PostsView.name,
                 onTap: () => context.pushNamed(PostDetailView.name, extra: post),
               );
             },

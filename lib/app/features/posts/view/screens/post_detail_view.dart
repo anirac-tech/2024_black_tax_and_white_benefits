@@ -1,5 +1,7 @@
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/favorite_icon_button.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/screens/favorites_view.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/screens/posts_view.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/share_icon_button.dart';
 import 'package:black_tax_and_white_benefits/app/shared/wpa_app_bar.dart';
 import 'package:black_tax_and_white_benefits/app/shared/error_snackbar_view.dart';
@@ -10,6 +12,7 @@ import 'package:black_tax_and_white_benefits/app/shared/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -28,6 +31,11 @@ class PostDetailView extends HookConsumerWidget {
     final theme = Theme.of(context);
     final _url = useState(null as String?);
     final heroMode = useState(true);
+    final heroTag =
+        GoRouter.of(context).routerDelegate.currentConfiguration.matches.first.matchedLocation ==
+                PostsView.path
+            ? PostsView.name
+            : FavoritesView.name;
 
     return ErrorSnackbarView(
       provider: launchProvider(url: _url.value),
@@ -56,7 +64,7 @@ class PostDetailView extends HookConsumerWidget {
                       HeroMode(
                         enabled: heroMode.value,
                         child: Hero(
-                          tag: 'post_${post.id}',
+                          tag: '${heroTag}_${post.id}',
                           child: WpaImage(
                             post.imageUrl!,
                             fit: BoxFit.fitWidth,

@@ -9,10 +9,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 class PostCell extends StatelessWidget {
-  const PostCell(this.post, {this.onTap, super.key});
+  const PostCell(this.post, {this.onTap, this.routeName, super.key});
 
   final Post post;
   final VoidCallback? onTap;
+  final String? routeName;
 
   static const double _kMaxTextScaleFactor = 1.7;
 
@@ -41,7 +42,7 @@ class PostCell extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                         alignment: Alignment.topLeft,
                         child: Hero(
-                          tag: 'post_${post.id}',
+                          tag: '${routeName}_${post.id}',
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: SizedBox(
