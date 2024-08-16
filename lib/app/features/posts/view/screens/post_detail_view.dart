@@ -71,9 +71,12 @@ class PostDetailView extends HookConsumerWidget {
                           ),
                         ),
                       ),
-                    Html(
-                      data: post.title.rendered,
-                      style: {'*': Style.fromTextStyle(theme.textTheme.headlineLarge!)},
+                    MediaQuery.withClampedTextScaling(
+                      maxScaleFactor: 2,
+                      child: Html(
+                        data: post.title.rendered,
+                        style: {'*': Style.fromTextStyle(theme.textTheme.headlineLarge!)},
+                      ),
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 8.0),

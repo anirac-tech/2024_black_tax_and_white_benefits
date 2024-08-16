@@ -1,4 +1,5 @@
 import 'package:black_tax_and_white_benefits/app/config/log_manager.dart';
+import 'package:black_tax_and_white_benefits/app/config/theme.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post_response.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
@@ -19,6 +20,7 @@ class PostStreamTableView extends ConsumerWidget {
     final responseAsync = ref.watch(getPostsProvider((page: 1)));
     final posts = responseAsync.valueOrNull?.posts;
     final log = ref.watch(logManagerProvider);
+    final theme = Theme.of(context);
     log.d("[Post Stream] ${posts?.map((e) => '${e.id}')}");
 
     return AsyncValueWidget<PostResponse>(
@@ -45,16 +47,49 @@ class PostStreamTableView extends ConsumerWidget {
                 return null;
               }
               final post = data.posts[indexInPage];
-              return PostCell(
-                post,
-                key: Key('${PostsView.name}_${post.id}'),
-                routeName: PostsView.name,
-                onTap: () => context.pushNamed(PostDetailView.name, extra: post),
-              );
+              if (index == 0 && post.imageUrl != null) {
+                return PostCellFeatured(
+                  post,
+                  key: Key('${PostsView.name}_${post.id}'),
+                  routeName: PostsView.name,
+                  onTap: () => context.pushNamed(PostDetailView.name, extra: post),
+                );
+              } else {
+                if (post.id == 58) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16.0, left: 16.0),
+                        child: Text(
+                          'In order',
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            color: theme.colorScheme.primary,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      PostCell(
+                        post,
+                        key: Key('${PostsView.name}_${post.id}'),
+                        routeName: PostsView.name,
+                        onTap: () => context.pushNamed(PostDetailView.name, extra: post),
+                      ),
+                    ],
+                  );
+                }
+                return PostCell(
+                  post,
+                  key: Key('${PostsView.name}_${post.id}'),
+                  routeName: PostsView.name,
+                  onTap: () => context.pushNamed(PostDetailView.name, extra: post),
+                );
+              }
             },
           );
         },
-        separatorBuilder: (_, __) => SizedBox(height: 10),
+        separatorBuilder: (context, index) => const SizedBox(height: 10),
       ),
     );
   }

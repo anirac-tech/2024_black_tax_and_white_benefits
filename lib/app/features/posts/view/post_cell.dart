@@ -15,7 +15,7 @@ class PostCell extends StatelessWidget {
   final VoidCallback? onTap;
   final String? routeName;
 
-  static const double _kMaxTextScaleFactor = 1.7;
+  static const double _kMaxTextScaleFactor = 1.5;
 
   @override
   Widget build(BuildContext context) => MediaQuery.withClampedTextScaling(
@@ -73,6 +73,104 @@ class PostCell extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 40,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            DateFormat.yMMMd().format(post.date).toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w200,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ),
+                      ShareIconButton(post),
+                      FavoriteIconButton(post),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            onTap: onTap,
+          ),
+        ),
+      );
+}
+
+class PostCellFeatured extends StatelessWidget {
+  const PostCellFeatured(this.post, {this.onTap, this.routeName, super.key});
+
+  final Post post;
+  final VoidCallback? onTap;
+  final String? routeName;
+
+  static const double _kMaxTextScaleFactor = 1.5;
+
+  @override
+  Widget build(BuildContext context) => MediaQuery.withClampedTextScaling(
+        maxScaleFactor: _kMaxTextScaleFactor,
+        child: Card(
+          shadowColor: Colors.transparent,
+          child: GestureDetector(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: MediaQuery.withNoTextScaling(
+                    child: Html(
+                      data: post.title.rendered,
+                      style: {
+                        '*': Style(
+                          fontWeight: FontWeight.w600,
+                          fontSize: FontSize.xLarge,
+                          maxLines: 3,
+                          textOverflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                        )
+                      },
+                    ),
+                  ),
+                ),
+                post.imageUrl != null
+                    ? Container(
+                        padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                        alignment: Alignment.center,
+                        child: Hero(
+                          tag: '${routeName}_${post.id}',
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.33,
+                              width: double.infinity,
+                              child: FittedBox(
+                                clipBehavior: Clip.hardEdge,
+                                fit: BoxFit.fitWidth,
+                                child: WpaImage(post.imageUrl!),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Html(
+                    data: post.excerpt.rendered,
+                    style: {
+                      '*': Style(
+                        maxLines: 3,
+                        textOverflow: TextOverflow.ellipsis,
+                      ),
+                    },
+                  ),
+                ),
+                Container(
+                  height: 60,
+                  padding: const EdgeInsets.all(8.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
