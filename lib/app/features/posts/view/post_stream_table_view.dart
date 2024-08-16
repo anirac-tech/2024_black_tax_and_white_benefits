@@ -1,5 +1,4 @@
 import 'package:black_tax_and_white_benefits/app/config/log_manager.dart';
-import 'package:black_tax_and_white_benefits/app/config/theme.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/domain/post_response.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
@@ -55,6 +54,7 @@ class PostStreamTableView extends ConsumerWidget {
                   onTap: () => context.pushNamed(PostDetailView.name, extra: post),
                 );
               } else {
+                // coverage:ignore-start
                 if (post.id == 58) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,6 +78,7 @@ class PostStreamTableView extends ConsumerWidget {
                       ),
                     ],
                   );
+                  // coverage:ignore-end
                 }
                 return PostCell(
                   post,

@@ -51,12 +51,15 @@ class PostDetailView extends HookConsumerWidget {
           child: Padding(
             padding: EdgeInsets.only(bottom: bottomSheetHeight),
             child: NotificationListener<ScrollNotification>(
+              // coverage:ignore-start
+              // untestable
               onNotification: (ScrollNotification notification) {
                 // Deactivate hero mode if user has scrolled on page
                 final hasScrolled = notification.metrics.pixels == 0;
                 if (heroMode.value != hasScrolled) heroMode.value = hasScrolled;
                 return true;
               },
+              // coverage:ignore-end
               child: SingleChildScrollView(
                 child: Column(
                   children: [

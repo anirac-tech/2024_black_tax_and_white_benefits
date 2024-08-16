@@ -113,9 +113,9 @@ class PostCellFeatured extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MediaQuery.withClampedTextScaling(
         maxScaleFactor: _kMaxTextScaleFactor,
-        child: Card(
-          shadowColor: Colors.transparent,
-          child: GestureDetector(
+        child: GestureDetector(
+          child: Card(
+            shadowColor: Colors.transparent,
             child: Column(
               children: [
                 Padding(
@@ -193,8 +193,8 @@ class PostCellFeatured extends StatelessWidget {
                 ),
               ],
             ),
-            onTap: onTap,
           ),
+          onTap: onTap,
         ),
       );
 }

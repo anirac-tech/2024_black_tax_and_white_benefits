@@ -5,6 +5,8 @@ import 'package:black_tax_and_white_benefits/app/features/posts/data/database/da
 import 'package:black_tax_and_white_benefits/app/features/posts/data/favorites_repository.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/data/post_client.dart';
 import 'package:black_tax_and_white_benefits/app/features/posts/view/post_cell.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/screens/favorites_view.dart';
+import 'package:black_tax_and_white_benefits/app/features/posts/view/screens/posts_view.dart';
 import 'package:black_tax_and_white_benefits/app/features/settings/shared_preferences.dart';
 import 'package:black_tax_and_white_benefits/app/shared/navigation_icons.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +100,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Go to Post Details
-      await tester.tap(find.byKey(Key('post_0')));
+      await tester.tap(find.byKey(Key('${PostsView.name}_1')));
       await tester.pumpAndSettle();
 
       // Tap favorite
@@ -133,7 +135,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Go to Post Details
-      await tester.tap(find.byKey(Key('post_0')));
+      await tester.tap(find.byKey(Key('${PostsView.name}_1')));
       await tester.pumpAndSettle();
 
       // Tap favorite
@@ -171,7 +173,7 @@ void main() {
       expect(find.byType(PostCell), findsOneWidget);
 
       // Go to Post Details
-      await tester.tap(find.byKey(Key('favorite_post_0')));
+      await tester.tap(find.byKey(Key('${FavoritesView.name}_${mockFavoritePost.post.id}')));
       await tester.pumpAndSettle();
 
       // Tap favorite
@@ -207,7 +209,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Go to Post Details
-      await tester.tap(find.byKey(Key('favorite_post_0')));
+      await tester.tap(find.byKey(Key('${FavoritesView.name}_${mockFavoritePost.post.id}')));
       await tester.pumpAndSettle();
 
       // Tap favorite and expect error

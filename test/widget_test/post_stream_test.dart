@@ -118,7 +118,8 @@ void main() {
       await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
-      expect(find.byType(PostCell), findsExactly(mockPosts.length));
+      expect(find.byType(PostCellFeatured), findsExactly(1));
+      expect(find.byType(PostCell), findsExactly(1));
     });
     testWidgets('failure', (tester) async {
       final postClient = MockPostClient();
