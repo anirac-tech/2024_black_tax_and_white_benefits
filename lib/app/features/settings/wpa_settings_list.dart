@@ -32,7 +32,7 @@ class WpaSettingsList extends StatelessWidget {
       : SettingsList(
           sections: [
             SettingsSection(
-              title: Text('General'),
+              title: MediaQuery.withNoTextScaling(child: Text('General')),
               tiles: <SettingsTile>[
                 SettingsTile(
                   title: Text('Text size'),

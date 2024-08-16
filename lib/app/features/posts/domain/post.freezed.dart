@@ -29,8 +29,12 @@ mixin _$Post {
   @JsonKey(name: '_embedded')
   Embedded? get embedded => throw _privateConstructorUsedError;
 
+  /// Serializes this Post to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Post
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PostCopyWith<Post> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -62,6 +66,8 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Post
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,6 +111,8 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
     ) as $Val);
   }
 
+  /// Create a copy of Post
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RenderableCopyWith<$Res> get title {
@@ -113,6 +121,8 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
     });
   }
 
+  /// Create a copy of Post
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RenderableCopyWith<$Res> get content {
@@ -121,6 +131,8 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
     });
   }
 
+  /// Create a copy of Post
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RenderableCopyWith<$Res> get excerpt {
@@ -129,6 +141,8 @@ class _$PostCopyWithImpl<$Res, $Val extends Post> implements $PostCopyWith<$Res>
     });
   }
 
+  /// Create a copy of Post
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $EmbeddedCopyWith<$Res>? get embedded {
@@ -173,6 +187,8 @@ class __$$PostImplCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$PostImpl
   __$$PostImplCopyWithImpl(_$PostImpl _value, $Res Function(_$PostImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Post
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -267,11 +283,13 @@ class _$PostImpl extends _Post {
             (identical(other.embedded, embedded) || other.embedded == embedded));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, content, excerpt, date, link, embedded);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Post
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PostImplCopyWith<_$PostImpl> get copyWith =>
@@ -313,8 +331,11 @@ abstract class _Post extends Post {
   @override
   @JsonKey(name: '_embedded')
   Embedded? get embedded;
+
+  /// Create a copy of Post
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PostImplCopyWith<_$PostImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -326,8 +347,12 @@ Renderable _$RenderableFromJson(Map<String, dynamic> json) {
 mixin _$Renderable {
   String get rendered => throw _privateConstructorUsedError;
 
+  /// Serializes this Renderable to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Renderable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RenderableCopyWith<Renderable> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -348,6 +373,8 @@ class _$RenderableCopyWithImpl<$Res, $Val extends Renderable> implements $Render
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Renderable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -377,6 +404,8 @@ class __$$RenderableImplCopyWithImpl<$Res> extends _$RenderableCopyWithImpl<$Res
   __$$RenderableImplCopyWithImpl(_$RenderableImpl _value, $Res Function(_$RenderableImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Renderable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -414,11 +443,13 @@ class _$RenderableImpl implements _Renderable {
             (identical(other.rendered, rendered) || other.rendered == rendered));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, rendered);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Renderable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RenderableImplCopyWith<_$RenderableImpl> get copyWith =>
@@ -439,8 +470,11 @@ abstract class _Renderable implements Renderable {
 
   @override
   String get rendered;
+
+  /// Create a copy of Renderable
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RenderableImplCopyWith<_$RenderableImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -453,8 +487,12 @@ mixin _$Embedded {
   @JsonKey(name: 'wp:featuredmedia')
   List<WpFeaturedmedia>? get wpFeaturedmedia => throw _privateConstructorUsedError;
 
+  /// Serializes this Embedded to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Embedded
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EmbeddedCopyWith<Embedded> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -475,6 +513,8 @@ class _$EmbeddedCopyWithImpl<$Res, $Val extends Embedded> implements $EmbeddedCo
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Embedded
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -504,6 +544,8 @@ class __$$EmbeddedImplCopyWithImpl<$Res> extends _$EmbeddedCopyWithImpl<$Res, _$
   __$$EmbeddedImplCopyWithImpl(_$EmbeddedImpl _value, $Res Function(_$EmbeddedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Embedded
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -551,12 +593,14 @@ class _$EmbeddedImpl implements _Embedded {
             const DeepCollectionEquality().equals(other._wpFeaturedmedia, _wpFeaturedmedia));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_wpFeaturedmedia));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Embedded
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EmbeddedImplCopyWith<_$EmbeddedImpl> get copyWith =>
@@ -580,8 +624,11 @@ abstract class _Embedded implements Embedded {
   @override
   @JsonKey(name: 'wp:featuredmedia')
   List<WpFeaturedmedia>? get wpFeaturedmedia;
+
+  /// Create a copy of Embedded
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EmbeddedImplCopyWith<_$EmbeddedImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -598,8 +645,12 @@ mixin _$WpFeaturedmedia {
   @JsonKey(name: 'source_url')
   String get sourceUrl => throw _privateConstructorUsedError;
 
+  /// Serializes this WpFeaturedmedia to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WpFeaturedmedia
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WpFeaturedmediaCopyWith<WpFeaturedmedia> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -626,6 +677,8 @@ class _$WpFeaturedmediaCopyWithImpl<$Res, $Val extends WpFeaturedmedia>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WpFeaturedmedia
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -683,6 +736,8 @@ class __$$WpFeaturedmediaImplCopyWithImpl<$Res>
       _$WpFeaturedmediaImpl _value, $Res Function(_$WpFeaturedmediaImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WpFeaturedmedia
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -759,11 +814,13 @@ class _$WpFeaturedmediaImpl implements _WpFeaturedmedia {
             (identical(other.sourceUrl, sourceUrl) || other.sourceUrl == sourceUrl));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, date, slug, type, sourceUrl);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WpFeaturedmedia
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WpFeaturedmediaImplCopyWith<_$WpFeaturedmediaImpl> get copyWith =>
@@ -798,8 +855,11 @@ abstract class _WpFeaturedmedia implements WpFeaturedmedia {
   @override
   @JsonKey(name: 'source_url')
   String get sourceUrl;
+
+  /// Create a copy of WpFeaturedmedia
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WpFeaturedmediaImplCopyWith<_$WpFeaturedmediaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
