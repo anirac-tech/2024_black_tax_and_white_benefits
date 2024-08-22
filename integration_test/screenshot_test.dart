@@ -39,7 +39,7 @@ Future<void> main() async {
         expect(find.byType(PostCell), findsAny);
 
         // Get the first post that was loaded
-        await tester.tap(find.byKey(Key('post_0')));
+        await tester.tap(find.byType(PostCellFeatured));
         await tester.pumpAndSettle();
 
         await takeScreenShot(binding: binding, tester: tester, screenShotName: name);
@@ -60,7 +60,7 @@ Future<void> main() async {
         expect(find.byType(PostCell), findsAny);
 
         // Get the second post that was loaded
-        await tester.tap(find.byKey(Key('post_1')));
+        await tester.tap(find.byType(PostCellFeatured));
         await tester.pumpAndSettle();
 
         await tester.tap(find.byIcon(Icons.favorite_outline));

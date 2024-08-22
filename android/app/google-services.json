@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "951356165698",
+    "project_id": "black-tax-white-benefits-stg",
+    "storage_bucket": "black-tax-white-benefits-stg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951356165698:android:fdacb135a73a782e4ee7db",
+        "android_client_info": {
+          "package_name": "com.blacktaxandwhitebenefits.gfapp.stg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz3OH2z8LZ0MzjpExuhViLnLZ10MPNUxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
