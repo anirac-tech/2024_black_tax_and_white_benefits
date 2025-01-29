@@ -290,10 +290,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "0dfb6b6a1979dac1c1245e17cef824d7b452ea29bd33d3467269f9bef3715fb0"
+      sha256: "5fe8c82766abd7494130a3dc5b9ffb8ca916898900c75a369b287267eac8d5b0"
       url: "https://pub.dev"
     source: hosted
-    version: "5.6.0"
+    version: "5.8.0"
   dio_web_adapter:
     dependency: transitive
     description:
