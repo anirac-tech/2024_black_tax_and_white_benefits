@@ -31,7 +31,7 @@ dependencies:
   settings_ui: 2.0.2
   share_plus: ^10.0.0
   shared_preferences: ^2.3.2
-  sqlite3_flutter_libs: 0.5.24
+  sqlite3_flutter_libs: 0.5.30
   url_launcher: 6.3.0
   
 dev_dependencies:
