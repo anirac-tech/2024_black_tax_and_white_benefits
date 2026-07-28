@@ -1,11 +1,12 @@
 plugins {
     id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
     // START: FlutterFire Configuration
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
     // END: FlutterFire Configuration
-    id "kotlin-android"
-    id "dev.flutter.flutter-gradle-plugin"
 }
 
 def localProperties = new Properties()
@@ -38,12 +39,14 @@ android {
     ndkVersion flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
+    kotlin {
+        compilerOptions {
+            jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+        }
     }
 
     sourceSets {
@@ -55,8 +58,8 @@ android {
         applicationId "com.blacktaxandwhitebenefits.gfapp"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 21
-        targetSdkVersion 35
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -102,7 +105,7 @@ android {
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt')
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
         debug {
             signingConfig signingConfigs.debug
@@ -112,8 +115,4 @@ android {
 
 flutter {
     source '../..'
-}
-
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10"
 }

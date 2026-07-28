@@ -1,14 +1,19 @@
 name: black_tax_and_white_benefits
 description: Mobile-friendly front end flutter app for
   blacktaxandwhitebenefits.com by Gordon Ferguson
+<<<<<<< Updated upstream
 version: 1.5.0+1500
+=======
+version: 1.6.1+1601
+>>>>>>> Stashed changes
 publish_to: none
 
 environment:
   sdk: "^3.5.0"
-  flutter: 3.24.0  # should match version for main.yaml
+  flutter: 3.44.4  # should match version for main.yaml
 dependencies:
   cached_network_image: ^3.4.0
+  cupertino_icons: ^1.0.8
   dio: 5.6.0
   drift: ^2.19.1+1
   firebase_analytics: 11.2.1
@@ -18,20 +23,22 @@ dependencies:
   flutter_gen: 5.6.0
   flutter_hooks: 0.20.5
   flutter_html: any
+  flutter_localizations:
+    sdk: flutter
   freezed_annotation: 2.4.4
   go_router: ^14.2.3
   hooks_riverpod: 3.0.0-dev.3
-  intl: 0.19.0
+  intl: 0.20.2
   json_annotation: 4.9.0
   logger: ^2.4.0
-  path: 1.9.0
+  path: 1.9.1
   path_provider: ^2.1.4
   retrofit: 4.2.0
   riverpod_annotation: 3.0.0-dev.3
   settings_ui: 2.0.2
   share_plus: ^10.0.0
   shared_preferences: ^2.3.2
-  sqlite3_flutter_libs: 0.5.24
+  sqlite3_flutter_libs: 0.5.42
   url_launcher: 6.3.0
   win32: 5.5.4
 
@@ -42,7 +49,9 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-  freezed: 2.5.7
+  # 2.5.7 depends on the removed Dart macros experiment; 2.5.2 remains
+  # compatible with this project's generated code and Dart 3.12.
+  freezed: 2.5.2
   json_serializable: 6.8.0
   mocktail: 1.0.4
   retrofit_generator: ^8.2.0
